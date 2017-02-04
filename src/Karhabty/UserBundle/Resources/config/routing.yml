@@ -1,0 +1,17 @@
+karhabty_user_homepage:
+    path:     /
+    defaults: { _controller: KarhabtyUserBundle:Default:index }
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+
+karhabty_partenaire_home:
+    path:     /partenaire_home
+    defaults: { _controller: KarhabtyUserBundle:Default:partenaire }
+
+
+
+karhabty_user_home:
+    path:     /user_home
+    defaults: { _controller: KarhabtyUserBundle:Default:user }
