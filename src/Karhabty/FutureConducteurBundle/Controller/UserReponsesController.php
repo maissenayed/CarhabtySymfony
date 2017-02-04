@@ -26,7 +26,7 @@ class UserReponsesController extends Controller
 
         $userReponses = $em->getRepository('KarhabtyFutureConducteurBundle:UserReponses')->findAll();
 
-        return $this->render('userreponses/index.html.twig', array(
+        return $this->render('KarhabtyFutureConducteurBundle:userreponses:index.html.twig', array(
             'userReponses' => $userReponses,
         ));
     }
@@ -51,7 +51,7 @@ class UserReponsesController extends Controller
             return $this->redirectToRoute('userreponses_show', array('id' => $userReponse->getId()));
         }
 
-        return $this->render('userreponses/new.html.twig', array(
+        return $this->render('KarhabtyFutureConducteurBundle:userreponses:new.html.twig', array(
             'userReponse' => $userReponse,
             'form' => $form->createView(),
         ));
@@ -67,7 +67,7 @@ class UserReponsesController extends Controller
     {
         $deleteForm = $this->createDeleteForm($userReponse);
 
-        return $this->render('userreponses/show.html.twig', array(
+        return $this->render('KarhabtyFutureConducteurBundle:userreponses:show.html.twig', array(
             'userReponse' => $userReponse,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -91,7 +91,7 @@ class UserReponsesController extends Controller
             return $this->redirectToRoute('userreponses_edit', array('id' => $userReponse->getId()));
         }
 
-        return $this->render('userreponses/edit.html.twig', array(
+        return $this->render('KarhabtyFutureConducteurBundle:userreponses:edit.html.twig', array(
             'userReponse' => $userReponse,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
