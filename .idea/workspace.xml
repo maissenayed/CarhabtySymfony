@@ -21,18 +21,7 @@
     <favorites_list name="Carhabty" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="base.html (1).twig" pinned="false" current-in-tab="true">
-        <entry file="file://$USER_HOME$/Downloads/base.html (1).twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="258">
-              <caret line="184" column="0" lean-forward="true" selection-start-line="184" selection-start-column="0" selection-end-line="184" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -645,12 +634,20 @@
       <updated>1485820649739</updated>
       <workItem from="1485820652337" duration="1618000" />
       <workItem from="1486070649961" duration="4546000" />
-      <workItem from="1486144411020" duration="12329000" />
+      <workItem from="1486144411020" duration="12374000" />
     </task>
+    <task id="LOCAL-00001" summary="FOS + Template">
+      <created>1486210956602</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1486210956602</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18493000" />
+    <option name="totallyTimeSpent" value="18538000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -689,6 +686,12 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="FOS + Template" />
+    <option name="LAST_COMMIT_MESSAGE" value="FOS + Template" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
