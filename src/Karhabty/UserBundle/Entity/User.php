@@ -21,7 +21,7 @@ class User extends BaseUser
 
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
 
 
@@ -108,13 +108,13 @@ class User extends BaseUser
     }
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
 
     protected $prenom ;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
 
     protected $telephone;
@@ -192,7 +192,7 @@ class User extends BaseUser
 
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
 
     protected $siret;
