@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Userreponse</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ userReponse.id }}</td>
+            </tr>
+            <tr>
+                <th>Reponsecontent</th>
+                <td>{{ userReponse.reponseContent }}</td>
+            </tr>
+            <tr>
+                <th>Ok</th>
+                <td>{% if userReponse.ok %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Test</th>
+                <td>{{ userReponse.test }}</td>
+            </tr>
+            <tr>
+                <th>Datetest</th>
+                <td>{% if userReponse.dateTest %}{{ userReponse.dateTest|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('userreponses_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('userreponses_edit', { 'id': userReponse.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

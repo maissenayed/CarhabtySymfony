@@ -1,6 +1,14 @@
 karhabty_astuce:
     resource: "@KarhabtyAstuceBundle/Resources/config/routing.yml"
 
+karhabty_future_conducteur_user_reponses:
+    resource: "@KarhabtyFutureConducteurBundle/Controller/UserReponsesController.php"
+    type:     annotation
+
+karhabty_future_conducteur_question:
+    resource: "@KarhabtyFutureConducteurBundle/Controller/QuestionController.php"
+    type:     annotation
+
 karhabty_future_conducteur:
     resource: "@KarhabtyFutureConducteurBundle/Resources/config/routing.yml"
     prefix:   /
