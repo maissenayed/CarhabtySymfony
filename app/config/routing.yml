@@ -1,3 +1,7 @@
+karhabty_future_conducteur_reponse:
+    resource: "@KarhabtyFutureConducteurBundle/Controller/ReponseController.php"
+    type:     annotation
+
 karhabty_future_conducteur_user_reponses:
     resource: "@KarhabtyFutureConducteurBundle/Controller/UserReponsesController.php"
     type:     annotation
