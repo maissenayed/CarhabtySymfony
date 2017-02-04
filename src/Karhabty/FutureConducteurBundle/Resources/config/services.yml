@@ -1,0 +1,4 @@
+services:
+#    karhabty_future_conducteur.example:
+#        class: Karhabty\FutureConducteurBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
