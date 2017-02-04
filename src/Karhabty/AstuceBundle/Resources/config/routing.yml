@@ -1,0 +1,24 @@
+karhabty_astuce_homepage:
+    path:     /
+    defaults: { _controller: KarhabtyAstuceBundle:Default:index }
+
+
+
+addAstuce:
+    path:     /addAstuce
+    defaults: { _controller: KarhabtyAstuceBundle:Astuce:addAstuce }
+
+deleteAstuce:
+    path:     /deleteAstuce/{id}
+    defaults: { _controller: KarhabtyAstuceBundle:Astuce:deleteAstuce}
+
+
+listAstuce:
+    path:     /listAstuce
+    defaults: { _controller: KarhabtyAstuceBundle:Astuce:listAstuce}
+
+updateAstuce:
+    path:     /updateAstuce/{id}
+    defaults: { _controller: KarhabtyAstuceBundle:Astuce:updateAstuce}
+
+

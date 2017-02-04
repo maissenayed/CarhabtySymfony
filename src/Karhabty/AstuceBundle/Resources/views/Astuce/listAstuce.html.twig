@@ -1,0 +1,40 @@
+<h1>liste des astuces </h1>
+
+<table border="1">
+    <tr>
+        <td>Theme</td>
+        <td>Titre</td>
+        <td>Description</td>
+        <td>Suppression</td>
+        <td>Modification</td>
+
+
+    </tr>
+
+    {% for i in astuces %}
+        <tr>
+            <td>
+                {{ i.theme }}
+            </td>
+
+            <td>
+                {{ i.titre }}
+            </td>
+            <td>
+                {{ i.description }}
+            </td>
+
+            <td>
+                <a href="{{ path('deleteAstuce', {'id':i.id}) }}" >Supprimer</a>
+            </td>
+
+            <td>
+                <a href="{{ path('updateAstuce', {'id':i.id}) }}" >Mise à jour</a>
+            </td>
+
+        </tr>
+
+    {%  endfor %}
+    </tr>
+
+</table>

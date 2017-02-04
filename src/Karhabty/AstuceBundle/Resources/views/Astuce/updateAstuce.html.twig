@@ -1,0 +1,28 @@
+<h1>Mise à jour </h1>
+
+{{ form_start (form) }}
+<table>
+    <tr>
+        <td> Theme </td>
+        <td> {{form_widget (form.theme) }}</td>
+
+    </tr>
+
+    <tr>
+        <td> Titre </td>
+        <td> {{form_widget (form.titre) }}</td>
+
+    </tr>
+    <tr>
+        <td> Description </td>
+        <td> {{form_widget (form.description) }}</td>
+
+    </tr>
+
+    <tr>
+        <td></td>
+        <td> {{form_widget (form.Valider) }}</td>
+
+    </tr>
+</table>
+{{ form_end (form) }}
