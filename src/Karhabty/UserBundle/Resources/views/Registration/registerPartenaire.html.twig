@@ -1,0 +1,202 @@
+{% extends '@KarhabtyUser/layout.html.twig'%}
+{% block fos_user_content %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+
+<form action="{{ path('register_partener') }}" class="form-horizontal" method="POST">
+    <div class="form-group col-md-12" id="fos_user_registration_form">
+
+
+
+
+        <h1>Inscription</h1>
+
+        <div class="form-group">
+            <label class="col-md-3 control-label">Nom d'utilisateur</label>
+            <div class="col-md-4">
+                <div class="input-group">
+                    {{ form_widget(form.username, { 'attr': {'class': 'form-control', 'placeholder': 'form.username'|trans } }) }}
+                    {{ form_errors(form.username) }}
+                    <span class="input-group-addon">
+                  <i class="fa fa-user"></i>
+                  </span>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="col-md-3 control-label">Email</label>
+            <div class="col-md-4">
+                <div class="input-group">
+                    {{ form_widget(form.email, { 'attr': {'class': 'form-control', 'placeholder': 'form.email'|trans } }) }}
+                    {{ form_errors(form.email) }}
+                    <span class="input-group-addon">
+                    <i class="fa fa-envelope"></i>
+                     </span>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="col-md-3 control-label">Nom</label>
+            <div class="col-md-4">
+                <div class="input-group">
+
+                    {{ form_widget(form.nom, { 'attr': {'class': 'form-control', 'placeholder': 'nom' } }) }}
+                    {{ form_errors(form.nom) }}
+
+                    <span class="input-group-addon">
+                                                                        <i class="fa fa-user"></i>
+                                                                    </span>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <label class="col-md-3 control-label">Prenom</label>
+            <div class="col-md-4">
+                <div class="input-group">
+
+
+                    {{ form_widget(form.prenom, { 'attr': {'class': 'form-control', 'placeholder': 'prenom' } }) }}
+                    {{ form_errors(form.prenom) }}
+
+                    <span class="input-group-addon">
+                                                                        <i class="fa fa-user"></i>
+                                                                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-3 control-label">Mot de passe</label>
+            <div class="col-md-4">
+                <div class="input-group">
+                    {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'form-control', 'placeholder': 'form.password'|trans } }) }}
+                    {{ form_errors(form.plainPassword.first) }}
+                    <span class="input-group-addon">
+           <i class="fa fa-lock"></i>
+          </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-3 control-label">Répéter Mot de passe</label>
+            <div class="col-md-4">
+                <div class="input-group">
+                    {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'form-control', 'placeholder': 'form.password_confirmation'|trans } }) }}
+                    {{ form_errors(form.plainPassword.second) }}
+                    <span class="input-group-addon">
+            <i class="fa fa-lock"></i>
+           </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-3 control-label">Numéro téléphone</label>
+            <div class="col-md-4">
+                <div class="input-group">
+
+                    {{ form_widget(form.telephone, { 'attr': {'class': 'form-control', 'placeholder': 'Numéro de téléphone' } }) }}
+                    {{ form_errors(form.telephone) }}
+
+                    <span class="input-group-addon">
+            <i class="fa fa-phone"></i>
+            </span>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="form-group">
+            <label class="col-md-3 control-label">Adresse</label>
+            <div class="col-md-4">
+                <div class="input-group">
+
+                    {{ form_widget(form.adresse, { 'attr': {'class': 'form-control', 'placeholder': 'adresse' } }) }}
+                    {{ form_errors(form.adresse) }}
+
+                    <span class="input-group-addon">
+                   <i class="fa fa-home"></i>
+                  </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-3 control-label">Nom societe</label>
+            <div class="col-md-4">
+                <div class="input-group">
+
+                    {{ form_widget(form.nomsociete, { 'attr': {'class': 'form-control', 'placeholder': 'nomsociete' } }) }}
+                    {{ form_errors(form.nomsociete) }}
+
+                    <span class="input-group-addon">
+                   <i class="fa fa-home"></i>
+                  </span>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <label class="col-md-3 control-label">SIRET</label>
+            <div class="col-md-4">
+                <div class="input-group">
+
+                    {{ form_widget(form.siret, { 'attr': {'class': 'form-control', 'placeholder': 'siret' } }) }}
+                    {{ form_errors(form.siret) }}
+
+                    <span class="input-group-addon">
+                   <i class="fa fa-home"></i>
+                  </span>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <label class="col-md-3 control-label">Activite Professionnelle</label>
+            <div class="col-md-4">
+                <div class="input-group">
+
+                    {{ form_widget(form.activite, { 'attr': {'class': 'form-control', 'placeholder': 'Activite' } }) }}
+                    {{ form_errors(form.activite) }}
+
+                    <span class="input-group-addon">
+                   <i class="fa fa-home"></i>
+                  </span>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+        <div class="form-actions top">
+            <div class="row">
+                <div class="col-md-offset-3 col-md-2">
+                    <input type="submit" class="btn green" value="{{ 'registration.submit'|trans }}"/>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{ form_rest(form) }}
+
+
+</form>
+
+{% endblock fos_user_content %}

@@ -1,3 +1,11 @@
+karhabty_map:
+    resource: "@KarhabtyMapBundle/Resources/config/routing.yml"
+    prefix:   /
+
+karhabty_offre:
+    resource: "@KarhabtyOffreBundle/Resources/config/routing.yml"
+    prefix:   /
+
 karhabty_user:
     resource: "@KarhabtyUserBundle/Resources/config/routing.yml"
     prefix:   /

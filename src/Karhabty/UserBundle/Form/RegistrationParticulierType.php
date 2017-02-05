@@ -5,43 +5,22 @@ namespace Karhabty\UserBundle\Form;
 use Karhabty\UserBundle\Form\StringToArrayTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-class RegistrationType extends AbstractType
+class RegistrationParticulierType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
         $transformer = new StringToArrayTransformer();
-        $builder->add('nom')
+        $builder
+
+            ->add('nom')
             ->add('prenom')
             ->add('telephone')
             ->add('adresse')
-        ->add('nomsociete')
-       ->add('siret')
-            ->add('activite')
-
-            ->add($builder->create('roles', ChoiceType::class, array(
-
-                'label' => 'Rôle:',
-
-                'mapped' => true,
-
-                'expanded' => true,
-
-                'multiple' => false,
-
-                'choices' => array(
-
-                    'ROLE_PARTICULER' => 'Particuler',
-
-                    'ROLE_PARTENAIRE' => 'Partenaire',
-
-                )
-
-            ))->addModelTransformer($transformer))
-
-        ;
+            ;
 
     }
 
@@ -64,3 +43,5 @@ class RegistrationType extends AbstractType
         return $this->getBlockPrefix();
     }
 }
+
+

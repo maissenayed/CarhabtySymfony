@@ -1,0 +1,4 @@
+karhabty_offre_offre:
+    resource: "@KarhabtyOffreBundle/Resources/config/routing/offre.yml"
+    prefix:   /offre
+

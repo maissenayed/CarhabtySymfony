@@ -15,3 +15,7 @@ karhabty_partenaire_home:
 karhabty_user_home:
     path:     /user_home
     defaults: { _controller: KarhabtyUserBundle:Default:user }
+
+register_partener:
+    path:     /register_partener
+    defaults: { _controller: KarhabtyUserBundle:Registration:registerPartner}
