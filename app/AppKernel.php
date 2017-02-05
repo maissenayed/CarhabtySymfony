@@ -21,6 +21,8 @@ class AppKernel extends Kernel
             new Karhabty\OffreBundle\KarhabtyOffreBundle(),
             new Karhabty\MapBundle\KarhabtyMapBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
+            new Karhabty\FutureConducteurBundle\KarhabtyFutureConducteurBundle(),
+
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

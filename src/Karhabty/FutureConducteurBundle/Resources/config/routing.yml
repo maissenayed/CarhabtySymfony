@@ -1,0 +1,3 @@
+karhabty_future_conducteur_homepage:
+    path:     /
+    defaults: { _controller: KarhabtyFutureConducteurBundle:Default:index }
