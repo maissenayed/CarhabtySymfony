@@ -93,5 +93,21 @@ class Reponse
     {
         return $this->ok;
     }
+
+
+
+    /**
+     * Many Features have One Product.
+     * @ORM\ManyToOne(targetEntity="Question", inversedBy="Reponse")
+     * @ORM\JoinColumn(name="quest_id", referencedColumnName="id")
+     */
+    private $question;
+
+
+    public function getQuestion()
+    {return $this->question;}
+
+    public function setQuestion($var)
+    {$this->question=$var;}
 }
 

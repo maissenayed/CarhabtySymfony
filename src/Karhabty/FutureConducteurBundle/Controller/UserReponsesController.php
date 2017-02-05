@@ -2,10 +2,14 @@
 
 namespace Karhabty\FutureConducteurBundle\Controller;
 
+
+use Karhabty\UserBundle\Entity;
 use Karhabty\FutureConducteurBundle\Entity\UserReponses;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+
 
 /**
  * Userreponse controller.
@@ -39,7 +43,7 @@ class UserReponsesController extends Controller
      */
     public function newAction(Request $request)
     {
-        $userReponse = new Userreponse();
+        $userReponse = new UserReponses();
         $form = $this->createForm('Karhabty\FutureConducteurBundle\Form\UserReponsesType', $userReponse);
         $form->handleRequest($request);
 

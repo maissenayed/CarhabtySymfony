@@ -2,6 +2,7 @@
 
 namespace Karhabty\FutureConducteurBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -12,6 +13,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Question
 {
+    public function __construct() {
+        $this->reponses = new ArrayCollection();
+    }
+
     /**
      * @var int
      *
@@ -93,5 +98,19 @@ class Question
     {
         return $this->imgUrl;
     }
+
+    /**
+     *
+     * @ORM\OneToMany(targetEntity="Reponse", mappedBy="question",cascade={"persist", "remove"})
+     */
+    private $reponses;
+
+    public function getReponses()
+    {return $this->reponses;}
+
+    public function setReponses($var)
+    {$this->reponses=$var;}
+
+
 }
 

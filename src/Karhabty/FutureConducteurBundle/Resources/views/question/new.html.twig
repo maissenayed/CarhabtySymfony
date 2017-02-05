@@ -1,10 +1,24 @@
-{% extends 'base.html.twig' %}
+{% extends 'home_layout.html.twig' %}
 
-{% block body %}
+{% block content %}
+<div class="portlet light bordered">
     <h1>Question creation</h1>
 
     {{ form_start(form) }}
-        {{ form_widget(form) }}
+        Upload image
+        {{ form_widget(form.imgUrl) }}
+        <br>
+        {{ form_label(form.questionContent) }}
+        {{ form_widget(form.questionContent, {'attr': {'class': 'form-control input-lg'}}) }}
+
+
+        <h2>Reponse</h2>
+
+        {{ form_row(form.reponses) }}
+        {{ form_row(form.reponses) }}
+        {{ form_row(form.reponses) }}
+        {{ form_row(form.reponses) }}
+
         <input type="submit" value="Create" />
     {{ form_end(form) }}
 
@@ -13,4 +27,11 @@
             <a href="{{ path('question_index') }}">Back to the list</a>
         </li>
     </ul>
+
+</div>
+
 {% endblock %}
+
+
+
+

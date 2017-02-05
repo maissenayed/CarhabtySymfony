@@ -2,10 +2,13 @@
 
 namespace Karhabty\FutureConducteurBundle\Controller;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Karhabty\FutureConducteurBundle\Entity\Question;
+use Karhabty\FutureConducteurBundle\Entity\Reponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Question controller.
@@ -40,6 +43,11 @@ class QuestionController extends Controller
     public function newAction(Request $request)
     {
         $question = new Question();
+
+        $r=new Reponse();
+
+
+        $question->getReponses()->add($r);
         $form = $this->createForm('Karhabty\FutureConducteurBundle\Form\QuestionType', $question);
         $form->handleRequest($request);
 

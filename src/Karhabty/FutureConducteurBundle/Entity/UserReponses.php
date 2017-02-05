@@ -2,6 +2,7 @@
 
 namespace Karhabty\FutureConducteurBundle\Entity;
 
+use Karhabty\UserBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -155,5 +156,32 @@ class UserReponses
     {
         return $this->dateTest;
     }
+
+
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="Karhabty\UserBundle\Entity\User")
+     * @ORM\JoinColumn(name="User_id", referencedColumnName="id")
+     */
+    private $user;
+
+
+
+    /**
+     * Many Users have One Address.
+     * @ORM\ManyToOne(targetEntity="Question")
+     * @ORM\JoinColumn(name="Quest_id", referencedColumnName="id")
+     */
+    private $question;
+
+    public function getQuestion()
+    {return $this->question;}
+
+
+    public function setQuestion($var)
+    {
+        $this->question=$var;
+    }
+
 }
 
