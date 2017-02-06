@@ -17,6 +17,7 @@ class DefaultController extends Controller
 
     public function userAction()
     {
+
         return $this->render('KarhabtyUserBundle::HomeUser.html.twig');
     }
 
