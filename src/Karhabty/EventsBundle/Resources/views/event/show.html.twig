@@ -1,13 +1,13 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout/LayoutUser.html.twig' %}
 
-{% block body %}
+{% block content %}
     <h1>Event</h1>
 
     <table>
         <tbody>
             <tr>
-                <th>Event_id</th>
-                <td>{{ event.eventid }}</td>
+                <th>Id</th>
+                <td>{{ event.id }}</td>
             </tr>
             <tr>
                 <th>Description</th>
@@ -30,16 +30,16 @@
                 <td>{{ event.address }}</td>
             </tr>
             <tr>
-                <th>Event_date</th>
-                <td>{% if event.eventdate %}{{ event.eventdate|date('Y-m-d') }}{% endif %}</td>
+                <th>Eventdate</th>
+                <td>{% if event.eventDate %}{{ event.eventDate|date('Y-m-d') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Created_date</th>
-                <td>{% if event.createddate %}{{ event.createddate|date('Y-m-d') }}{% endif %}</td>
+                <th>Createddate</th>
+                <td>{% if event.createdDate %}{{ event.createdDate|date('Y-m-d') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Updated_date</th>
-                <td>{% if event.updateddate %}{{ event.updateddate|date('Y-m-d') }}{% endif %}</td>
+                <th>Updateddate</th>
+                <td>{% if event.updatedDate %}{{ event.updatedDate|date('Y-m-d') }}{% endif %}</td>
             </tr>
         </tbody>
     </table>
@@ -49,7 +49,7 @@
             <a href="{{ path('event_index') }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('event_edit', { 'id': event.event_id }) }}">Edit</a>
+            <a href="{{ path('event_edit', { 'id': event.id }) }}">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}

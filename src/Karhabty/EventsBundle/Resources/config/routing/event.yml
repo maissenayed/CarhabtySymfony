@@ -1,0 +1,27 @@
+event_index:
+    path:     /
+    defaults: { _controller: "KarhabtyEventsBundle:Event:index" }
+    methods:  [GET]
+event_filter:
+    path:     /filter/{criteria}
+    defaults: { _controller: "KarhabtyEventsBundle:Event:index" }
+    methods:  [GET]
+event_show:
+    path:     /show/{id}
+    defaults: { _controller: "KarhabtyEventsBundle:Event:show" }
+    methods:  [GET]
+
+event_new:
+    path:     /new
+    defaults: { _controller: "KarhabtyEventsBundle:Event:new" }
+    methods:  [GET, POST]
+
+event_edit:
+    path:     /edit/{id}
+    defaults: { _controller: "KarhabtyEventsBundle:Event:edit" }
+    methods:  [GET, POST]
+
+event_delete:
+    path:     /delete/{id}
+    defaults: { _controller: "KarhabtyEventsBundle:Event:delete" }
+    methods:  DELETE

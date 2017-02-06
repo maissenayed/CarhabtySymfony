@@ -1,0 +1,67 @@
+{% extends 'layout/LayoutUser.html.twig' %}
+
+{% block content %}
+
+<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+<span class="mt-action-buttons ">
+     <div class="btn-group btn-group-circle">
+       <button type="button" class="btn btn-outline green btn-sm"><a href="{{ path('event_new') }}">Create a new event</a></button>
+    </div>
+</span>
+    <div class="portlet light bordered">
+        <div class="portlet-title tabbable-line">
+            <div class="caption">
+                <i class=" icon-social-twitter font-dark hide"></i>
+                <span class="caption-subject font-dark bold uppercase">evenements</span>
+            </div>
+            <ul class="nav nav-tabs">
+                <li class="{% if   criteria == null %}active{% endif %}">
+                    <a href="{{path('event_index')}}"> Prochainement </a>
+                </li>
+                <li class="{% if  criteria == 'public'%}active{% endif %}">
+                    <a href="{{path('event_filter',{criteria:'public'})}}"> Publiques </a>
+                </li>
+                <li class="{% if  criteria == 'private'%}active{% endif %}">
+                    <a href="{{path('event_filter',{criteria:'private'})}}"> Privés </a>
+                </li>
+            </ul>
+        </div>
+        <div class="portlet-body">
+            <div class="tab-content">
+                <div class="tab-pane active" id="tab_actions_pending">
+                    <!-- BEGIN: Actions -->
+                    {% for event in events %}
+                    <div class="mt-actions">
+                        <div class="mt-action">
+                            <div class="mt-action-img">
+                                <img src="../assets/pages/media/users/avatar10.jpg"> </div>
+                            <div class="mt-action-body">
+                                <div class="mt-action-row">
+                                    <div class="mt-action-info ">
+
+                                        <div class="mt-action-details ">
+                                            <span class="mt-action-author">{{ event.title }}</span>
+                                            <p class="mt-action-desc">{{ event.description }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="mt-action-datetime ">
+                                        <span class="mt-action-date">{{ event.access }}</span>
+                                        <span class="mt-action-dot bg-green"></span>
+                                        <span class="mt=action-time">{{ event.eventDate|date('Y-m-d') }}</span>
+                                    </div>
+                                    <div class="mt-action-buttons ">
+                                        <div class="btn-group btn-group-circle">
+                                            <button type="button" class="btn btn-outline green btn-sm"><a  href="{{ path('event_show', { 'id': event.id }) }}">Show</a></button>
+                                            <button type="button" class="btn btn-outline red btn-sm"><a href="{{ path('event_edit', { 'id': event.id }) }}">Edit</a></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    <!-- END: Actions -->
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

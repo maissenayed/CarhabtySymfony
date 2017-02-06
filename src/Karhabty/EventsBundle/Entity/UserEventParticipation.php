@@ -17,7 +17,17 @@ class UserEventParticipation
      * @ORM\GeneratedValue
      */
 
-    private $eventId ;
+    private $id;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $eventId;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $userId;
 
     /**
      * @ORM\Column(type="string",length=255)
@@ -37,6 +47,24 @@ class UserEventParticipation
     /**
      * @return mixed
      */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     * @return UserEventParticipation
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getEventId()
     {
         return $this->eventId;
@@ -44,10 +72,30 @@ class UserEventParticipation
 
     /**
      * @param mixed $eventId
+     * @return UserEventParticipation
      */
     public function setEventId($eventId)
     {
         $this->eventId = $eventId;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUserId()
+    {
+        return $this->userId;
+    }
+
+    /**
+     * @param mixed $userId
+     * @return UserEventParticipation
+     */
+    public function setUserId($userId)
+    {
+        $this->userId = $userId;
+        return $this;
     }
 
     /**
@@ -60,10 +108,12 @@ class UserEventParticipation
 
     /**
      * @param mixed $status
+     * @return UserEventParticipation
      */
     public function setStatus($status)
     {
         $this->status = $status;
+        return $this;
     }
 
     /**
@@ -76,10 +126,12 @@ class UserEventParticipation
 
     /**
      * @param mixed $createdDate
+     * @return UserEventParticipation
      */
     public function setCreatedDate($createdDate)
     {
         $this->createdDate = $createdDate;
+        return $this;
     }
 
     /**
@@ -92,11 +144,14 @@ class UserEventParticipation
 
     /**
      * @param mixed $updatedDate
+     * @return UserEventParticipation
      */
     public function setUpdatedDate($updatedDate)
     {
         $this->updatedDate = $updatedDate;
+        return $this;
     }
+
 
 
 }

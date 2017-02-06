@@ -19,7 +19,15 @@ class Event
      * @ORM\GeneratedValue
      */
 
-    private $eventId ;
+    private $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Karhabty\UserBundle\Entity\User",cascade={"persist"})
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+
+    private $userId;
+
 
     /**
      * @ORM\Column(type="string",length=255)
@@ -64,17 +72,37 @@ class Event
     /**
      * @return mixed
      */
-    public function getEventId()
+    public function getId()
     {
-        return $this->eventId;
+        return $this->id;
     }
 
     /**
-     * @param mixed $eventId
+     * @param mixed $id
+     * @return Event
      */
-    public function setEventId($eventId)
+    public function setId($id)
     {
-        $this->eventId = $eventId;
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUserId()
+    {
+        return $this->userId;
+    }
+
+    /**
+     * @param mixed $userId
+     * @return Event
+     */
+    public function setUserId($userId)
+    {
+        $this->userId = $userId;
+        return $this;
     }
 
     /**
@@ -87,10 +115,12 @@ class Event
 
     /**
      * @param mixed $description
+     * @return Event
      */
     public function setDescription($description)
     {
         $this->description = $description;
+        return $this;
     }
 
     /**
@@ -103,10 +133,12 @@ class Event
 
     /**
      * @param mixed $photo
+     * @return Event
      */
     public function setPhoto($photo)
     {
         $this->photo = $photo;
+        return $this;
     }
 
     /**
@@ -119,10 +151,12 @@ class Event
 
     /**
      * @param mixed $title
+     * @return Event
      */
     public function setTitle($title)
     {
         $this->title = $title;
+        return $this;
     }
 
     /**
@@ -135,10 +169,12 @@ class Event
 
     /**
      * @param mixed $access
+     * @return Event
      */
     public function setAccess($access)
     {
         $this->access = $access;
+        return $this;
     }
 
     /**
@@ -151,10 +187,12 @@ class Event
 
     /**
      * @param mixed $address
+     * @return Event
      */
     public function setAddress($address)
     {
         $this->address = $address;
+        return $this;
     }
 
     /**
@@ -167,10 +205,12 @@ class Event
 
     /**
      * @param mixed $eventDate
+     * @return Event
      */
     public function setEventDate($eventDate)
     {
         $this->eventDate = $eventDate;
+        return $this;
     }
 
     /**
@@ -183,10 +223,12 @@ class Event
 
     /**
      * @param mixed $createdDate
+     * @return Event
      */
     public function setCreatedDate($createdDate)
     {
         $this->createdDate = $createdDate;
+        return $this;
     }
 
     /**
@@ -199,12 +241,13 @@ class Event
 
     /**
      * @param mixed $updatedDate
+     * @return Event
      */
     public function setUpdatedDate($updatedDate)
     {
         $this->updatedDate = $updatedDate;
+        return $this;
     }
-
 
 
 }
