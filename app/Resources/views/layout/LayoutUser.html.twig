@@ -1,7 +1,8 @@
 {% extends ':layout:base.html.twig' %}
 {% block body %}
 <body class="page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo">
-<!-- BEGIN HEADER -->
+
+{% block nav %}<!-- BEGIN HEADER -->
 <div class="page-header navbar navbar-fixed-top">
     <!-- BEGIN HEADER INNER -->
     <div class="page-header-inner ">
@@ -146,7 +147,9 @@
                     <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                     <li class="dropdown dropdown-user dropdown-dark">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                            <span class="username username-hide-on-mobile">Garci</span>
+                            <span class="username username-hide-on-mobile">{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
+                                                {% endif %}</span>
 
                             <img alt="" class="img-circle" src="{{ asset('assets/img/karhabty-logo.png') }}" /> </a>
                         <ul class="dropdown-menu dropdown-menu-default">
@@ -181,7 +184,7 @@
                             <li class="divider"> </li>
 
                             <li>
-                                <a href="page_user_login_1.html">
+                                <a href="{{ path('fos_user_security_logout') }}">
                                    </i>Déconnexion</a>
                             </li>
                         </ul>
@@ -195,6 +198,7 @@
     </div>
     <!-- END HEADER INNER -->
 </div>
+{% endblock %}
 <!-- END HEADER -->
 <!-- BEGIN HEADER & CONTENT DIVIDER -->
 <div class="clearfix"> </div>
@@ -221,7 +225,7 @@
 
 
                 <li class="nav-item  ">
-                    <a href="#" class="nav-link nav-toggle">
+                    <a href="{{ path('offre_affiche') }}" class="nav-link nav-toggle">
                         <i class="fa fa-cart-plus" aria-hidden="true"></i>
                         <span class="title">Offres</span>
                     </a>
@@ -267,7 +271,7 @@
 
 
                 <li class="nav-item  ">
-                    <a href="#" class="nav-link nav-toggle">
+                    <a href="{{ path('karhabty_map_homepage') }}" class="nav-link nav-toggle">
                         <i class="fa fa-location-arrow"></i>
                         <span class="title">Localisation</span>
                     </a>

@@ -1,0 +1,95 @@
+{% extends 'layout/LayoutUser.html.twig' %}
+
+
+{% block content %}
+    {% for offre in offres %}
+    <div class="col-md-12">
+        <!-- BEGIN Portlet PORTLET-->
+   <div class="portlet light">
+    <div class="row">
+      <div class="list-group">
+        <div class="media col-md-3">
+            <figure class="pull-left">
+            <img class="media-object img-rounded img-responsive"  src="{{ asset(vich_uploader_asset(offre, 'imageFile')) }}" />
+            </figure>
+        </div>
+      </div>
+        <div class="list-group">
+            <div class="media col-md-6">
+                <h4 class="list-group-item-heading">Description</h4>
+                <p class="list-group-item-text">  {{ offre.descriptionOffre }}</p>
+                <p>Prix : {{ offre.prix }}</p>
+                <p>Taux de Réduction :  {{ offre.tauxReduction }}</p>
+                <p>Type offre  {{ offre.typeOffre }}</p>
+
+            </div>
+        </div>
+        <div class="list-group">
+            <div class="media col-md-3">
+                <button type="button" class="btn btn-circle red-sunglo">Red Sunglo</button>
+            </div>
+        </div>
+    </div>
+  </div>
+        <!-- END Portlet PORTLET-->
+    </div>
+{% endfor %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h1>Offres list</h1>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Idoffre</th>
+            <th>Nomoffre</th>
+            <th>Descriptionoffre</th>
+            <th>Prix</th>
+            <th>Tauxreduction</th>
+            <th>Typeoffre</th>
+            <th>Image</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for offre in offres %}
+            <tr>
+                <td><a href="{{ path('offre_show', { 'id': offre.idOffre }) }}">{{ offre.idOffre }}</a></td>
+                <td>{{ offre.nomOffre }}</td>
+                <td>{{ offre.descriptionOffre }}</td>
+                <td>{{ offre.prix }}</td>
+                <td>{{ offre.tauxReduction }}</td>
+                <td>{{ offre.typeOffre }}</td>
+                <td><img src="{{ asset(vich_uploader_asset(offre, 'imageFile')) }}"></td>
+
+
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

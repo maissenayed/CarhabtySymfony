@@ -1,0 +1,3 @@
+karhabty_map_homepage:
+    path:     /map
+    defaults: { _controller: KarhabtyMapBundle:Default:index }

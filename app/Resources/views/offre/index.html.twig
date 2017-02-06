@@ -1,0 +1,50 @@
+{% extends 'layout/LayoutPartner.twig' %}
+
+{% block content %}
+    <h1>Offres list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Idoffre</th>
+                <th>Nomoffre</th>
+                <th>Descriptionoffre</th>
+                <th>Prix</th>
+                <th>Tauxreduction</th>
+                <th>Typeoffre</th>
+                <th>Image</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for offre in offres %}
+            <tr>
+                <td><a href="{{ path('offre_show', { 'id': offre.idOffre }) }}">{{ offre.idOffre }}</a></td>
+                <td>{{ offre.nomOffre }}</td>
+                <td>{{ offre.descriptionOffre }}</td>
+                <td>{{ offre.prix }}</td>
+                <td>{{ offre.tauxReduction }}</td>
+                <td>{{ offre.typeOffre }}</td>
+                <td><img src="{{ asset(vich_uploader_asset(offre, 'imageFile')) }}"></td>
+
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('offre_show', { 'id': offre.idOffre }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('offre_edit', { 'id': offre.idOffre }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('offre_new') }}">Create a new offre</a>
+        </li>
+    </ul>
+{% endblock %}
