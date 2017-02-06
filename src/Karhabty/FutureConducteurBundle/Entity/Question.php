@@ -112,5 +112,17 @@ class Question
     {$this->reponses=$var;}
 
 
+
+    public function addReponse(Reponse $var)
+    {
+        $this->reponses->add($var);
+    }
+
+    public function removeReponse(Reponse $var)
+    {
+        $this->reponses->removeElement($var);
+    }
+
+
 }
 

@@ -98,7 +98,7 @@ class Reponse
 
     /**
      * Many Features have One Product.
-     * @ORM\ManyToOne(targetEntity="Question", inversedBy="Reponse")
+     * @ORM\ManyToOne(targetEntity="Question", inversedBy="reponses")
      * @ORM\JoinColumn(name="quest_id", referencedColumnName="id")
      */
     private $question;
