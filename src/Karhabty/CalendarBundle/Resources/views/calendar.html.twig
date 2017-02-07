@@ -1,0 +1,394 @@
+
+{% extends 'layout/LayoutUser.html.twig' %}
+
+
+
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/fullcalendar/css/fullcalendar/fullcalendar.min.css') }}" />
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/global/plugins/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/global/plugins/simple-line-icons/simple-line-icons.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/global/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/global/plugins/uniform/css/uniform.default.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css') }}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{{ asset("assets/sweetalert/dist/sweetalert.css") }}">
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+
+    <!-- BEGIN THEME GLOBAL STYLES -->
+    <link href="{{ asset('assets/global/css/components.min.css') }}" rel="stylesheet" id="style_components" type="text/css" />
+    <link href="{{ asset('assets/global/css/plugins.min.css') }}" rel="stylesheet" type="text/css" />
+    <!-- END THEME GLOBAL STYLES -->
+    <!-- BEGIN PAGE LEVEL STYLES -->
+    <link href="{{ asset('assets/apps/css/inbox.min.css') }}" rel="stylesheet" type="text/css" />
+    <!-- END PAGE LEVEL STYLES -->
+    <!-- BEGIN THEME LAYOUT STYLES -->
+    <link href="{{ asset('assets/layouts/layout4/css/layout.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/layouts/layout4/css/themes/light.min.css') }}" rel="stylesheet" type="text/css" id="style_color" />
+    <link href="{{ asset('assets/layouts/layout4/css/custom.min.css') }}" rel="stylesheet" type="text/css" />
+
+
+
+
+    <style>
+        #trash{
+            width:150px;
+            height:32px;
+            float:left;
+            margin-top: 50px;
+            position: relative;
+        }
+
+        #wrap {
+            width: 1150px;
+            margin: 0 auto;
+        }
+
+        #external-events {
+            float: left;
+            width: 200px;
+            height:200px;
+            padding: 0 10px;
+            border: 1px solid #ccc;
+            background: #eee;
+            text-align: left;
+        }
+
+        #external-events h4 {
+            font-size: 16px;
+            margin-top: 0;
+            padding-top: 1em;
+        }
+
+        #external-events .fc-event {
+            margin: 10px 0;
+            cursor: pointer;
+        }
+
+        #external-events p {
+            margin: 1.5em 0;
+            font-size: 11px;
+            color: #666;
+        }
+
+        #external-events p input {
+            margin: 0;
+            vertical-align: middle;
+        }
+
+        #calendar {
+            float: right;
+            width: 900px;
+        }</style>
+
+
+{% endblock %}
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/lib/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/global/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/lib/moment.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/fullcalendar.min.js') }}"></script>
+    <script src="{{ asset('assets/sweetalert/dist/sweetalert.min.js') }}"></script>
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+    <script>
+
+
+
+        $(document).ready(function() {
+
+            var zone = "05:30";  //Change this to your timezone
+
+            $.ajax({
+                url:Routing.generate('my_very_secret_route'),
+                type: 'POST', // Send post data
+                data: 'type=fetch',
+                async: false,
+                success: function(s){
+                    json_events = s;
+                    console.log(s);
+                }
+            });
+
+
+            var currentMousePos = {
+                x: -1,
+                y: -1
+            };
+            jQuery(document).on("mousemove", function (event) {
+                currentMousePos.x = event.pageX;
+                currentMousePos.y = event.pageY;
+            });
+
+            /* initialize the external events
+             -----------------------------------------------------------------*/
+
+            $('#external-events .fc-event').each(function() {
+
+                // store data so the calendar knows to render an event upon drop
+                $(this).data('event', {
+                    title: $.trim($(this).text()), // use the element's text as the event title
+                    stick: true // maintain when user navigates (see docs on the renderEvent method)
+                });
+
+                // make the event draggable using jQuery UI
+                $(this).draggable({
+                    zIndex: 999,
+                    revert: true,      // will cause the event to go back to its
+                    revertDuration: 0  //  original position after the drag
+                });
+
+            });
+
+
+            /* initialize the calendar
+             -----------------------------------------------------------------*/
+
+            $('#calendar').fullCalendar({
+                events:json_events,
+
+                //events: [{"id":"14","title":"New Event","start":"2015-01-24T16:00:00+04:00","allDay":false}],
+                utc: true,
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+                editable: true,
+                droppable: true,
+                slotDuration: '00:30:00',
+                eventReceive: function(event){
+                    var title = event.title;
+                    var start = event.start.format("YYYY-MM-DD[T]HH:mm:SS");
+                    $.ajax({
+                        url: Routing.generate('my_very_secret_route'),
+                        data: 'type=new&title='+title+'&startdate='+start+'&zone='+zone+'&id='+{{ voiture.id }},
+                        type: 'POST',
+                        dataType: 'json',
+                        success: function(response){
+                            event.id = response.eventid;
+                            $('#calendar').fullCalendar('updateEvent',event);
+                        },
+                        error: function(e){
+                            console.log(e.responseText);
+
+                        }
+                    });
+                    $('#calendar').fullCalendar('updateEvent',event);
+                    //console.log(event);
+                },
+                eventDrop: function(event, delta, revertFunc) {
+                    var title = event.title;
+                    var start = event.start.format();
+                    var end = (event.end == null) ? start : event.end.format();
+                    $.ajax({
+                        url: Routing.generate('my_very_secret_route'),
+                        data: 'type=resetdate&title='+title+'&start='+start+'&end='+end+'&eventid='+event.id,
+                        type: 'POST',
+                        dataType: 'json',
+                        success: function(response){
+                            if(response.status != 'success')
+                                revertFunc();
+                        },
+                        error: function(e){
+                            revertFunc();
+                            alert('Error processing your request: '+e.responseText);
+                        }
+                    });
+                },
+                eventClick: function(event, jsEvent, view) {
+                    console.log(event.id);
+                             swal({
+                                title: "Change Title!",
+
+                                type: "input",
+                                showCancelButton: true,
+                                closeOnConfirm: false,
+                                animation: "slide-from-top",
+                                inputPlaceholder: "Write something", showLoaderOnConfirm: true
+                            },
+                            function(inputValue){
+                                if (inputValue === false) return false;
+
+                                if (inputValue === "") {
+                                    swal.showInputError("You need to write something!");
+                                    return false
+                                }
+                                var title= inputValue;
+                                if (title){
+                                    event.title = title;
+                                    console.log('type=changetitle&title='+title+'&eventid='+event.id);
+                                    $.ajax({
+                                        url: Routing.generate('my_very_secret_route'),
+                                        data: 'type=changetitle&title='+title+'&eventid='+event.id,
+                                        type: 'POST',
+                                        dataType: 'json',
+                                        success: function(response){
+                                            if(response.status == 'success')
+                                                $('#calendar').fullCalendar('updateEvent',event);
+                                        },
+                                        error: function(e){
+                                            alert('Error processing your request: '+e.responseText);
+                                        }
+                                    });
+                                }
+
+
+                                setTimeout(function(){
+                                    swal("Title changing finished!");
+                                }, 5000);
+
+                            });
+                },
+                eventResize: function(event, delta, revertFunc) {
+                    console.log(event);
+                    var title = event.title;
+                    var end = event.end.format();
+                    var start = event.start.format();
+                    $.ajax({
+                        url: Routing.generate('my_very_secret_route'),
+                        data: 'type=changetitle&title='+title+'&eventid='+event.id,
+                        type: 'POST',
+                        dataType: 'json',
+                        success: function(response){
+                            if(response.status == 'success')
+                                $('#calendar').fullCalendar('updateEvent',event);
+                        },
+                        error: function(e){
+                            alert('Error processing your request: '+e.responseText);
+                        }
+                    });
+                },
+                eventDragStop: function (event, jsEvent, ui, view) {
+                    if (isElemOverDiv()) {
+
+
+                        swal({
+                                    title: "Are you sure?",
+                                    text: "You will not be able to recover this imaginary file!",
+                                    type: "warning",
+                                    showCancelButton: true,
+                                    confirmButtonColor: "#DD6B55",
+                                    confirmButtonText: "Yes, delete it!",
+                                    cancelButtonText: "No, cancel plx!",
+                                    closeOnConfirm: false,
+                                    closeOnCancel: false,
+                                    showLoaderOnConfirm: true
+                                },
+                                function(isConfirm){
+                                    if (isConfirm) {
+
+                                        $.ajax({
+                                            url:Routing.generate('my_very_secret_route'),
+                                            data: 'type=remove&eventid='+event.id,
+                                            type: 'POST',
+                                            dataType: 'json',
+                                            success: function(response){
+                                                // console.log(response);
+                                                if(response.status == 'success'){
+                                                    $('#calendar').fullCalendar('removeEvents');
+                                                    getFreshEvents();
+                                                }
+                                            },
+                                            error: function(e){
+                                                sweetAlert("Oops...", "Something went wrong!"+e.responseText, "error");
+                                            }
+                                        });
+
+
+
+                                            setTimeout(function(){
+                                                swal("Deleted!", "Your imaginary file has been deleted.", "success");
+                                            }, 8000);
+
+
+
+
+
+                                    } else {
+                                        swal("Cancelled", "Your imaginary file is safe :)", "error");
+                                    }
+                                });
+
+                        }
+                    }
+
+            });
+
+            function getFreshEvents(){
+                $.ajax({
+                    url: Routing.generate('my_very_secret_route'),
+                    type: 'POST', // Send post data
+                    data: 'type=fetch',
+                    async: false,
+                    success: function(s){
+                        freshevents = s;
+                    }
+                });
+                $('#calendar').fullCalendar('addEventSource', freshevents);
+            }
+
+
+            function isElemOverDiv() {
+                var trashEl = jQuery('#trash');
+
+                var ofs = trashEl.offset();
+
+                var x1 = ofs.left;
+                var x2 = ofs.left + trashEl.outerWidth(true);
+                var y1 = ofs.top;
+                var y2 = ofs.top + trashEl.outerHeight(true);
+
+                if (currentMousePos.x >= x1 && currentMousePos.x <= x2 &&
+                        currentMousePos.y >= y1 && currentMousePos.y <= y2) {
+                    return true;
+                }
+                return false;
+            }
+
+        });
+
+    </script>
+
+{% endblock %}
+{% block content %}
+    {% include '@FullCalendar/Calendar/calendar.html.twig' %}
+    <div id='wrap'>
+    <div class="row">
+        <div class="col-md-12">
+            <!-- BEGIN EXAMPLE TABLE PORTLET-->
+            <div class="portlet light">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-globe"></i>calendar </div>
+                    <div class="tools"> </div>
+                </div>
+
+                <div class="portlet-body">
+                    <div id='external-events'>
+                        <h4>Draggable Events</h4>
+                        <div class='fc-event'>New Event</div>
+                        <a class="btn blue" id="trash" ><i class="fa fa-times"></i>
+                            delete the task</a>
+
+                    </div>
+
+                    <div id='calendar'></div>
+
+                    <div style='clear:both'></div>
+
+
+
+                </div>
+
+
+
+
+
+            </div>
+        </div>
+        <!-- END EXAMPLE TABLE PORTLET-->
+    </div>
+
+{% endblock %}

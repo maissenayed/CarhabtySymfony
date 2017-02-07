@@ -1,0 +1,49 @@
+<?php
+
+namespace Karhabty\AnnonceBundle\Form;
+
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+
+class AnnonceType extends AbstractType
+{
+    /**
+     * {@inheritdoc}
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder->add('title')
+            ->add('AnneeDeProduit')
+            ->add('AnneePub')
+            ->add('Model')
+            ->add('Marque')
+            ->add('Region')
+            ->add('Ville')
+            ->add('Paye')
+            ->add('Prix')
+            ->add('Category')
+            ->add('imageName')
+                  ;
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults(array(
+            'data_class' => 'Karhabty\AnnonceBundle\Entity\Annonce'
+        ));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getBlockPrefix()
+    {
+        return 'karhabty_annoncebundle_annonce';
+    }
+
+
+}

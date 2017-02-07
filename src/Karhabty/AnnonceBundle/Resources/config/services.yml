@@ -1,0 +1,4 @@
+services:
+#    karhabty_annonce.example:
+#        class: Karhabty\AnnonceBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

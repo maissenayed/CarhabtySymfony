@@ -1,0 +1,30 @@
+{% extends 'layout/LayoutUser.html.twig' %}
+
+
+    {% block content %}
+
+    <h1>Voiture creation</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit" value="Create" />
+    {{ form_end(form) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('voiture_index') }}">Back to the list</a>
+        </li>
+    </ul>
+
+    {% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/lib/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/global/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+{% endblock %}

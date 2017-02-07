@@ -1,3 +1,12 @@
+karhabty_annonce:
+    resource: "@KarhabtyAnnonceBundle/Resources/config/routing.yml"
+    prefix:   /annonce
+
+Voiture:
+    resource: "@KarhabtyCalendarBundle/Resources/config/routing.yml"
+    prefix:   /voiture
+
+
 karhabty_map:
     resource: "@KarhabtyMapBundle/Resources/config/routing.yml"
     prefix:   /
@@ -29,3 +38,14 @@ app:
     resource: "@AppBundle/Controller/"
     type:     annotation
 
+ancarebeca_fullcalendar:
+    resource: "@FullCalendarBundle/Resources/config/routing.yml"
+# app/config/routing.yml
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
+my_very_secret_route:
+    path:     /load
+    defaults: { _controller: KarhabtyCalendarBundle:calendar:load}
+    options:
+        expose: true

@@ -113,7 +113,11 @@ class RegistrationController extends Controller
 
         $user = $userManager->createUser();
         $user->setEnabled(true);
+
         $user->setRoles(array("ROLE_PATICULIER"));
+
+        $user->setRoles(array("ROLE_PARTICULER"));
+
 
 
         $event = new GetResponseUserEvent($user, $request);

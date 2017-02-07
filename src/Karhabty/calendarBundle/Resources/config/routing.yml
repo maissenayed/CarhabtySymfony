@@ -1,0 +1,8 @@
+app_voiture:
+    resource: "@KarhabtyCalendarBundle/Resources/config/routing/voiture.yml"
+    prefix:   /
+app_cal:
+    path:     /{id}/calendar
+    defaults: { _controller: "KarhabtyCalendarBundle:calendar:index" }
+    methods:  GET
+

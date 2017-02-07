@@ -1,13 +1,20 @@
-{% extends'layout/LayoutUser.html.twig' %}
+﻿{% extends'layout/LayoutUser.html.twig' %}
 
 {% block content%}
 
 
     <div class="col-md-6">
+
             <div class="portlet-body">
                 <div id="gmap_basic" class="gmaps">
 
                 </div>
+
+        <div class="portlet-body">
+            <div id="gmap_basic" class="gmaps">
+
+            </div>
+
         </div>
         <!-- END BASIC PORTLET-->
     </div>
@@ -181,8 +188,13 @@
         function handleLocationError(browserHasGeolocation, infoWindow, pos) {
             infoWindow.setPosition(pos);
             infoWindow.setContent(browserHasGeolocation ?
+
                 'Error: The Geolocation service failed.' :
                 'Error: Your browser doesn\'t support geolocation.');
+
+                    'Error: The Geolocation service failed.' :
+                    'Error: Your browser doesn\'t support geolocation.');
+
         }
 
     </script>

@@ -44,14 +44,20 @@ class QuestionController extends Controller
     {
         $question = new Question();
 
-        $r=new Reponse();
 
 
-        $question->getReponses()->add($r);
         $form = $this->createForm('Karhabty\FutureConducteurBundle\Form\QuestionType', $question);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+           foreach ($question->getReponses() as $var)
+            {
+                if($var->getReponseContent()!=null)
+                {$var->setQuestion($question);}
+                else
+                {$question->getReponses()->removeElement($var);}
+            }
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($question);
             $em->flush($question);
@@ -73,6 +79,8 @@ class QuestionController extends Controller
      */
     public function showAction(Question $question)
     {
+
+
         $deleteForm = $this->createDeleteForm($question);
 
         return $this->render('KarhabtyFutureConducteurBundle:question:show.html.twig', array(
