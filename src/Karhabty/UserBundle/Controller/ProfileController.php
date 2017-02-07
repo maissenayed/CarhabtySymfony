@@ -38,12 +38,12 @@ class ProfileController extends Controller
     public function showAction()
     {
         $user = $this->getUser();
-
         if (!is_object($user) || !$user instanceof UserInterface) {
             throw new AccessDeniedException('This user does not have access to this section.');
         }
 
-        if($user->hasRole("ROLE_PARTENAIRE"))
+
+        if($this->isGranted("ROLE_PARTENAIRE",$user))
         return $this->render('KarhabtyUserBundle::HomePartner.html.twig', array(
             'user' => $user,
         ));
