@@ -8,6 +8,11 @@ imports:
 
 
     - { resource: "@KarhabtyFutureConducteurBundle/Resources/config/services.yml" }
+    - { resource: "@KarhabtyCalendarBundle/Resources/config/services.yml" }
+    - { resource: "@KarhabtyAnnonceBundle/Resources/config/services.yml" }
+
+
+
 
 
 parameters:
@@ -103,6 +108,8 @@ vich_uploader:
             offres_image:
                 uri_prefix:         /images/offres
                 upload_destination: '%kernel.root_dir%/../web/images/offres'
-                inject_on_load:     false
-                delete_on_update:   true
-                delete_on_remove:   true
+
+            Voiture_image:
+                uri_prefix:        /images/Voiture
+                upload_destination: '%kernel.root_dir%/../web/images/Voiture'
+
