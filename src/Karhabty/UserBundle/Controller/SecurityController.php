@@ -9,7 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace  Karhabty\UserBundle\Controller;
+
+namespace Karhabty\UserBundle\Controller;
+
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;

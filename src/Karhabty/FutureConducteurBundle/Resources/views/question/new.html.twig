@@ -1,9 +1,18 @@
 {% extends 'home_layout.html.twig' %}
 
+
+
 {% block content %}
 <div class="portlet light bordered">
-    <h1>Question creation</h1>
+    <div class="portlet-title">
+        <div class="container">
+            <div class="col-md-6">   <h1>Creation Question</h1></div>
 
+
+        </div>
+    </div>
+<br>
+<br>
     {{ form_start(form) }}
         Upload image
         {{ form_widget(form.imgUrl) }}
@@ -11,15 +20,25 @@
         {{ form_label(form.questionContent) }}
         {{ form_widget(form.questionContent, {'attr': {'class': 'form-control input-lg'}}) }}
 
+    <br>
 
-        <h2>Reponse</h2>
+<div class="row"></div>
 
-        {{ form_row(form.reponses) }}
-        {{ form_row(form.reponses) }}
-        {{ form_row(form.reponses) }}
-        {{ form_row(form.reponses) }}
+    <h3> Les reponses: </h3><br>
 
-        <input type="submit" value="Create" />
+    <div class="tags" data-prototype="{{ form_widget(form.reponses.vars.prototype)|e('html_attr') }}">
+
+    </div>
+    {% for rep in form.reponses %}
+    {{ form_widget(rep) }}
+    {% endfor %}
+    <div class="addRep"></div>
+<div class="row"></div>
+    <br>
+    <br>
+    <br>
+
+    <input type="submit" value="Create" />
     {{ form_end(form) }}
 
     <ul>
@@ -29,9 +48,64 @@
     </ul>
 
 </div>
-
 {% endblock %}
 
 
 
+
+{% block javascripts %}
+
+{{ parent() }}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+    var $addTagLink = $('<a href="#" class="btn btn-primary">Ajouter une reponse</a></br></br>');
+    var $newLinkLi = $('div.addRep').append($addTagLink);
+
+    function addTagForm($collectionHolder, $newLinkLi) {
+        // Get the data-prototype explained earlier
+        var prototype = $collectionHolder.data('prototype');
+
+        // get the new index
+        var index =$collectionHolder.data('index');
+
+        // Replace '__name__' in the prototype's HTML to
+        // instead be a number based on how many items we have
+        var newForm = prototype.replace(/__name__/g, index);
+
+        // increase the index with one for the next item
+        $collectionHolder.data('index', index + 1);
+
+        // Display the form in the page in an li, before the "Add a tag" link li
+        var $newFormLi = $('.addRep').append(newForm);
+        $newLinkLi.before($newFormLi);
+    }
+
+    $(document).ready(function(){
+
+        // Get the ul that holds the collection of tags
+        $collectionHolder = $('div.tags');
+
+        // add the "add a tag" anchor and li to the tags ul
+        $collectionHolder.append($newLinkLi);
+
+        // count the current form inputs we have (e.g. 2), use that as the new
+        // index when inserting a new item (e.g. 2)
+        $collectionHolder.data('index', $collectionHolder.find(':input').length);
+
+        $addTagLink.on('click', function(e) {
+            // prevent the link from creating a "#" on the URL
+            e.preventDefault();
+
+            // add a new tag form (see next code block)
+            addTagForm($collectionHolder, $newLinkLi);
+        });
+    });
+</script>
+
+
+
+
+
+{% endblock %}
 

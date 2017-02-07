@@ -2,20 +2,69 @@ karhabty_user_homepage:
     path:     /
     defaults: { _controller: KarhabtyUserBundle:Default:index }
 
-fos_user:
-    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+fos_user_change_pass:
+    resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
+
+fos_user_reseting:
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
 
 
-karhabty_partenaire_home:
-    path:     /partenaire_home
-    defaults: { _controller: KarhabtyUserBundle:Default:partenaire }
+fos_user_security_login:
+    path:     /login
+    defaults: { _controller: KarhabtyUserBundle:Security:login}
+    methods:  [GET, POST]
+
+fos_user_security_check:
+    path:     /login_check
+    defaults: { _controller: KarhabtyUserBundle:Security:check}
+    methods:  [POST]
+
+fos_user_security_logout:
+    path:     /logout
+    defaults: { _controller: KarhabtyUserBundle:Security:check}
+    methods:  [GET, POST]
+
+fos_user_profile_show:
+    path:      /profile/
+    defaults: { _controller: KarhabtyUserBundle:Profile:show}
+    methods:  [GET]
+
+fos_user_profile_edit:
+    path:      /profile/edit
+    defaults: { _controller: KarhabtyUserBundle:Profile:edit}
+    methods:  [GET, POST]
+
+
+fos_user_registration_register:
+    path:      /register/
+    defaults: { _controller: KarhabtyUserBundle:Registration:register}
+    methods:  [GET, POST]
+
+fos_user_registration_check_email:
+    path:      /register/check-email
+    defaults: { _controller: KarhabtyUserBundle:Registration:checkEmail}
+    methods:  [GET]
+
+
+fos_user_registration_confirm:
+    path:      /register/confirm/{token}
+    defaults: { _controller: KarhabtyUserBundle:Registration:confirm}
+    methods:  [GET]
+
+
+fos_user_registration_confirmed:
+    path:      /register/confirmed
+    defaults: { _controller: KarhabtyUserBundle:Registration:confirmed}
+    methods:  [GET]
+
+
+
+register_partener:
+    path:     /register_partener
+    defaults: { _controller: KarhabtyUserBundle:Registration:registerPartner}
 
 
 
 karhabty_user_home:
     path:     /user_home
     defaults: { _controller: KarhabtyUserBundle:Default:user }
-
-register_partener:
-    path:     /register_partener
-    defaults: { _controller: KarhabtyUserBundle:Registration:registerPartner}

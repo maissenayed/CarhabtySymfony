@@ -50,7 +50,7 @@ class RegistrationController extends Controller
 
         $user = $userManager->createUser();
         $user->setEnabled(true);
-        $user->setRoles(array("PARTENAIRE"));
+        $user->setRoles(array("ROLE_PARTENAIRE"));
 
         $event = new GetResponseUserEvent($user, $request);
         $dispatcher->dispatch(FOSUserEvents::REGISTRATION_INITIALIZE, $event);
@@ -113,7 +113,7 @@ class RegistrationController extends Controller
 
         $user = $userManager->createUser();
         $user->setEnabled(true);
-        $user->setRoles(array("PATICULIER"));
+        $user->setRoles(array("ROLE_PARTICULER"));
 
 
         $event = new GetResponseUserEvent($user, $request);
