@@ -33,7 +33,7 @@
             <link href="{{ asset('assets/layouts/layout4/css/layout.min.css')}}" rel="stylesheet" type="text/css" />
             <link href="{{ asset('assets/layouts/layout4/css/themes/light.min.css') }}" rel="stylesheet" type="text/css" id="style_color" />
             <link href="{{ asset('assets/layouts/layout4/css/custom.min.css') }}" rel="stylesheet" type="text/css" />
-            <link href="{{ asset('assets/css/style.css')}}" rel="stylesheet" type="text/css"/>
+
             
 
 
@@ -41,14 +41,27 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block body %}
+
+
+
+
+
+    {% block body %}
 
 
 
 
 
 
-        {% endblock %}
+    {% endblock %}
+
+
+
+
+
+
+
+
         {% block javascripts %}
 
 
@@ -92,13 +105,10 @@
 
 
 
-
-
-
-
-
-
-
         {% endblock %}
+
+
+
+
     </body>
 </html>

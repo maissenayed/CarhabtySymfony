@@ -19,7 +19,6 @@ karhabty_future_conducteur_question:
 
 karhabty_future_conducteur:
     resource: "@KarhabtyFutureConducteurBundle/Resources/config/routing.yml"
-
     prefix:   /
 
 karhabty_user:

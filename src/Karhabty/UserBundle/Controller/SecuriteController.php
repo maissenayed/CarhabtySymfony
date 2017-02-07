@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace FOS\UserBundle\Controller;
+namespace Karhabty\UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Security;
 
@@ -27,8 +27,17 @@ class SecurityController extends Controller
      */
     public function loginAction(Request $request)
     {
-
         /** @var $session \Symfony\Component\HttpFoundation\Session\Session */
+
+        $user = $this->getUser();
+        $u = $user->getRoles();
+        if($u == array('ROLE_PARTENAIRE')) {
+            $this->redirectToRoute('karhabty_partenaire_home');
+        }
+
+        else $this->redirectToRoute('karhabty_user_home');
+
+
         $session = $request->getSession();
 
         $authErrorKey = Security::AUTHENTICATION_ERROR;
@@ -73,9 +82,12 @@ class SecurityController extends Controller
     protected function renderLogin(array $data)
     {
 
-
-
         $user = $this->getUser();
+
+
+
+
+
 
         if($user!=null){
 
@@ -96,4 +108,5 @@ class SecurityController extends Controller
     {
         throw new \RuntimeException('You must activate the logout in your security firewall configuration.');
     }
+
 }
