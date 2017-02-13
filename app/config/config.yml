@@ -112,4 +112,6 @@ vich_uploader:
             Voiture_image:
                 uri_prefix:        /images/Voiture
                 upload_destination: '%kernel.root_dir%/../web/images/Voiture'
-
+            Annonce_image:
+                             uri_prefix:        /images/Annonce
+                             upload_destination: '%kernel.root_dir%/../web/images/Annonce'

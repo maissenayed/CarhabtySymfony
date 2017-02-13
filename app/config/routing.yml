@@ -50,3 +50,8 @@ my_very_secret_route:
     defaults: { _controller: KarhabtyCalendarBundle:calendar:load}
     options:
         expose: true
+Annonce_secret:
+    path:     /Aload
+    defaults: { _controller: KarhabtyAnnonceBundle:Annonce:recherche}
+    options:
+        expose: true

@@ -3,6 +3,8 @@
 namespace Karhabty\AnnonceBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -22,9 +24,19 @@ class AnnonceType extends AbstractType
             ->add('Ville')
             ->add('Paye')
             ->add('Prix')
-            ->add('Category')
-            ->add('imageName')
-                  ;
+            ->add('Category', ChoiceType::class, array(
+                'choices'  => array(
+                    'accessoire' => 'accessoire',
+                    'voiture' => 'voiture',
+                    'pieces' => 'pieces',
+                )))
+
+
+
+            ->add('imageFile',FileType::class,array(
+                'data_class' => null,
+            ))
+        ;
     }
     
     /**

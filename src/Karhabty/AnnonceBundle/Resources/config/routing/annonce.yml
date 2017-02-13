@@ -2,6 +2,10 @@ annonce_index:
     path:     /
     defaults: { _controller: "KarhabtyAnnonceBundle:Annonce:index" }
     methods:  GET
+annonce_recherche:
+    path:     /test
+    defaults: { _controller: "KarhabtyAnnonceBundle:Annonce:publicannonce" }
+    methods:  GET
 
 annonce_show:
     path:     /{id}/show

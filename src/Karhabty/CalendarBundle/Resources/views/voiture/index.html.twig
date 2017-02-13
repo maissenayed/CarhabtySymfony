@@ -29,9 +29,7 @@
 
 
 {% endblock %}
-
-
-    {% block content %}
+{% block content %}
         <div class="col-md-12">
             <div class="portlet light">
                 <div class="portlet-title">
@@ -42,6 +40,7 @@
                     </div>
                     <div class="inputs">
                         <a href="{{ path('voiture_new') }}" class="btn btn-circle btn-sm default">Create a new voiture </a>
+
                     </div>
                 </div>
         {% for voiture in voitures %}
@@ -92,19 +91,16 @@
                         </div>
 
                             <div class=" col-md-3">
-
-
-                                        <a  href="{{ path('voiture_show', { 'id': voiture.id }) }}" class="btn btn-circle btn-sm default" > show
+                                        <a id="dude" href="{{ path('voiture_show', { 'id': voiture.id }) }} "  value="{{ voiture.id }}" class="btn default" > show
                                             <i class="fa fa-user"></i></a>
                                 <br>
                                 <br>
-                                        <a href="{{ path('voiture_edit', { 'id': voiture.id }) }}" class="btn btn-circle btn-sm default">edit <i class="fa fa-user"></i></a>
+                                        <a href="{{ path('voiture_edit', { 'id': voiture.id }) }}" class="btn default">edit <i class="fa fa-user"></i></a>
                                 <br>
                                 <br>
 
-                                <a  href="{{ path('app_cal', { 'id': voiture.id }) }}" class="btn btn-circle btn-sm default" > to do list
+                                <a  href="{{ path('app_cal', { 'id': voiture.id }) }}" class="btn default" > to do list
                                     <i class="fa fa-user"></i></a>
-
 
 
 
@@ -154,49 +150,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 {% block javascripts %}
     <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/lib/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/global/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
@@ -204,6 +157,21 @@
     <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
     <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function() {
+    $(document).on('click', "#dude", function() {
+    var test= $(this).val();
 
+
+        console.log(test);
+
+
+
+    });
+    });
+
+
+
+</script>
 
 {% endblock %}
