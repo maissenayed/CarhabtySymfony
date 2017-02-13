@@ -1,15 +1,6 @@
-{% extends 'layout/LayoutUser.html.twig' %}
+{% extends 'recherche.html.twig' %}
 
-
-
-
-
-
-
-{% block content %}
-
-
-
+{% block recherche %}
 
 
 
@@ -21,10 +12,7 @@
                     <span class="caption-subject bold font-yellow-casablanca uppercase">list des Annonce</span>
                     <span class="caption-helper">your cars baby</span>
                 </div>
-                <div class="inputs">
-                    <a href="{{ path('annonce_new') }}" class="btn btn-circle btn-sm default">Create a new Annonce </a>
 
-                </div>
             </div>
             {% for annonce in annonces %}
                 <div class="portlet light">
@@ -99,33 +87,6 @@
         </div>
 
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

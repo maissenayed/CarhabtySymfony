@@ -4,7 +4,9 @@ namespace Karhabty\AnnonceBundle\Controller;
 
 use Karhabty\AnnonceBundle\Entity\Annonce;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Annonce controller.
@@ -23,6 +25,16 @@ class AnnonceController extends Controller
         $annonces = $em->getRepository('KarhabtyAnnonceBundle:Annonce')->findAll();
 
         return $this->render('@KarhabtyAnnonce/annonce/index.html.twig', array(
+            'annonces' => $annonces,
+        ));
+    }
+    public function publicannonceAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $annonces = $em->getRepository('KarhabtyAnnonceBundle:Annonce')->findAll();
+
+        return $this->render('@KarhabtyAnnonce/annonce/recherche.html.twig', array(
             'annonces' => $annonces,
         ));
     }
@@ -121,4 +133,48 @@ class AnnonceController extends Controller
             ->getForm()
         ;
     }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse|Response
+     */
+    public function rechercheAction(Request $request)
+    {
+
+
+
+
+        $prix = $request->request->get('prix');
+        $title = $request->request->get('title');
+        $cat = $request->request->get('category');
+
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->getRepository('KarhabtyAnnonceBundle:Annonce')
+            ->findAllOrderedByName($prix, $title, $cat);
+
+
+        return $this->render('@KarhabtyAnnonce/annonce/recherche_avance.html.twig', array(
+            'annonces' => $query,
+        ));
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

@@ -55,8 +55,16 @@ my_very_secret_route:
         expose: true
 
 
+
 my_not_very_secret_route:
     path:     /trie
     defaults: { _controller: KarhabtyOffresBundle:Offre:trieOffre}
     options:
         expose: true
+
+Annonce_secret:
+    path:     /Aload
+    defaults: { _controller: KarhabtyAnnonceBundle:Annonce:recherche}
+    options:
+        expose: true
+
