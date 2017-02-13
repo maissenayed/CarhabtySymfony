@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new Karhabty\UserBundle\KarhabtyUserBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new Karhabty\FutureConducteurBundle\KarhabtyFutureConducteurBundle(),
+            new Vich\UploaderBundle\VichUploaderBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

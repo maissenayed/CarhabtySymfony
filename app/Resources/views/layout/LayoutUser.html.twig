@@ -1,20 +1,21 @@
 {% extends ':layout:base.html.twig' %}
 {% block body %}
-<body class="page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo">
+    <body class="page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo">
 <!-- BEGIN HEADER -->
 <div class="page-header navbar navbar-fixed-top">
     <!-- BEGIN HEADER INNER -->
     <div class="page-header-inner ">
         <!-- BEGIN LOGO -->
         <div class="page-logo">
-            <a href="#"><img src="{{ asset('assets/img/karhabty-logo.png') }}" height="70" /></a>
+            <a href="#"><img src="{{ asset('assets/img/karhabty-logo.png') }}" height="70"/></a>
             <div class="menu-toggler sidebar-toggler">
                 <!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
             </div>
         </div>
         <!-- END LOGO -->
         <!-- BEGIN RESPONSIVE MENU TOGGLER -->
-        <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse"> </a>
+        <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse"
+           data-target=".navbar-collapse"> </a>
         <!-- END RESPONSIVE MENU TOGGLER -->
         <!-- BEGIN PAGE ACTIONS -->
         <!-- DOC: Remove "hide" class to enable the page header actions -->
@@ -28,16 +29,18 @@
             <!-- BEGIN TOP NAVIGATION MENU -->
             <div class="top-menu">
                 <ul class="nav navbar-nav pull-right">
-                    <li class="separator hide"> </li>
+                    <li class="separator hide"></li>
                     <!-- BEGIN NOTIFICATION DROPDOWN -->
                     <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
 
                     <!-- END NOTIFICATION DROPDOWN -->
-                    <li class="separator hide"> </li>
+                    <li class="separator hide"></li>
 
 
-                    <li class="dropdown dropdown-extended dropdown-notification dropdown-dark" id="header_notification_bar">
-                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                    <li class="dropdown dropdown-extended dropdown-notification dropdown-dark"
+                        id="header_notification_bar">
+                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
+                           data-close-others="true">
                             <i class="icon-bell"></i>
                             <span class="badge badge-success"> 7 </span>
                         </a>
@@ -48,7 +51,11 @@
                                 <a href="page_user_profile_1.html">view all</a>
                             </li>
                             <li>
-                                <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 250px;"><ul class="dropdown-menu-list scroller" style="height: 250px; overflow: hidden; width: auto;" data-handle-color="#637283" data-initialized="1">
+                                <div class="slimScrollDiv"
+                                     style="position: relative; overflow: hidden; width: auto; height: 250px;">
+                                    <ul class="dropdown-menu-list scroller"
+                                        style="height: 250px; overflow: hidden; width: auto;"
+                                        data-handle-color="#637283" data-initialized="1">
                                         <li>
                                             <a href="javascript:;">
                                                 <span class="time">just now</span>
@@ -130,14 +137,18 @@
                                                         </span> Storage server failed. </span>
                                             </a>
                                         </li>
-                                    </ul><div class="slimScrollBar" style="background: rgb(99, 114, 131); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 121.359px;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(234, 234, 234); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
+                                    </ul>
+                                    <div class="slimScrollBar"
+                                         style="background: rgb(99, 114, 131); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 121.359px;"></div>
+                                    <div class="slimScrollRail"
+                                         style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(234, 234, 234); opacity: 0.2; z-index: 90; right: 1px;"></div>
+                                </div>
                             </li>
                         </ul>
                     </li>
 
 
-
-                    <li class="separator hide"> </li>
+                    <li class="separator hide"></li>
                     <!-- BEGIN TODO DROPDOWN -->
                     <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
 
@@ -145,25 +156,25 @@
                     <!-- BEGIN USER LOGIN DROPDOWN -->
                     <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                     <li class="dropdown dropdown-user dropdown-dark">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
+                           data-close-others="true">
                             <span class="username username-hide-on-mobile">Garci</span>
 
-                            <img alt="" class="img-circle" src="{{ asset('assets/img/karhabty-logo.png') }}" /> </a>
+                            <img alt="" class="img-circle" src="{{ asset('assets/img/karhabty-logo.png') }}"/> </a>
                         <ul class="dropdown-menu dropdown-menu-default">
                             <li>
                                 <a href="#">
-                                   </i>Garci</a>
+                                    </i>Garci</a>
                             </li>
                             <li>
                                 <a href="app_calendar.html">
-                                     Suivis voiture</a>
+                                    Suivis voiture</a>
                             </li>
 
                             <li>
                                 <a href="app_calendar.html">
                                     </i>Mes Annoces</a>
                             </li>
-
 
 
                             <li>
@@ -174,15 +185,15 @@
 
                             <li>
                                 <a href="app_calendar.html">
-                                   Mes Astuces</a>
+                                    Mes Astuces</a>
                             </li>
 
 
-                            <li class="divider"> </li>
+                            <li class="divider"></li>
 
                             <li>
                                 <a href="page_user_login_1.html">
-                                   </i>Déconnexion</a>
+                                    </i>Déconnexion</a>
                             </li>
                         </ul>
                     </li>
@@ -197,7 +208,7 @@
 </div>
 <!-- END HEADER -->
 <!-- BEGIN HEADER & CONTENT DIVIDER -->
-<div class="clearfix"> </div>
+<div class="clearfix"></div>
 <!-- END HEADER & CONTENT DIVIDER -->
 <!-- BEGIN CONTAINER -->
 <div class="page-container">
@@ -217,9 +228,6 @@
             <ul class="page-sidebar-menu" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="500">
 
 
-
-
-
                 <li class="nav-item  ">
                     <a href="#" class="nav-link nav-toggle">
                         <i class="fa fa-cart-plus" aria-hidden="true"></i>
@@ -236,16 +244,12 @@
                 </li>
 
 
-
-
                 <li class="nav-item  ">
-                    <a href="#" class="nav-link nav-toggle">
+                    <a href="{{ path('addAstuce')}}" class="nav-link nav-toggle">
                         <i class="fa fa-unlock" aria-hidden="true"></i>
                         <span class="title">Astuces</span>
                     </a>
                 </li>
-
-
 
 
                 <li class="nav-item  ">
@@ -256,7 +260,6 @@
                 </li>
 
 
-
                 <li class="nav-item  ">
                     <a href="#" class="nav-link nav-toggle">
                         <i class="fa fa-calendar" aria-hidden="true"></i>
@@ -265,14 +268,12 @@
                 </li>
 
 
-
                 <li class="nav-item  ">
                     <a href="#" class="nav-link nav-toggle">
                         <i class="fa fa-location-arrow"></i>
                         <span class="title">Localisation</span>
                     </a>
                 </li>
-
 
 
                 <li class="nav-item  ">
@@ -297,61 +298,28 @@
     <!-- END SIDEBAR -->
 
 
-
-
-
-
     <!-- BEGIN CONTENT -->
     <div class="page-content-wrapper">
         <!-- BEGIN CONTENT BODY -->
         <div class="page-content">
             <!-- BEGIN PAGE HEAD-->
             <div class="page-head">
-                <!-- BEGIN PAGE TITLE -->
-                <div class="page-title">
-                    <h1>home layout
-                        <small>global layout</small>
-                    </h1>
-                </div>
-                <!-- END PAGE TITLE -->
+
 
             </div>
             <!-- END PAGE HEAD-->
 
-
-            <!-- BEGIN PAGE BREADCRUMB -->
-            <ul class="page-breadcrumb breadcrumb">
-                <li>
-                    <a href="index.html">Home</a>
-                    <i class="fa fa-circle"></i>
-                </li>
-                <li>
-                    <span class="active">Home page</span>
-                </li>
-            </ul>
-            <!-- END PAGE BREADCRUMB -->
             <!-- BEGIN PAGE BASE CONTENT -->
-
-
-
-
-
-
 
 
             {% block content %}
                 <div class="note note-info">
-                    <p> A black page template with a minimal dependency assets to use as a base for any custom page you create </p>
+                    <p> A black page template with a minimal dependency assets to use as a base for any custom page you
+                        create </p>
 
                     m
                 </div>
             {% endblock %}
-
-
-
-
-
-
 
 
             <!-- END PAGE BASE CONTENT -->
@@ -363,16 +331,12 @@
 <!-- END CONTAINER -->
 
 
-
-
-
-
-
-
 <!-- BEGIN FOOTER -->
 <div class="page-footer">
     <div class="page-footer-inner"> 2014 &copy; Metronic by keenthemes.
-        <a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" title="Purchase Metronic just for 27$ and get lifetime updates for free" target="_blank">Purchase Metronic!</a>
+        <a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes"
+           title="Purchase Metronic just for 27$ and get lifetime updates for free" target="_blank">Purchase
+            Metronic!</a>
     </div>
     <div class="scroll-to-top">
         <i class="icon-arrow-up"></i>

@@ -121,7 +121,7 @@ class User extends BaseUser
 
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
 
     protected $adresse;
@@ -129,7 +129,7 @@ class User extends BaseUser
 
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
 
     protected $nomsociete;
@@ -137,7 +137,7 @@ class User extends BaseUser
 
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
 
     protected $activite;

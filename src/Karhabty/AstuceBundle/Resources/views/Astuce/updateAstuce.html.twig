@@ -1,28 +1,39 @@
-<h1>Mise à jour </h1>
+{% extends 'Layout/LayoutUser.html.twig' %}
+{% block content %}
+<div class="portlet box purple ">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-pencil-square-o"></i> Mettre à jour astuce </div>
+    </div>
+</div>
 
 {{ form_start (form) }}
+<div class="portlet-body">
 <table>
     <tr>
         <td> Theme </td>
-        <td> {{form_widget (form.theme) }}</td>
+        <td> {{form_widget (form.theme,{ 'attr': {'class':'form-control' }})}}</td>
 
     </tr>
 
     <tr>
         <td> Titre </td>
-        <td> {{form_widget (form.titre) }}</td>
+        <td> {{form_widget (form.titre,{ 'attr': {'class':'form-control' }}) }}</td>
 
     </tr>
     <tr>
         <td> Description </td>
-        <td> {{form_widget (form.description) }}</td>
+        <td> {{form_widget (form.description,{ 'attr': {'class':'form-control' }}) }}</td>
 
     </tr>
 
     <tr>
         <td></td>
-        <td> {{form_widget (form.Valider) }}</td>
+        <td> {{form_widget (form.Valider,{ 'attr': {'class':'btn green' }}) }}</td>
 
     </tr>
 </table>
+</div>
 {{ form_end (form) }}
+
+{% endblock %}

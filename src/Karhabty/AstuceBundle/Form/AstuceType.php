@@ -8,6 +8,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+
 
 class AstuceType extends AbstractType
 {
@@ -18,14 +21,16 @@ class AstuceType extends AbstractType
     {
         $builder
             ->add('theme', ChoiceType::class, array(
-                'choices' => array('Entretien' => 'Entretien', 'Vente Et Achat' => 'Vente Et Achat', 'Consommation' => 'Consommation', 'Conduite' => 'Conduite', 'Autre' => 'Autre'),
+                'choices' => array('Entretien' => 'Entretien', 'VenteEtAchat' => 'Vente Et Achat', 'Consommation' => 'Consommation', 'Conduite' => 'Conduite', 'Autre' => 'Autre'),
                 'required' => false,
             ))
             ->add('titre')
             ->add('description', TextareaType::class)
-            //->add('uploadDate')
-            //->add('file', FileType::class)
-            ->add('Valider', SubmitType::class);
+            ->add('date', DateTimeType::class)
+
+            ->add('imageFile', FileType::class)
+            ->add('Valider', SubmitType::class)
+            ->add('Annuler', SubmitType::class);
     }
 
     /**

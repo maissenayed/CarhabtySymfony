@@ -22,3 +22,10 @@ updateAstuce:
     defaults: { _controller: KarhabtyAstuceBundle:Astuce:updateAstuce}
 
 
+
+infoAstuce:
+    path:     /infoAstuce/{id}
+    defaults: { _controller: KarhabtyAstuceBundle:Astuce:infoAstuce}
+theme:
+    path:     /{theme}
+    defaults: { _controller: KarhabtyAstuceBundle:Astuce:theme}

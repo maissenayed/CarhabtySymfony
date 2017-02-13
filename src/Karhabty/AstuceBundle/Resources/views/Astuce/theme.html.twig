@@ -1,0 +1,63 @@
+{% extends 'Layout/LayoutUser.html.twig' %}
+{% block content %}
+<div>
+
+
+
+
+    <h1>liste des astuces </h1>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <div class="container">
+        <div class="" style="padding-bottom: 30px;">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-3">
+                    <label for="selectedSort">Sort:</label>
+                    <div class="input-group" id="adv-search">
+                        <input id="selectedSort" type="text" class="form-control" placeholder="Sort" />
+                        <div class="input-group-btn">
+                            <div class="btn-group" role="group">
+                                <div class="dropdown dropdown-lg">
+                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" >
+                                        <i class="fa fa-caret-down"></i>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-right no-margin" >
+                                        <li><a href="Entretien" onclick="document.getElementById('selectedSort').value='Entretien'">Entretien</a></li>
+                                        <li><a href="VenteEtAchat" onclick="document.getElementById('selectedSort').value='Vente et Achat'">Vente et Achat</a></li>
+                                        <li><a href="Conduite" onclick="document.getElementById('selectedSort').value='Conduite'">Conduite</a></li>
+                                        <li><a href="Consommation" onclick="document.getElementById('selectedSort').value='Consommation'">Consommation</a></li>
+                                        <li><a href="Autre" onclick="document.getElementById('selectedSort').value='Autre'">Autre</a></li>
+                                    </ul>
+                                </div>
+
+                                <button type="button" class="btn btn-default" onclick="switchIcon()" style="min-width: 80px;">
+                                    <span id="sortDescIcon" class="pull-left" style="displey: inline-block;"><i class="fa fa-sort-amount-desc"></i> Desc</span>
+                                    <span id="sortAscIcon" class="pull-left" style="display:none;"> <i class="fa fa-sort-amount-asc"></i> Asc</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+
+
+
+    {% for astuce in modeles %}
+
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <div class="hovereffect">
+                <img class="img-responsive" src="{{ asset(vich_uploader_asset(astuce, 'imageFile')) }}" alt="{{ astuce.theme }}">
+                <div class="overlay">
+                    <h2>{{ astuce.theme }}</h2>
+                    <a class="info" href="{{path('infoAstuce', {'id' : astuce.id} )}}" >plus de détails</a>
+                </div>
+            </div>
+        </div>
+
+
+
+    {% endfor %}
+
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends 'Layout/LayoutUser.html.twig' %}
+
+{% block content %}
+
+    {% for ba3 in i %}
+        <h1>{{ ba3.theme }}</h1>
+
+
+        <div class="row">
+            <div class="col-sm-6 col-md-12">
+
+                    <div style="width:50%; float:left;">
+                        <img style="height:299px;width:450px;display: block;"
+                             src="{{ asset(vich_uploader_asset(ba3, 'imageFile')) }}" alt="{{ ba3.theme }}"/>
+                    </div>
+                    <div style="width: 50%; float:right;">
+                        <div class="caption">
+                            <h3>{{ ba3.titre }}</h3>
+                            <p>{{ ba3.description }}</p>
+                            <p>
+
+                                <a class="btn btn-circle btn-icon-only btn-default" href="{{ path('deleteAstuce', {'id':ba3.id}) }}" >
+                                    <i class="icon-trash"></i>
+                                </a>
+
+                                <a class="btn btn-circle btn-icon-only btn-default" href="{{ path('addAstuce', {'id':ba3.id}) }}">
+                                    <i class="icon-wrench"></i>
+                                </a>
+                                <a class="btn btn-circle btn-icon-only btn-default" href="{{ path('updateAstuce', {'id':ba3.id}) }}">
+                                    <i class="fa fa-commenting-o"></i>
+                                </a>
+                            <h3>Ajouter un commentaire</h3>
+                            <textarea class="form-control" rows="3"></textarea>
+                            <button type="button" class="btn btn-circle btn-success">Success</button>
+
+
+                            </p>
+                        </div>
+                    </div>
+
+            </div>
+        </div>
+
+
+
+    {% endfor %}
+
+    <div class="related-products-wrapper">
+        <h3 class="related-products-title">Related Astuces</h3>
+        <div class="related-products-carousel">
+            {% for relatedAstuce in relatedAstuces %}
+                <div class="single-product">
+
+                    <div class="product-f-image">
+                        <h3>{{ relatedAstuce.titre }}</h3>
+                        <img src="{{ asset(vich_uploader_asset(relatedAstuce, 'imageFile')) }}"
+                             style="min-height:233px;height:233px;min-width:350px;width:350px;" alt="{{ relatedAstuce.theme }}"/>
+                        <div class="product-hover">
+                            <a href="{{ path('infoAstuce', {'id' : relatedAstuce.id} ) }}" class="view-details-link"><i
+                                        class="fa fa-link"></i> Voir détails </a>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            {% endfor %}
+            <div class="single-sidebar">
+                <h3 class="sidebar-title">Last Products</h3>
+                <div class="thubmnail-recent">
+                    {% for recentAstuce in recentAstuces %}
+
+                        <h3>{{ recentAstuce.titre }}</h3>
+                        <img src="{{ asset(vich_uploader_asset(recentAstuce, 'imageFile')) }}"
+                             style="min-height:233px;height:233px;min-width:350px;width:350px;" alt="{{ recentAstuce.theme }}"/>
+                        <div class="product-hover">
+                            <a href="{{ path('infoAstuce', {'id' : recentAstuce.id} ) }}" class="view-details-link"><i
+                                        class="fa fa-link"></i> Voir détails </a>
+                        </div>
+
+
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -4,6 +4,7 @@ namespace Karhabty\AstuceBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Karhabty\AstuceBundle\Entity\Astuce;
+use Karhabty\AstuceBundle\Entity\AstuceRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Karhabty\AstuceBundle\Form\AstuceType;
 
@@ -12,11 +13,13 @@ class AstuceController extends Controller
     function addAstuceAction(Request $req)
     {
         $astuce = new Astuce();
+        $astuce->setDate(new \DateTime());
         $form = $this->createForm(AstuceType::class, $astuce);
         if ($form->handleRequest($req)->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($astuce);
             $em->flush();
+            return $this->redirectToRoute('listAstuce');
         }
         return $this->render('KarhabtyAstuceBundle:Astuce:addAstuce.html.twig', array('form' => $form->createView()));
     }
@@ -48,6 +51,60 @@ class AstuceController extends Controller
             $em->flush();
             return $this->redirectToRoute('listAstuce');
         }
-        return $this->render('KarhabtyAstuceBundle:Astuce:updateAstuce.html.twig',array('form' => $form->createView()));
+        return $this->render('KarhabtyAstuceBundle:Astuce:updateAstuce.html.twig', array('form' => $form->createView()));
     }
+
+    public function infoAstuceAction($id)
+    {
+
+
+        #Signle Astuce
+        $ba3 = $this->getDoctrine()
+            ->getRepository('KarhabtyAstuceBundle:Astuce')
+            ->findDetailsAstuceDQL($id);
+
+
+        if (!$ba3) {
+            throw $this->createNotFoundException(
+                'No astuce found for id ' . $id
+            );
+        }
+        #RecentProduct
+        $currentAstuce1 = $ba3[0];
+        $recentAstuce = $this->getDoctrine()
+            ->getRepository('KarhabtyAstuceBundle:Astuce')
+            ->recentAstuce($currentAstuce1->getDate());
+        #relatedAstuce
+        $currentAstuce = $ba3[0];
+        $relatedAstuce = $this->getDoctrine()
+            ->getRepository('KarhabtyAstuceBundle:Astuce')
+            ->relatedAstuce($currentAstuce->getTheme());
+        return ($this->render("KarhabtyAstuceBundle:Astuce:infoAstuce.html.twig"
+            , array('i' => $ba3 , 'relatedAstuces' => $relatedAstuce , 'recentAstuces' => $recentAstuce)));
+
+    }
+    public function themeAction($theme) {
+
+
+        $astuce = $this->getDoctrine()
+            ->getRepository('KarhabtyAstuceBundle:Astuce')
+            ->findThemeAstucetDQL($theme);
+
+
+        return ($this->render("KarhabtyAstuceBundle:Astuce:theme.html.twig"
+            , array('modeles' => $astuce)));
+    }
+    function addCommentAction(Request $req)
+    {
+        $comment = new Comment();
+        $form = $this->createForm(CommentType::class, $comment);
+        if ($form->handleRequest($req)->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($comment);
+            $em->flush();
+
+        }
+        return $this->render('KarhabtyAstuceBundle:Astuce:infoAstuce.html.twig', array('form' => $form->createView()));
+    }
+
 }

@@ -1,4 +1,55 @@
-<h1>Ajouter une nouvelle astuce </h1>
-{{ form_start(form) }}
-{{ form_row(form.description) }}
-{{ form_end(form) }}
+{% extends 'Layout/LayoutUser.html.twig' %}
+{% block content %}
+    <div class="portlet light bordered">
+    <div class="portlet-title">
+        <div class="caption font-green-haze">
+            <i class="icon-settings font-green-haze"></i>
+            <span class="caption-subject bold uppercase"> Ajouter Astuce</span>
+        </div>
+        <div class="actions">
+
+            <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;" data-original-title="" title=""> </a>
+        </div>
+    </div>
+    {{ form_start(form) }}
+    <table>
+
+        <tr>
+            <td> Theme</td>
+            <td> {{ form_widget (form.theme,{ 'attr': {'class':'form-control' }}) }}</td>
+
+        </tr>
+
+        <tr>
+            <td> Titre</td>
+            <td> {{ form_widget (form.titre,{ 'attr': {'class':'form-control' }}) }}</td>
+
+        </tr>
+
+        <tr>
+            <td> Description</td>
+            <td> {{ form_widget (form.description,{ 'attr': {'class':'form-control' }}) }}</td>
+
+        </tr>
+
+        <tr>
+            <td> Joindre une image</td>
+            <td> {{ form_widget (form.imageFile,{ 'attr': {'class':'' }}) }}</td>
+
+        </tr>
+
+        <tr>
+            <td></td>
+            <td> {{ form_widget (form.Valider,{ 'attr': {'class':'btn btn-circle btn-success' }}) }}</td>
+
+        </tr>
+    </table>
+    {{ form_end(form) }}
+
+
+    <td></td>
+    <td> {{ form_widget (form.Valider,{ 'attr': {'class':'btn btn-circle btn-success' }}) }}</td>
+    <a href="{{ path('listAstuce') }}">Retour à la liste</a>
+    </div>
+
+{% endblock %}

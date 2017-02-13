@@ -85,3 +85,10 @@ fos_user:
 
         confirmation:
                     enabled:    false
+
+vich_uploader:
+    db_driver: orm
+    mappings:
+            astuce_image:
+                uri_prefix:         /images/astuces
+                upload_destination: '%kernel.root_dir%/../web/images/astuces'
