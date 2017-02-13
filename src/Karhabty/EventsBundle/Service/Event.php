@@ -2,6 +2,8 @@
 namespace Karhabty\EventsBundle\Service;
 
 use Doctrine\ORM\EntityManager;
+use Karhabty\EventsBundle\Entity\Event as EventEntity;
+use Karhabty\EventsBundle\Entity\UserEventParticipation;
 /**
  * Created by PhpStorm.
  * User: ASUS
@@ -22,7 +24,7 @@ class Event
     }
 
     public function find($eventId) {
-        return $events = $this->em->getRepository('KarhabtyEventsBundle:Event')->find($eventId);
+        return $event = $this->em->getRepository('KarhabtyEventsBundle:Event')->find($eventId);
     }
 
     public function findAll() {
@@ -41,28 +43,50 @@ class Event
             ->getResult();
     }
 
-
-
-
-    public function requestParticipation() {
-
+    public function findParticipationRequestsBy($criteria) {
+        $participationRequests = $this->em->getRepository('KarhabtyEventsBundle:UserEventParticipation')->findBy($criteria);
+        if(count($participationRequests) === 1 ){
+            return reset($participationRequests);
+        }elseif(empty($participationRequests)){
+            return false;
+        }
+        return $participationRequests;
     }
 
-    public function acceptParticipation () {
 
+
+
+    public function requestParticipation($userId,$eventId) {
+        $participation = new UserEventParticipation();
+        $participation->setUser($userId)
+            ->setEvent($eventId)
+            ->setStatus('request')
+            ->setCreatedDate(new \DateTime())
+        ;
+        $this->save($participation);
     }
 
-    public function cancelParticipation() {
-
+    public function acceptParticipation ($participationRequest) {
+        $this->updateParticipation($participationRequest,'accepted');
     }
 
-    public function declineParticipation() {
-
+    public function cancelParticipation($participationRequest) {
+        $this->updateParticipation($participationRequest,'canceled');
     }
 
-    public function updateParticipation(\Karhabty\EventsBundle\Entity\Event $event, $userId, $status) {
+    public function declineParticipation($participationRequest) {
+        $this->updateParticipation($participationRequest,'declined');
+    }
+
+    public function updateParticipation(\Karhabty\EventsBundle\Entity\UserEventParticipation $participationRequest, $status) {
+        $participationRequest->setStatus($status);
+        $this->save($participationRequest);
+    }
 
 
+    public function save($entity) {
+        $this->em->persist($entity);
+        $this->em->flush();
     }
 
 }

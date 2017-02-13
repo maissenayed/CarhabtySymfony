@@ -1,0 +1,24 @@
+voiture_index:
+    path:     /
+    defaults: { _controller: "KarhabtyCalendarBundle:Voiture:index" }
+    methods:  GET
+
+voiture_show:
+    path:     /{id}/show
+    defaults: { _controller: "KarhabtyCalendarBundle:Voiture:show" }
+    methods:  GET
+
+voiture_new:
+    path:     /new
+    defaults: { _controller: "KarhabtyCalendarBundle:Voiture:new" }
+    methods:  [GET, POST]
+
+voiture_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "KarhabtyCalendarBundle:Voiture:edit" }
+    methods:  [GET, POST]
+
+voiture_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "KarhabtyCalendarBundle:Voiture:delete" }
+    methods:  DELETE

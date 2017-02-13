@@ -2,7 +2,7 @@
 
 
 {% block body %}
-
+<h1>partner</h1>
 <body class="page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo">
 <!-- BEGIN HEADER -->
 {% block nav %}
@@ -62,7 +62,7 @@
 
 
                             <li>
-                                <a href="page_user_login_1.html">
+                                <a href="{{ path('fos_user_security_logout') }}">
                                     <i class="icon-key"></i>Déconnexion</a>
                             </li>
 
@@ -101,7 +101,7 @@
             <ul class="page-sidebar-menu" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
 
                 <li class="nav-item  ">
-                    <a href="#" class="nav-link nav-toggle">
+                    <a href="{{ path('offre_index') }}" class="nav-link nav-toggle">
                         <i class="fa fa-cart-plus" aria-hidden="true"></i>
                         <span class="title">vos offres</span>
                     </a>
@@ -110,7 +110,7 @@
 
 
                 <li class="nav-item  ">
-                    <a href="#" class="nav-link nav-toggle">
+                    <a href="{{ path('offre_new') }}" class="nav-link nav-toggle">
                         <i class="fa fa-plus-circle"></i>
                         <span class="title">Ajouter une offres</span>
                     </a>

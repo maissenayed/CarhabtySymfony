@@ -25,3 +25,19 @@ event_delete:
     path:     /delete/{id}
     defaults: { _controller: "KarhabtyEventsBundle:Event:delete" }
     methods:  DELETE
+event_participate:
+    path:     /participate/{id}
+    defaults: { _controller: "KarhabtyEventsBundle:Event:participate" }
+    methods:  [GET]
+event_accept:
+    path:     /accept/{id}
+    defaults: { _controller: "KarhabtyEventsBundle:Event:accept" }
+    methods:  [GET]
+event_decline:
+    path:     /decline/{id}
+    defaults: { _controller: "KarhabtyEventsBundle:Event:decline" }
+    methods:  [GET]
+event_cancel:
+    path:     /cancel/{id}
+    defaults: { _controller: "KarhabtyEventsBundle:Event:cancel" }
+    methods:  [GET]

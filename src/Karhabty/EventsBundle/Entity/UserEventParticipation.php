@@ -19,30 +19,29 @@ class UserEventParticipation
 
     private $id;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $eventId;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="Karhabty\EventsBundle\Entity\Event",cascade={"persist"})
+     * @ORM\JoinColumn(name="event_id", referencedColumnName="id")
      */
-    private $userId;
+    private $event;
 
     /**
-     * @ORM\Column(type="string",length=255)
+     * @ORM\ManyToOne(targetEntity="Karhabty\UserBundle\Entity\User",cascade={"persist"})
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
+
+    /**
+     * @ORM\Column(type="string",length=255,columnDefinition="enum('request', 'accepted','declined','canceled')")
      */
     private $status;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      */
     private $createdDate;
 
-    /**
-     * @ORM\Column(type="date")
-     */
-    private $updatedDate;
 
     /**
      * @return mixed
@@ -65,36 +64,36 @@ class UserEventParticipation
     /**
      * @return mixed
      */
-    public function getEventId()
+    public function getEvent()
     {
-        return $this->eventId;
+        return $this->event;
     }
 
     /**
      * @param mixed $eventId
      * @return UserEventParticipation
      */
-    public function setEventId($eventId)
+    public function setEvent($event)
     {
-        $this->eventId = $eventId;
+        $this->event = $event;
         return $this;
     }
 
     /**
      * @return mixed
      */
-    public function getUserId()
+    public function getUser()
     {
-        return $this->userId;
+        return $this->user;
     }
 
     /**
      * @param mixed $userId
      * @return UserEventParticipation
      */
-    public function setUserId($userId)
+    public function setUser($user)
     {
-        $this->userId = $userId;
+        $this->user = $user;
         return $this;
     }
 
@@ -131,24 +130,6 @@ class UserEventParticipation
     public function setCreatedDate($createdDate)
     {
         $this->createdDate = $createdDate;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUpdatedDate()
-    {
-        return $this->updatedDate;
-    }
-
-    /**
-     * @param mixed $updatedDate
-     * @return UserEventParticipation
-     */
-    public function setUpdatedDate($updatedDate)
-    {
-        $this->updatedDate = $updatedDate;
         return $this;
     }
 

@@ -3,6 +3,7 @@
 
 namespace Karhabty\EventsBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -26,7 +27,7 @@ class Event
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
 
-    private $userId;
+    private $user;
 
 
     /**
@@ -35,7 +36,10 @@ class Event
     private $description;
 
     /**
-     * @ORM\Column(type="string",length=255)
+     * @ORM\Column(type="string")
+     *
+     * @Assert\NotBlank(message="Please, upload the product photo as a photo file.")
+     * @Assert\File(mimeTypes={ "image/jpeg" })
      */
     private $photo;
 
@@ -90,18 +94,18 @@ class Event
     /**
      * @return mixed
      */
-    public function getUserId()
+    public function getUser()
     {
-        return $this->userId;
+        return $this->user;
     }
 
     /**
      * @param mixed $userId
      * @return Event
      */
-    public function setUserId($userId)
+    public function setUser($user)
     {
-        $this->userId = $userId;
+        $this->user = $user;
         return $this;
     }
 

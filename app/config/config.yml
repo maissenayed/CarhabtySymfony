@@ -6,12 +6,21 @@ imports:
     - { resource: "@KarhabtyEventsBundle/Resources/config/services.yml" }
 
     - { resource: "@KarhabtyUserBundle/Resources/config/services.yml" }
+    - { resource: "@KarhabtyOffreBundle/Resources/config/services.yml" }
+    - { resource: "@KarhabtyMapBundle/Resources/config/services.yml" }
 
 
-# Put parameters here that don't need to change on each machine where the app is deployed
-# http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+    - { resource: "@KarhabtyFutureConducteurBundle/Resources/config/services.yml" }
+    - { resource: "@KarhabtyCalendarBundle/Resources/config/services.yml" }
+    - { resource: "@KarhabtyAnnonceBundle/Resources/config/services.yml" }
+
+
+
+
+
 parameters:
     locale: fr
+    brochures_directory: '%kernel.root_dir%/../web/uploads/brochures'
 
 framework:
     #esi:             ~
@@ -54,6 +63,8 @@ doctrine:
         user:     "%database_user%"
         password: "%database_password%"
         charset:  UTF8
+        mapping_types:
+            enum: string
         # if using pdo_sqlite as your database driver:
         #   1. add the path in parameters.yml
         #     e.g. database_path: "%kernel.root_dir%/../var/data/data.sqlite"
@@ -71,6 +82,7 @@ swiftmailer:
     transport: "%mailer_transport%"
     host:      "%mailer_host%"
     username:  "%mailer_user%"
+    encryption: ssl
     password:  "%mailer_password%"
     spool:     { type: memory }
 
@@ -79,11 +91,24 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb' and 'couchdb'
     firewall_name: main
     user_class: Karhabty\UserBundle\Entity\User
-
     registration:
         form:
-            type: Karhabty\UserBundle\Form\RegistrationType
-            
-
+            type: Karhabty\UserBundle\Form\RegistrationParticulierType
         confirmation:
-                    enabled:    false
+            enabled:    false
+    from_email:
+            address: you@example.com
+            sender_name: You
+    service:
+        mailer: fos_user.mailer.twig_swift
+vich_uploader:
+    db_driver: orm
+    mappings:
+            offres_image:
+                uri_prefix:         /images/offres
+                upload_destination: '%kernel.root_dir%/../web/images/offres'
+
+            Voiture_image:
+                uri_prefix:        /images/Voiture
+                upload_destination: '%kernel.root_dir%/../web/images/Voiture'
+

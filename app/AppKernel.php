@@ -22,6 +22,14 @@ class AppKernel extends Kernel
             new Karhabty\UserBundle\KarhabtyUserBundle(),
             new FOS\UserBundle\FOSUserBundle(),
 
+            new Karhabty\OffreBundle\KarhabtyOffreBundle(),
+            new Karhabty\MapBundle\KarhabtyMapBundle(),
+            new Vich\UploaderBundle\VichUploaderBundle(),
+            new Karhabty\FutureConducteurBundle\KarhabtyFutureConducteurBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+            new AncaRebeca\FullCalendarBundle\FullCalendarBundle(),
+            new Karhabty\CalendarBundle\KarhabtyCalendarBundle(),
+            new Karhabty\AnnonceBundle\KarhabtyAnnonceBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

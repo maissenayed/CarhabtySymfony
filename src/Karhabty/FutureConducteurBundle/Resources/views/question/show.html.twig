@@ -1,0 +1,54 @@
+{% extends 'home_layout.html.twig' %}
+
+{% block content %}
+
+
+    <div class="col-md-6">
+    <div class="portlet light bordered">
+
+        <div class="portlet-title"> <h1>Question</h1></div>
+        <div class="portlet-body">
+    <table>
+        <tbody>
+            <tr>
+                <th style="padding: 15px">Id</th>
+                <td style="padding: 15px">{{ question.id }}</td>
+            </tr>
+            <tr>
+                <th style="padding: 15px">Question content</th>
+                <td style="padding: 15px">{{ question.questionContent }}</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+
+
+          <table>
+             {% for var in question.reponses %}
+                 <tr>
+                     <th style="padding: 15px">{{var.reponseContent  }}</th>
+                     <td style="padding: 15px">{% if var.ok %}vrai{% else %}faux{% endif %}</td>
+                 </tr>
+              {% endfor %}
+
+          </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('question_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('question_edit', { 'id': question.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+
+        </div>
+    </div>
+    </div>
+{% endblock %}
