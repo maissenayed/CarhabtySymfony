@@ -5,52 +5,42 @@ namespace Karhabty\OffreBundle\Controller;
 use Karhabty\OffreBundle\Entity\Offre;
 use Karhabty\UserBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
-/**
- * Offre controller.
- *
- */
+
+
 class OffreController extends Controller
 {
-    /**
-     * Lists all offre entities.
-     *
-     */
+
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
 
         $user = $this->getUser();
-
-
-
-        $offres = $em->getRepository('KarhabtyOffreBundle:Offre')->findAll();
-
-        return $this->render('offre/index.html.twig', array(
-            'offres' => $offres,
-        ));
-    }
-
-
-
-    public function alloffreAction()
-    {
+        $userId = $user->getId();
         $em = $this->getDoctrine()->getManager();
-
-        $offres = $em->getRepository('KarhabtyOffreBundle:Offre')->findAll();
-
-        return $this->render('offre/affiche.html.twig', array(
+        $offres = $em->getRepository('KarhabtyOffreBundle:Offre')->MesOffres($userId);
+        return $this->render('@KarhabtyOffre/offre/index.html.twig', array(
             'offres' => $offres,
         ));
     }
 
 
+    public function getAlloffreAction()
+    {
 
-    /**
-     * Creates a new offre entity.
-     *
-     */
+        $now = new \DateTime();
+        $economie = 0;
+        $em = $this->getDoctrine()->getManager();
+        $offres = $em->getRepository('KarhabtyOffreBundle:Offre')->getoffres($now);
+
+
+        return $this->render('KarhabtyOffreBundle:offre:Offres.html.twig', array(
+            'offres' => $offres, 'eco' => $economie
+        ));
+    }
+
+
     public function newAction(Request $request)
     {
         $offre = new Offre();
@@ -65,56 +55,55 @@ class OffreController extends Controller
             $em->persist($offre);
             $em->flush($offre);
 
-            return $this->redirectToRoute('offre_show', array('id' => $offre->getIdOffre()));
+            return $this->redirectToRoute('offre_index');
         }
 
-        return $this->render('offre/new.html.twig', array(
+        return $this->render('@KarhabtyOffre/offre/new.html.twig', array(
             'offre' => $offre,
             'form' => $form->createView(),
         ));
     }
 
-    /**
-     * Finds and displays a offre entity.
-     *
-     */
+
     public function showAction(Offre $offre)
     {
-        $deleteForm = $this->createDeleteForm($offre);
 
-        return $this->render('offre/show.html.twig', array(
-            'offre' => $offre,
-            'delete_form' => $deleteForm->createView(),
+        return $this->render('@KarhabtyOffre/offre/show.html.twig', array(
+            'offre' => $offre
+
         ));
     }
 
-    /**
-     * Displays a form to edit an existing offre entity.
-     *
-     */
+    public function detailOffreAction(Offre $offre)
+    {
+
+
+        return $this->render('@KarhabtyOffre/offre/details.html.twig', array(
+            'offre' => $offre
+
+        ));
+    }
+
+
     public function editAction(Request $request, Offre $offre)
     {
         $deleteForm = $this->createDeleteForm($offre);
         $editForm = $this->createForm('Karhabty\OffreBundle\Form\OffreType', $offre);
         $editForm->handleRequest($request);
-
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('offre_edit', array('id' => $offre->getIdOffre()));
         }
 
-        return $this->render('offre/edit.html.twig', array(
+        return $this->render('@KarhabtyOffre/offre/edit.html.twig', array(
             'offre' => $offre,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
 
-    /**
-     * Deletes a offre entity.
-     *
-     */
+
     public function deleteAction(Request $request, Offre $offre)
     {
         $form = $this->createDeleteForm($offre);
@@ -129,19 +118,50 @@ class OffreController extends Controller
         return $this->redirectToRoute('offre_index');
     }
 
-    /**
-     * Creates a form to delete a offre entity.
-     *
-     * @param Offre $offre The offre entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
+
     private function createDeleteForm(Offre $offre)
     {
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('offre_delete', array('id' => $offre->getIdOffre())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
+
+
+
+
+    function OffresPassesAction()
+    {
+
+
+        $now = new \DateTime();
+        $em = $this->getDoctrine()->getManager();
+        $offre = $em->getRepository('KarhabtyOffreBundle:Offre')->offrespasses($now);
+
+
+        return $this->render('@KarhabtyOffre/offre/offresPasses.html.twig', array(
+            'offres' => $offre
+
+        ));
+
+    }
+
+    function trieOffresAction(Request $request)
+    {
+
+
+        if ($request->isXmlHttpRequest()) {
+
+            $type = $request->request->get('type');
+            if($type == 'ecole')
+
+            return 0;
+
+
+        }
+
+
+    }
+
+
 }

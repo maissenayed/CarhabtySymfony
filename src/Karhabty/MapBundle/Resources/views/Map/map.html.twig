@@ -1,4 +1,4 @@
-﻿{% extends'layout/LayoutUser.html.twig' %}
+{% extends ':layout:LayoutUser.html.twig' %}
 
 {% block content%}
 
@@ -117,12 +117,11 @@
 
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(maPosition, function() {
-                    //handleLocationError(true, infoWindow, map.getCenter());
+
                     console.log("Ok");
                 });
             } else {
-                // Browser doesn't support Geolocation
-                //handleLocationError(false, infoWindow, map.getCenter());
+
                 console.log("Error");
             }
 
@@ -185,17 +184,6 @@
             }
         }
 
-        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-            infoWindow.setPosition(pos);
-            infoWindow.setContent(browserHasGeolocation ?
-
-                'Error: The Geolocation service failed.' :
-                'Error: Your browser doesn\'t support geolocation.');
-
-                    'Error: The Geolocation service failed.' :
-                    'Error: Your browser doesn\'t support geolocation.');
-
-        }
 
     </script>
     <script async defer

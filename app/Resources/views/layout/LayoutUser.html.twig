@@ -226,7 +226,7 @@
 
 
                 <li class="nav-item  ">
-                    <a href="{{ path('offre_affiche') }}" class="nav-link nav-toggle">
+                    <a href="{{ path('offre_afficher') }}" class="nav-link nav-toggle">
                         <i class="fa fa-cart-plus" aria-hidden="true"></i>
                         <span class="title">Offres</span>
                     </a>
@@ -311,52 +311,16 @@
         <!-- BEGIN CONTENT BODY -->
         <div class="page-content">
             <!-- BEGIN PAGE HEAD-->
-            <div class="page-head">
-                <!-- BEGIN PAGE TITLE -->
-                <div class="page-title">
-                    <h1>home layout
-                        <small>global layout</small>
-                    </h1>
-                </div>
-                <!-- END PAGE TITLE -->
-
-            </div>
-            <!-- END PAGE HEAD-->
-
-
-            <!-- BEGIN PAGE BREADCRUMB -->
-            <ul class="page-breadcrumb breadcrumb">
-                <li>
-                    <a href="index.html">Home</a>
-                    <i class="fa fa-circle"></i>
-                </li>
-                <li>
-                    <span class="active">Home page</span>
-                </li>
-            </ul>
-            <!-- END PAGE BREADCRUMB -->
-            <!-- BEGIN PAGE BASE CONTENT -->
-
-
-
-
 
 
 
 
             {% block content %}
-                <div class="note note-info">
-                    <p> A black page template with a minimal dependency assets to use as a base for any custom page you create </p>
 
 
-                </div>
+
+
             {% endblock %}
-
-
-
-
-
-
 
 
             <!-- END PAGE BASE CONTENT -->

@@ -11,7 +11,8 @@
                 <th>Descriptionoffre</th>
                 <th>Prix</th>
                 <th>Tauxreduction</th>
-                <th>Typeoffre</th>
+                <th>date de l'ajout</th>
+                <th>date d'expiration</th>
                 <th>Image</th>
                 <th>Actions</th>
             </tr>
@@ -19,21 +20,22 @@
         <tbody>
         {% for offre in offres %}
             <tr>
-                <td><a href="{{ path('offre_show', { 'id': offre.idOffre }) }}">{{ offre.idOffre }}</a></td>
+
                 <td>{{ offre.nomOffre }}</td>
                 <td>{{ offre.descriptionOffre }}</td>
                 <td>{{ offre.prix }}</td>
                 <td>{{ offre.tauxReduction }}</td>
-                <td>{{ offre.typeOffre }}</td>
+                <td>{{ offre.date | date }}</td>
+                <td>{{ offre.dateExpirationOffre | date }}</td>
                 <td><img src="{{ asset(vich_uploader_asset(offre, 'imageFile')) }}"></td>
 
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('offre_show', { 'id': offre.idOffre }) }}">show</a>
+                            <a href="{{ path('offre_show', { 'id': offre.idOffre }) }}">Affiche l'offres</a>
                         </li>
                         <li>
-                            <a href="{{ path('offre_edit', { 'id': offre.idOffre }) }}">edit</a>
+                            <a href="{{ path('offre_edit', { 'id': offre.idOffre }) }}">Modifier l'offres</a>
                         </li>
                     </ul>
                 </td>
@@ -42,9 +44,5 @@
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('offre_new') }}">Create a new offre</a>
-        </li>
-    </ul>
+
 {% endblock %}

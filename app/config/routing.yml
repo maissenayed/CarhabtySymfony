@@ -1,3 +1,7 @@
+karhabty_paiement:
+    resource: "@KarhabtyPaiementBundle/Resources/config/routing.yml"
+    prefix:   /
+
 karhabty_annonce:
     resource: "@KarhabtyAnnonceBundle/Resources/config/routing.yml"
     prefix:   /annonce
@@ -47,5 +51,12 @@ fos_js_routing:
 my_very_secret_route:
     path:     /load
     defaults: { _controller: KarhabtyCalendarBundle:calendar:load}
+    options:
+        expose: true
+
+
+my_not_very_secret_route:
+    path:     /trie
+    defaults: { _controller: KarhabtyOffresBundle:Offre:trieOffre}
     options:
         expose: true

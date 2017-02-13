@@ -22,7 +22,7 @@ class calendarController extends Controller
 
 
             if($type == 'new')
-            { $em = $this->getDoctrine()->getManager();
+            {   $em = $this->getDoctrine()->getManager();
                 $id= $request->request->get('id');
                 $voiture= $em->getRepository("KarhabtyCalendarBundle:Voiture")->find($id);
 
@@ -34,7 +34,6 @@ class calendarController extends Controller
                 $calander->setEndDate($startdate);
                 $calander->setAllDay("false");
                 $calander->setIdVoiture($voiture);
-
                 $em->persist($calander);
                 $em->flush();
                 return new JsonResponse(array('status'=>'success','eventid'=>$calander->getId()));
@@ -89,38 +88,6 @@ class calendarController extends Controller
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             if($type == 'fetch')
             {   $em = $this->getDoctrine()->getManager();
                 $calander= $em->getRepository("KarhabtyCalendarBundle:CalendarEvent")->findAll();
@@ -136,6 +103,7 @@ class calendarController extends Controller
                     array_push($events, $e);
                 }
                 return new JsonResponse($events);
+
             }
             return new Response("dude");
         }

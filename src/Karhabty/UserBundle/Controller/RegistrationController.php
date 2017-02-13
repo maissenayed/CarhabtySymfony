@@ -72,7 +72,7 @@ class RegistrationController extends Controller
                 $userManager->updateUser($user);
 
                 if (null === $response = $event->getResponse()) {
-                    $url = $this->generateUrl('fos_user_registration_confirmed');
+                    $url = $this->generateUrl('fos_user_profile_show');
                     $response = new RedirectResponse($url);
                 }
 
@@ -116,7 +116,6 @@ class RegistrationController extends Controller
 
         $user->setRoles(array("ROLE_PATICULIER"));
 
-        $user->setRoles(array("ROLE_PARTICULER"));
 
 
 
@@ -145,7 +144,7 @@ class RegistrationController extends Controller
                 $userManager->updateUser($user);
 
                 if (null === $response = $event->getResponse()) {
-                    $url = $this->generateUrl('fos_user_registration_confirmed');
+                    $url = $this->generateUrl('fos_user_profile_show');
                     $response = new RedirectResponse($url);
                 }
 

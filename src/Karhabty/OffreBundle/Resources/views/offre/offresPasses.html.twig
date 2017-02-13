@@ -1,0 +1,54 @@
+{% extends 'layout/LayoutUser.html.twig' %}
+{% block content %}
+
+
+
+    {% for offre in offres %}
+
+        <div class="col-md-12">
+            <!-- BEGIN Portlet PORTLET-->
+            <div class="portlet light">
+                <div class="row">
+                    <div class="list-group">
+                        <div class="media col-md-3">
+                            <figure class="pull-left">
+                                <img class="media-object img-rounded img-responsive"  src="{{ asset(vich_uploader_asset(offre, 'imageFile')) }}" />
+                            </figure>
+                        </div>
+                    </div>
+                    <div class="list-group">
+                        <div class="media col-md-6">
+
+                            <p>{{ offre.nomOffre}}</p>
+                            <p>Prix : {{ offre.prix }} DT</p>
+                            <p>Taux de Réduction :  {{ offre.tauxReduction }}%</p>
+                            <p>economie : {{ offre.prix - ((offre.prix * offre.tauxReduction)/100) }}DT</p>
+                            <p>date ajout : {{ offre.date | date }}</p>
+                            <p>date exp : {{ offre.dateExpirationOffre | date }}</p>
+
+
+
+
+                        </div>
+                    </div>
+                    <div class="list-group">
+                        <div class="media col-md-3">
+                            <button type="button" class="btn btn-circle red-sunglo"><a style="text-decoration: none;color: inherit" href="{{ path('offre_details', { 'id': offre.idOffre }) }}">Voir l'offre</a></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END Portlet PORTLET-->
+        </div>
+
+    {% endfor %}
+
+
+
+
+
+
+
+
+
+{% endblock %}

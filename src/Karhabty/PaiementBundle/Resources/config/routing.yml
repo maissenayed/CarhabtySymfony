@@ -1,0 +1,7 @@
+karhabty_paiement_homepage:
+    path:     /paiement
+    defaults: { _controller: KarhabtyPaiementBundle:Paiement:index }
+
+karhabty_paiement_test:
+    path:     /ptest
+    defaults: { _controller: KarhabtyPaiementBundle:Paiement:test }

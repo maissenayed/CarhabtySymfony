@@ -26,6 +26,8 @@ class AppKernel extends Kernel
             new AncaRebeca\FullCalendarBundle\FullCalendarBundle(),
             new Karhabty\CalendarBundle\KarhabtyCalendarBundle(),
             new Karhabty\AnnonceBundle\KarhabtyAnnonceBundle(),
+            new Karhabty\PaiementBundle\KarhabtyPaiementBundle(),
+            new WhiteOctober\TCPDFBundle\WhiteOctoberTCPDFBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
