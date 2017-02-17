@@ -118,4 +118,7 @@ class AstuceController extends Controller
         return $this->render('KarhabtyAstuceBundle:Astuce:infoAstuce.html.twig', array('form' => $form->createView()));
     }
 
+
+    
+
 }

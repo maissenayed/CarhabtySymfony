@@ -6,6 +6,8 @@
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
     <link href="{{ asset('assets/ahlem/css/star-rating.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/ahlem/css/theme.min.css') }}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/ahlem/css/sweetalert.css') }}">
+  <!--  <link rel="stylesheet" type="text/css" href="{{ asset('assets/ahlem/css/style.css') }}">-->
     {%  endblock %}
 
  {% block javascripts %}
@@ -13,11 +15,64 @@
      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.js"></script>
      <script src="{{  asset('assets/ahlem/js/star-rating.min.js') }}" type="text/javascript"></script>
      <script src="{{  asset('assets/ahlem/js/theme.min.js') }}" type="text/javascript"></script>
+     <script src="{{  asset('assets/ahlem/js/sweetalert.min.js') }}"> </script>
+     <script type="text/javascript" src="{{ asset('assets/ahlem/js/jquery.leanModal.min.js') }}"></script>
+     <script>
+         // A $( document ).ready() block.
+         $( "#delA" ).click(function() {
+             swal({
+                     title: "Are you sure?",
+                     text: "You will not be able to recover this imaginary file!",
+                     type: "warning",
+                     showCancelButton: true,
+                     confirmButtonColor: "#DD6B55",
+                     confirmButtonText: "Yes, delete it!",
+                     cancelButtonText: "No, cancel plx!",
+                     closeOnConfirm: false,
+                     closeOnCancel: false
+                 },
+                 function(isConfirm){
+                     if (isConfirm) {
+                         $.ajax({
+                             url: url,
+                             data: data,
+                             success: success,
+                             dataType: dataType
+                         });
+                         swal("Deleted!", "Your imaginary file has been deleted.", "success");
+                     } else {
+                         swal("Cancelled", "Your imaginary file is safe :)", "error");
+                     }
+                 });
+         });
+     </script>
 
 
  {%  endblock %}
 {% block content %}
 
+
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Some text in the modal.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
         <h1>{{ i.theme }}</h1>
 
@@ -35,14 +90,14 @@
                             <p>{{ i.description }}</p>
                             <p>
 
-                                <a class="btn btn-circle btn-icon-only btn-default" href="{{ path('deleteAstuce', {'id':i.id}) }}" >
+                                <a id="delA" class="btn btn-circle btn-icon-only btn-default"  >
                                     <i class="icon-trash"></i>
                                 </a>
 
                                 <a class="btn btn-circle btn-icon-only btn-default" href="{{ path('updateAstuce', {'id':i.id}) }}">
                                     <i class="icon-wrench"></i>
                                 </a>
-                                <a class="btn btn-circle btn-icon-only btn-default" href="{{ path('updateAstuce', {'id':i.id}) }}">
+                                <a class="btn btn-circle btn-icon-only btn-default" data-toggle="modal" data-target="#myModal" >
                                     <i class="fa fa-commenting-o"></i>
                                 </a>
                                 <input id="input-id" type="text" class="rating" data-size="xs" >
