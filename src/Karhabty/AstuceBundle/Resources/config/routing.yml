@@ -29,3 +29,7 @@ infoAstuce:
 theme:
     path:     /{theme}
     defaults: { _controller: KarhabtyAstuceBundle:Astuce:theme}
+
+addComm:
+    path:     /AddComm
+    defaults: { _controller: KarhabtyAstuceBundle:Astuce:addComment}

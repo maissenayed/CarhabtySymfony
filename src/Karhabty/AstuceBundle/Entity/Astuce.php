@@ -3,6 +3,7 @@
 
 namespace Karhabty\AstuceBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -83,6 +84,11 @@ class Astuce
      * @var \DateTime
      */
     private $updatedAt;
+
+
+
+    private $comments;
+
 
     /**
      * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
@@ -239,9 +245,19 @@ class Astuce
         return $this->date;
     }
 
-   /* public function __construct() {
+
+    public function __construct() {
         $this->date = new \DateTime();
-    }*/
+        $this->comments = new ArrayCollection();
+    }
+    public function addComment(Comment $var)
+    {
+        $this->comments->add($var);
+    }
+    public function removeComment(Comment $var)
+    {
+        $this->comments->removeElement($var);
+    }
 
 
 }

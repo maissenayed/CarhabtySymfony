@@ -30,7 +30,7 @@ class AstuceType extends AbstractType
 
             ->add('imageFile', FileType::class)
             ->add('Valider', SubmitType::class)
-            ->add('Annuler', SubmitType::class);
+            ;
     }
 
     /**

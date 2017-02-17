@@ -25,12 +25,16 @@ class Comment
     private $commentaire;
 
     /**
+     * Many Comments have One User.
      * @ORM\ManyToOne(targetEntity="Karhabty\UserBundle\Entity\User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Karhabty\AstuceBundle\Entity\Astuce")
+     * Many Comments have One Astuce.
+     * @ORM\ManyToOne(targetEntity="Astuce",inversedBy="comments")
+     * @ORM\JoinColumn(name="astuce_id", referencedColumnName="id")
      */
     private $astuce;
 

@@ -4,9 +4,11 @@ namespace Karhabty\AstuceBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Karhabty\AstuceBundle\Entity\Astuce;
+use Karhabty\AstuceBundle\Entity\Comment;
 use Karhabty\AstuceBundle\Entity\AstuceRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Karhabty\AstuceBundle\Form\AstuceType;
+use Karhabty\AstuceBundle\Form\CommentType;
 
 class AstuceController extends Controller
 {
@@ -54,33 +56,42 @@ class AstuceController extends Controller
         return $this->render('KarhabtyAstuceBundle:Astuce:updateAstuce.html.twig', array('form' => $form->createView()));
     }
 
-    public function infoAstuceAction($id)
+    public function infoAstuceAction(Request $req,$id)
     {
 
 
         #Signle Astuce
         $ba3 = $this->getDoctrine()
             ->getRepository('KarhabtyAstuceBundle:Astuce')
-            ->findDetailsAstuceDQL($id);
+            ->find($id);
 
 
+        $comment = new Comment();
+        $form = $this->createForm(CommentType::class, $comment);
+        if ($form->handleRequest($req)->isValid()) {
+            $comment->setUser($this->getUser());
+            $comment->setAstuce($ba3);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($comment);
+            $em->flush();
+        }
         if (!$ba3) {
             throw $this->createNotFoundException(
                 'No astuce found for id ' . $id
             );
         }
         #RecentProduct
-        $currentAstuce1 = $ba3[0];
+        $currentAstuce1 = $ba3;
         $recentAstuce = $this->getDoctrine()
             ->getRepository('KarhabtyAstuceBundle:Astuce')
             ->recentAstuce($currentAstuce1->getDate());
         #relatedAstuce
-        $currentAstuce = $ba3[0];
+        $currentAstuce = $ba3;
         $relatedAstuce = $this->getDoctrine()
             ->getRepository('KarhabtyAstuceBundle:Astuce')
             ->relatedAstuce($currentAstuce->getTheme());
         return ($this->render("KarhabtyAstuceBundle:Astuce:infoAstuce.html.twig"
-            , array('i' => $ba3 , 'relatedAstuces' => $relatedAstuce , 'recentAstuces' => $recentAstuce)));
+            , array('i' => $ba3 , 'relatedAstuces' => $relatedAstuce , 'recentAstuces' => $recentAstuce,'form'=>$form->createView())));
 
     }
     public function themeAction($theme) {

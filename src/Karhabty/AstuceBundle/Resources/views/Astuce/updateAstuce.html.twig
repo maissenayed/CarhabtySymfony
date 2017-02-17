@@ -1,12 +1,16 @@
 {% extends 'Layout/LayoutUser.html.twig' %}
 {% block content %}
-<div class="portlet box purple ">
+<div class="portlet light bordered">
     <div class="portlet-title">
-        <div class="caption">
-            <i class="fa fa-pencil-square-o"></i> Mettre à jour astuce </div>
-    </div>
-</div>
+        <div class="caption font-green-haze">
+            <i class="icon-settings font-green-haze"></i>
+            <span class="caption-subject bold uppercase"> Ajouter Astuce</span>
+        </div>
+        <div class="actions">
 
+            <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;" data-original-title="" title=""> </a>
+        </div>
+    </div>
 {{ form_start (form) }}
 <div class="portlet-body">
 <table>
@@ -26,6 +30,18 @@
         <td> {{form_widget (form.description,{ 'attr': {'class':'form-control' }}) }}</td>
 
     </tr>
+    <tr>
+        <td> Joindre une image</td>
+        <td> {{ form_widget (form.imageFile,{ 'attr': {'class':'' }}) }}</td>
+
+    </tr>
+
+    <tr>
+        <td></td>
+        <td> {{ form_widget (form.date,{ 'attr': {'class':'' }}) }}</td>
+
+    </tr>
+
 
     <tr>
         <td></td>
@@ -35,5 +51,6 @@
 </table>
 </div>
 {{ form_end (form) }}
+</div>
 
 {% endblock %}

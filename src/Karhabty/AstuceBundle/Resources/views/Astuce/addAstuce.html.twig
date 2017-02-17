@@ -40,9 +40,17 @@
 
         <tr>
             <td></td>
+            <td> {{ form_widget (form.date,{ 'attr': {'class':'' }}) }}</td>
+
+        </tr>
+
+
+        <tr>
+            <td></td>
             <td> {{ form_widget (form.Valider,{ 'attr': {'class':'btn btn-circle btn-success' }}) }}</td>
 
         </tr>
+
     </table>
     {{ form_end(form) }}
 

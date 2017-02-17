@@ -7,13 +7,12 @@
                 Ajouter Astuce
             </a>
         </div>
-        <h1>liste des astuces </h1>
+        <h1>Des astuces qui peuvent vous intéresser </h1>
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         <div class="container">
             <div class="" style="padding-bottom: 30px;">
                 <div class="row">
                     <div class="col-xs-12 col-sm-6 col-md-3">
-                        <label for="selectedSort">Sort:</label>
                         <div class="input-group" id="adv-search">
                             <input id="selectedSort" type="text" class="form-control" placeholder="Sort"/>
                             <div class="input-group-btn">
@@ -61,10 +60,10 @@
 
     {% for i in astuces %}
 
-
         <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
             <div class="hovereffect">
                 <img class="img-responsive" src="{{ asset(vich_uploader_asset(i, 'imageFile')) }}" style="min-height:233px;height:233px;min-width:350px;width:350px;" alt="{{ i.theme }}">
+
                 <div class="overlay">
                     <h2>{{ i.theme }}</h2>
                     <a class="info" href="{{ path('infoAstuce', {'id' : i.id} ) }}">plus de détails</a>

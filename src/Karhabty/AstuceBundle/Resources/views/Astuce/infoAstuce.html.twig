@@ -1,9 +1,25 @@
 {% extends 'Layout/LayoutUser.html.twig' %}
 
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
+    <link href="{{ asset('assets/ahlem/css/star-rating.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/ahlem/css/theme.min.css') }}" rel="stylesheet" type="text/css" />
+    {%  endblock %}
+
+ {% block javascripts %}
+     {{ parent() }}
+     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.js"></script>
+     <script src="{{  asset('assets/ahlem/js/star-rating.min.js') }}" type="text/javascript"></script>
+     <script src="{{  asset('assets/ahlem/js/theme.min.js') }}" type="text/javascript"></script>
+
+
+ {%  endblock %}
 {% block content %}
 
-    {% for ba3 in i %}
-        <h1>{{ ba3.theme }}</h1>
+
+        <h1>{{ i.theme }}</h1>
 
 
         <div class="row">
@@ -11,29 +27,31 @@
 
                     <div style="width:50%; float:left;">
                         <img style="height:299px;width:450px;display: block;"
-                             src="{{ asset(vich_uploader_asset(ba3, 'imageFile')) }}" alt="{{ ba3.theme }}"/>
+                             src="{{ asset(vich_uploader_asset(i, 'imageFile')) }}" alt="{{ i.theme }}"/>
                     </div>
                     <div style="width: 50%; float:right;">
                         <div class="caption">
-                            <h3>{{ ba3.titre }}</h3>
-                            <p>{{ ba3.description }}</p>
+                            <h3>{{ i.titre }}</h3>
+                            <p>{{ i.description }}</p>
                             <p>
 
-                                <a class="btn btn-circle btn-icon-only btn-default" href="{{ path('deleteAstuce', {'id':ba3.id}) }}" >
+                                <a class="btn btn-circle btn-icon-only btn-default" href="{{ path('deleteAstuce', {'id':i.id}) }}" >
                                     <i class="icon-trash"></i>
                                 </a>
 
-                                <a class="btn btn-circle btn-icon-only btn-default" href="{{ path('addAstuce', {'id':ba3.id}) }}">
+                                <a class="btn btn-circle btn-icon-only btn-default" href="{{ path('updateAstuce', {'id':i.id}) }}">
                                     <i class="icon-wrench"></i>
                                 </a>
-                                <a class="btn btn-circle btn-icon-only btn-default" href="{{ path('updateAstuce', {'id':ba3.id}) }}">
+                                <a class="btn btn-circle btn-icon-only btn-default" href="{{ path('updateAstuce', {'id':i.id}) }}">
                                     <i class="fa fa-commenting-o"></i>
                                 </a>
+                                <input id="input-id" type="text" class="rating" data-size="xs" >
+                            {{ form_start(form) }}
                             <h3>Ajouter un commentaire</h3>
-                            <textarea class="form-control" rows="3"></textarea>
-                            <button type="button" class="btn btn-circle btn-success">Success</button>
+                            {{ form_widget (form.commentaire,{ 'attr': {'class':'form-control','row':'3' }}) }}
+                            <button type="submit" class="btn btn-circle btn-success">Success</button>
 
-
+                            {{ form_end(form) }}
                             </p>
                         </div>
                     </div>
@@ -43,7 +61,7 @@
 
 
 
-    {% endfor %}
+
 
     <div class="related-products-wrapper">
         <h3 class="related-products-title">Related Astuces</h3>
@@ -66,7 +84,7 @@
                 </div>
             {% endfor %}
             <div class="single-sidebar">
-                <h3 class="sidebar-title">Last Products</h3>
+                <h3 class="sidebar-title">les astuces récentes </h3>
                 <div class="thubmnail-recent">
                     {% for recentAstuce in recentAstuces %}
 
