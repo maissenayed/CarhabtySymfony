@@ -11,11 +11,28 @@ use Symfony\Component\HttpFoundation\Request;
 
 class PaiementController extends Controller
 {
-    public function paiementAction(Offre $offre,Request $request)
+
+
+    function indexAction(Offre $offre)
     {
 
-        dump($offre);
-        die;
+        return $this->render('@KarhabtyPaiement/Default/paiement.html.twig', array(
+            'offre' => $offre
+
+        ));
+
+
+    }
+
+
+
+
+
+
+    public function paiementAction(Request $request)
+    {
+
+
 
         if ($request->isXmlHttpRequest()) {
 
@@ -39,12 +56,12 @@ class PaiementController extends Controller
           return new JsonResponse(array('status' => 'success'));
 
 
+
         }
 
 
-        return $this->render('@KarhabtyPaiement/Default/paiement.html.twig',array(
-        'offre' => $offre));
+       // return $this->render('@KarhabtyPaiement/Default/paiement.html.twig');
 
 
-    }
+        return new JsonResponse(array('status' => 'failed'));  }
 }

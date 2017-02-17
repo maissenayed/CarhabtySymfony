@@ -5,6 +5,7 @@ namespace Karhabty\OffreBundle\Controller;
 use Karhabty\OffreBundle\Entity\Coupon;
 use Karhabty\OffreBundle\Entity\Offre;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\Date;
 
@@ -23,33 +24,48 @@ class CouponController extends Controller
     }
 
 
-
     function generateAction(Request $request){
-
+        if ($request->isXmlHttpRequest()) {
                 $coupon = new Coupon();
                 $coupon->setUser($this->getUser());
-                if($request->isMethod('POST')){
 
-                    $idof=$request->request->get('idoffre');
-                    $random = random_int(1, 200);
+
+
+
+                    $idof=$request->request->get('id');
+
+                    $random = random_int(1, 400);
                     $coupon->setReference("RFCC".''.$random);
+
                     $em = $this->getDoctrine()->getManager();
                     $offre = $em->getRepository("KarhabtyOffreBundle:Offre")->find($idof);
 
+
+
                     $coupon->setOffre($offre);
-                   // echo $coupon->getOffre()->getPrix();die;
+                   //echo $coupon->getOffre()->getPrix();die;
                     $em->persist($coupon);
                     $em->flush();
+
+            return new JsonResponse(array('status' => 'success'));
         }
 
 
-        return $this->render('@KarhabtyOffre/offre/paiement.html.twig',array());
-
-
+         return new JsonResponse(array('status' => 'faild'));
 
 
     }
 
+
+
+
+    public function successAction(){
+
+
+            return $this->render('@KarhabtyOffre/coupon/GenerationCoupon.html.twig');
+
+
+    }
 
 
 
@@ -85,8 +101,6 @@ class CouponController extends Controller
            $coupon = $em->getRepository('KarhabtyOffreBundle:Coupon')->findOneBy(array('user'=>$user),array('date'=>'DESC'));
 
 
-
-
             $prix = $coupon->getOffre()->getPrix();
             $nom= $coupon->getUser()->getNom();
             $prenom =$coupon->getUser()->getPrenom();
@@ -104,7 +118,7 @@ class CouponController extends Controller
         // but in this case we will render a symfony view !
         // We are in a controller and we can use renderView function which retrieves the html from a view
         // then we send that html to the user.
-        $html = $this->renderView('@KarhabtyOffre/coupon/GenerationCoupon.html.twig',array('ref'=>$ref ,'nom'=>$nom,'prenom'=>$prenom
+        $html = $this->renderView('@KarhabtyOffre/coupon/GenerationCouponPDF.html.twig',array('ref'=>$ref ,'nom'=>$nom,'prenom'=>$prenom
         ,'prix'=>$prixfinal,'offre'=>$nomoffre,'adresse'=>$adresse,'part'=>$partenaire));
 
         $this->returnPDFResponseFromHTML($html);
