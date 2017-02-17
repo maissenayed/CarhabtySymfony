@@ -1,0 +1,28 @@
+annonce_index:
+    path:     /
+    defaults: { _controller: "KarhabtyAnnonceBundle:Annonce:index" }
+    methods:  GET
+annonce_recherche:
+    path:     /test
+    defaults: { _controller: "KarhabtyAnnonceBundle:Annonce:publicannonce" }
+    methods:  GET
+
+annonce_show:
+    path:     /{id}/show
+    defaults: { _controller: "KarhabtyAnnonceBundle:Annonce:show" }
+    methods:  GET
+
+annonce_new:
+    path:     /new
+    defaults: { _controller: "KarhabtyAnnonceBundle:Annonce:new" }
+    methods:  [GET, POST]
+
+annonce_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "KarhabtyAnnonceBundle:Annonce:edit" }
+    methods:  [GET, POST]
+
+annonce_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "KarhabtyAnnonceBundle:Annonce:delete" }
+    methods:  DELETE

@@ -1,0 +1,51 @@
+{% extends 'layout/LayoutUser.html.twig' %}
+
+{% block content %}
+    <h1>Offre</h1>
+
+    <table>
+        <tbody>
+
+            <tr>
+                <th>Nomoffre</th>
+                <td>{{ offre.nomOffre }}</td>
+            </tr>
+            <tr>
+                <th>Descriptionoffre</th>
+                <td>{{ offre.descriptionOffre }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ offre.prix }}</td>
+            </tr>
+            <tr>
+                <th>Tauxreduction</th>
+                <td>{{ offre.tauxReduction }}</td>
+            </tr>
+            <tr>
+                <th>date exp</th>
+                <td>{{ offre.dateExpirationOffre | date }}</td>
+            </tr>
+
+            <tr>
+                <th>date ajout</th>
+                <td>{{ offre.date | date }}</td>
+            </tr>
+
+            <tr>
+                <th>Image</th>
+                <td> <img src="{{ asset(vich_uploader_asset(offre, 'imageFile')) }}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('offre_index') }}">vos offres</a>
+        </li>
+        <li>
+            <a href="{{ path('offre_edit', { 'id': offre.idOffre }) }}">Modifier l'offre</a>
+        </li>
+
+    </ul>
+{% endblock %}

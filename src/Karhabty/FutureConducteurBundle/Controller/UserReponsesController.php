@@ -2,10 +2,14 @@
 
 namespace Karhabty\FutureConducteurBundle\Controller;
 
+
+use Karhabty\UserBundle\Entity;
 use Karhabty\FutureConducteurBundle\Entity\UserReponses;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+
 
 /**
  * Userreponse controller.
@@ -26,7 +30,7 @@ class UserReponsesController extends Controller
 
         $userReponses = $em->getRepository('KarhabtyFutureConducteurBundle:UserReponses')->findAll();
 
-        return $this->render('userreponses/index.html.twig', array(
+        return $this->render('KarhabtyFutureConducteurBundle:userreponses:index.html.twig', array(
             'userReponses' => $userReponses,
         ));
     }
@@ -39,7 +43,7 @@ class UserReponsesController extends Controller
      */
     public function newAction(Request $request)
     {
-        $userReponse = new Userreponse();
+        $userReponse = new UserReponses();
         $form = $this->createForm('Karhabty\FutureConducteurBundle\Form\UserReponsesType', $userReponse);
         $form->handleRequest($request);
 
@@ -51,7 +55,7 @@ class UserReponsesController extends Controller
             return $this->redirectToRoute('userreponses_show', array('id' => $userReponse->getId()));
         }
 
-        return $this->render('userreponses/new.html.twig', array(
+        return $this->render('KarhabtyFutureConducteurBundle:userreponses:new.html.twig', array(
             'userReponse' => $userReponse,
             'form' => $form->createView(),
         ));
@@ -67,7 +71,7 @@ class UserReponsesController extends Controller
     {
         $deleteForm = $this->createDeleteForm($userReponse);
 
-        return $this->render('userreponses/show.html.twig', array(
+        return $this->render('KarhabtyFutureConducteurBundle:userreponses:show.html.twig', array(
             'userReponse' => $userReponse,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -91,7 +95,7 @@ class UserReponsesController extends Controller
             return $this->redirectToRoute('userreponses_edit', array('id' => $userReponse->getId()));
         }
 
-        return $this->render('userreponses/edit.html.twig', array(
+        return $this->render('KarhabtyFutureConducteurBundle:userreponses:edit.html.twig', array(
             'userReponse' => $userReponse,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

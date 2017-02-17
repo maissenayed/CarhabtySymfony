@@ -19,8 +19,24 @@ class AppKernel extends Kernel
             new Karhabty\AstuceBundle\KarhabtyAstuceBundle(),
             new Karhabty\UserBundle\KarhabtyUserBundle(),
             new FOS\UserBundle\FOSUserBundle(),
-            new Karhabty\FutureConducteurBundle\KarhabtyFutureConducteurBundle(),
+            new Karhabty\OffreBundle\KarhabtyOffreBundle(),
+            new Karhabty\MapBundle\KarhabtyMapBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
+            new Karhabty\FutureConducteurBundle\KarhabtyFutureConducteurBundle(),
+<<<<<<< HEAD
+            new Vich\UploaderBundle\VichUploaderBundle(),
+=======
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+            new AncaRebeca\FullCalendarBundle\FullCalendarBundle(),
+            new Karhabty\CalendarBundle\KarhabtyCalendarBundle(),
+            new Karhabty\AnnonceBundle\KarhabtyAnnonceBundle(),
+            new Karhabty\PaiementBundle\KarhabtyPaiementBundle(),
+            new WhiteOctober\TCPDFBundle\WhiteOctoberTCPDFBundle(),
+            new Nomaya\SocialBundle\NomayaSocialBundle(),
+            new Karhabty\BankBundle\KarhabtyBankBundle(),
+            new Karhabty\AdminBundle\KarhabtyAdminBundle(),
+            new Ob\HighchartsBundle\ObHighchartsBundle(),
+>>>>>>> 78215f9a2a3feabe66afc3b6246884fcb4ab6b4e
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

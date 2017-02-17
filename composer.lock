@@ -4,8 +4,61 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "f57e69dc249e54f415803b909d2781aa",
+=======
+    "content-hash": "0f9a9d6a64194a8b953629abb0d5d337",
+>>>>>>> 78215f9a2a3feabe66afc3b6246884fcb4ab6b4e
     "packages": [
+        {
+            "name": "ancarebeca/full-calendar-bundle",
+            "version": "v4.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ancarebeca/FullCalendarBundle.git",
+                "reference": "c8ac7479fa3951722843c8921280c0364a4142ce"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ancarebeca/FullCalendarBundle/zipball/c8ac7479fa3951722843c8921280c0364a4142ce",
+                "reference": "c8ac7479fa3951722843c8921280c0364a4142ce",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9",
+                "symfony/symfony": "^3.1.0"
+            },
+            "require-dev": {
+                "phpspec/phpspec": "^2.2"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "AncaRebeca\\FullCalendarBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rebeca Mora Anca",
+                    "email": "anca.rebeca@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Symfony2 integration with the library FullCalendar.js",
+            "homepage": "https://github.com/ancarebeca/FullCalendarBundle",
+            "keywords": [
+                "calendar",
+                "fullcalendar",
+                "jquery calendar",
+                "symfony2 bundle",
+                "symfony2 calendar"
+            ],
+            "time": "2017-02-05T16:53:30+00:00"
+        },
         {
             "name": "doctrine/annotations",
             "version": "v1.2.7",
@@ -285,16 +338,16 @@
         },
         {
             "name": "doctrine/dbal",
-            "version": "v2.5.10",
+            "version": "v2.5.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "fc376f7a61498e18520cd6fa083752a4ca08072b"
+                "reference": "7b9e911f9d8b30d43b96853dab26898c710d8f44"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/fc376f7a61498e18520cd6fa083752a4ca08072b",
-                "reference": "fc376f7a61498e18520cd6fa083752a4ca08072b",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/7b9e911f9d8b30d43b96853dab26898c710d8f44",
+                "reference": "7b9e911f9d8b30d43b96853dab26898c710d8f44",
                 "shasum": ""
             },
             "require": {
@@ -352,7 +405,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2017-01-23T23:17:10+00:00"
+            "time": "2017-02-08T12:53:47+00:00"
         },
         {
             "name": "doctrine/doctrine-bundle",
@@ -775,17 +828,75 @@
             "time": "2016-12-18T15:42:34+00:00"
         },
         {
+            "name": "friendsofsymfony/jsrouting-bundle",
+            "version": "1.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FriendsOfSymfony/FOSJsRoutingBundle.git",
+                "reference": "2f52d924692647db02bbcb27c159fef03bf000c9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSJsRoutingBundle/zipball/2f52d924692647db02bbcb27c159fef03bf000c9",
+                "reference": "2f52d924692647db02bbcb27c159fef03bf000c9",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "symfony/console": "~2.0|3.*",
+                "symfony/framework-bundle": "~2.0|3.*",
+                "symfony/serializer": "~2.0|3.*",
+                "willdurand/jsonp-callback-validator": "~1.0"
+            },
+            "require-dev": {
+                "symfony/expression-language": "~2.4|3.*"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.5-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "FOS\\JsRoutingBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "FriendsOfSymfony Community",
+                    "homepage": "https://github.com/friendsofsymfony/FOSJsRoutingBundle/contributors"
+                },
+                {
+                    "name": "William Durand",
+                    "email": "william.durand1@gmail.com"
+                }
+            ],
+            "description": "A pretty nice way to expose your Symfony2 routing to client applications.",
+            "homepage": "http://friendsofsymfony.github.com",
+            "keywords": [
+                "Js Routing",
+                "javascript",
+                "routing"
+            ],
+            "time": "2015-10-28T15:08:39+00:00"
+        },
+        {
             "name": "friendsofsymfony/user-bundle",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "a314d4aef3c3a34742bb6ae99065f27e6e49e000"
+                "reference": "1422ae8ce8f6e1a4947d1cc6f88668a6f63c649a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/a314d4aef3c3a34742bb6ae99065f27e6e49e000",
-                "reference": "a314d4aef3c3a34742bb6ae99065f27e6e49e000",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/1422ae8ce8f6e1a4947d1cc6f88668a6f63c649a",
+                "reference": "1422ae8ce8f6e1a4947d1cc6f88668a6f63c649a",
                 "shasum": ""
             },
             "require": {
@@ -849,7 +960,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2017-02-02 14:13:19"
+            "time": "2017-02-16 11:13:37"
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -1004,6 +1115,7 @@
             "time": "2016-12-05T10:18:33+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "kartik-v/bootstrap-star-rating",
             "version": "dev-master",
             "source": {
@@ -1048,6 +1160,8 @@
             "time": "2017-02-02 03:03:30"
         },
         {
+=======
+>>>>>>> 78215f9a2a3feabe66afc3b6246884fcb4ab6b4e
             "name": "monolog/monolog",
             "version": "1.22.0",
             "source": {
@@ -1126,6 +1240,177 @@
             "time": "2016-11-26T00:15:39+00:00"
         },
         {
+<<<<<<< HEAD
+=======
+            "name": "mpdf/mpdf",
+            "version": "v6.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mpdf/mpdf.git",
+                "reference": "7f138bf7508eac895ac2c13d2509b056ac7e7e97"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mpdf/mpdf/zipball/7f138bf7508eac895ac2c13d2509b056ac7e7e97",
+                "reference": "7f138bf7508eac895ac2c13d2509b056ac7e7e97",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=5.4.0",
+                "setasign/fpdi": "1.6.*"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.7"
+            },
+            "suggest": {
+                "ext-zlib": "Needed for compression of embedded resources, such as fonts"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "mpdf.php",
+                    "classes"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Ian Back",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A PHP class to generate PDF files from HTML with Unicode/UTF-8 and CJK support",
+            "homepage": "http://mpdf.github.io",
+            "keywords": [
+                "pdf",
+                "php",
+                "utf-8"
+            ],
+            "time": "2016-12-12T10:42:18+00:00"
+        },
+        {
+            "name": "nomaya/social-bundle",
+            "version": "dev-master",
+            "target-dir": "Nomaya/SocialBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nomayann/NomayaSocialButtonsBundle.git",
+                "reference": "5a8a24954189e6f2d39368f755498bc2e13e0e6f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nomayann/NomayaSocialButtonsBundle/zipball/5a8a24954189e6f2d39368f755498bc2e13e0e6f",
+                "reference": "5a8a24954189e6f2d39368f755498bc2e13e0e6f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "twig/twig": "*"
+            },
+            "require-dev": {
+                "matthiasnoback/symfony-config-test": "0.*",
+                "symfony/framework-bundle": ">=2.1"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Nomaya\\SocialBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Yann Chauvel",
+                    "email": "yann@nomaya.net",
+                    "homepage": "http://www.nomaya.net/"
+                }
+            ],
+            "description": "A bundle to easily add facebook, twitter, G+, Linkedin buttons to your templates",
+            "homepage": "http://github.com/nomayann/NomayaSocialButtonsBundle",
+            "keywords": [
+                "Symfony2",
+                "bundle",
+                "buttons",
+                "facebook",
+                "google plus",
+                "like",
+                "linkedin",
+                "share",
+                "social",
+                "symfony",
+                "symfony2bundle",
+                "twitter"
+            ],
+            "time": "2016-01-28 15:39:34"
+        },
+        {
+            "name": "ob/highcharts-bundle",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/marcaube/ObHighchartsBundle.git",
+                "reference": "ef6a9aded173127e19d4a098a95573f64e0b3309"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/marcaube/ObHighchartsBundle/zipball/ef6a9aded173127e19d4a098a95573f64e0b3309",
+                "reference": "ef6a9aded173127e19d4a098a95573f64e0b3309",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3",
+                "symfony/symfony": "~2.3|~3.0",
+                "zendframework/zend-json": "~2.3|~3.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.6.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Ob\\HighchartsBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marc Aubé"
+                }
+            ],
+            "description": "Symfony2 Bundle that ease the use of highcharts to display rich graph and charts in your app",
+            "homepage": "https://github.com/marcaube/ObHighchartsBundle",
+            "keywords": [
+                "Symfony2",
+                "chart",
+                "charting",
+                "charts",
+                "graph",
+                "graphs",
+                "highcharts",
+                "marcaube",
+                "ob"
+            ],
+            "time": "2016-07-26 23:46:28"
+        },
+        {
+>>>>>>> 78215f9a2a3feabe66afc3b6246884fcb4ab6b4e
             "name": "ocramius/proxy-manager",
             "version": "1.0.2",
             "source": {
@@ -1383,16 +1668,16 @@
         },
         {
             "name": "sensio/framework-extra-bundle",
-            "version": "v3.0.21",
+            "version": "v3.0.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioFrameworkExtraBundle.git",
-                "reference": "ed86f6fb1753e76b39ff8b87f527045ca6b97169"
+                "reference": "1c66c2e3b8f17f06178142386aff5a9f8057a104"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioFrameworkExtraBundle/zipball/ed86f6fb1753e76b39ff8b87f527045ca6b97169",
-                "reference": "ed86f6fb1753e76b39ff8b87f527045ca6b97169",
+                "url": "https://api.github.com/repos/sensiolabs/SensioFrameworkExtraBundle/zipball/1c66c2e3b8f17f06178142386aff5a9f8057a104",
+                "reference": "1c66c2e3b8f17f06178142386aff5a9f8057a104",
                 "shasum": ""
             },
             "require": {
@@ -1401,6 +1686,8 @@
                 "symfony/framework-bundle": "~2.3|~3.0"
             },
             "require-dev": {
+                "doctrine/doctrine-bundle": "~1.5",
+                "doctrine/orm": "~2.4,>=2.4.5",
                 "symfony/asset": "~2.7|~3.0",
                 "symfony/browser-kit": "~2.3|~3.0",
                 "symfony/dom-crawler": "~2.3|~3.0",
@@ -1413,7 +1700,7 @@
                 "symfony/translation": "~2.3|~3.0",
                 "symfony/twig-bundle": "~2.3|~3.0",
                 "symfony/yaml": "~2.3|~3.0",
-                "twig/twig": "~1.11|~2.0",
+                "twig/twig": "~1.12|~2.0",
                 "zendframework/zend-diactoros": "^1.3"
             },
             "suggest": {
@@ -1447,7 +1734,7 @@
                 "annotations",
                 "controllers"
             ],
-            "time": "2017-02-02T15:31:23+00:00"
+            "time": "2017-02-15T06:52:30+00:00"
         },
         {
             "name": "sensiolabs/security-checker",
@@ -1494,17 +1781,121 @@
             "time": "2016-09-23T18:09:57+00:00"
         },
         {
-            "name": "swiftmailer/swiftmailer",
-            "version": "v5.4.5",
+            "name": "setasign/fpdi",
+            "version": "1.6.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "cd142238a339459b10da3d8234220963f392540c"
+                "url": "https://github.com/Setasign/FPDI.git",
+                "reference": "5b899b2b41463bf261aa69840fd30b50950a500c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/cd142238a339459b10da3d8234220963f392540c",
-                "reference": "cd142238a339459b10da3d8234220963f392540c",
+                "url": "https://api.github.com/repos/Setasign/FPDI/zipball/5b899b2b41463bf261aa69840fd30b50950a500c",
+                "reference": "5b899b2b41463bf261aa69840fd30b50950a500c",
+                "shasum": ""
+            },
+            "suggest": {
+                "setasign/fpdf": "FPDI will extend this class but as it is also possible to use \"tecnickcom/tcpdf\" as an alternative there's no fixed dependency configured.",
+                "setasign/fpdi-fpdf": "Use this package to automatically evaluate dependencies to FPDF.",
+                "setasign/fpdi-tcpdf": "Use this package to automatically evaluate dependencies to TCPDF."
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "filters/",
+                    "fpdi.php",
+                    "fpdf_tpl.php",
+                    "fpdi_pdf_parser.php",
+                    "pdf_context.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jan Slabon",
+                    "email": "jan.slabon@setasign.com",
+                    "homepage": "https://www.setasign.com"
+                }
+            ],
+            "description": "FPDI is a collection of PHP classes facilitating developers to read pages from existing PDF documents and use them as templates in FPDF. Because it is also possible to use FPDI with TCPDF, there are no fixed dependencies defined. Please see suggestions for packages which evaluates the dependencies automatically.",
+            "homepage": "https://www.setasign.com/fpdi",
+            "keywords": [
+                "fpdf",
+                "fpdi",
+                "pdf"
+            ],
+            "time": "2015-11-30T10:53:14+00:00"
+        },
+        {
+            "name": "stripe/stripe-php",
+            "version": "v4.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/stripe/stripe-php.git",
+                "reference": "9ec772fe502995850954dbc15b1f38e6f9159a4d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/9ec772fe502995850954dbc15b1f38e6f9159a4d",
+                "reference": "9ec772fe502995850954dbc15b1f38e6f9159a4d",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0",
+                "satooshi/php-coveralls": "~0.6.1",
+                "squizlabs/php_codesniffer": "~2.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Stripe\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stripe and contributors",
+                    "homepage": "https://github.com/stripe/stripe-php/contributors"
+                }
+            ],
+            "description": "Stripe PHP Library",
+            "homepage": "https://stripe.com/",
+            "keywords": [
+                "api",
+                "payment processing",
+                "stripe"
+            ],
+            "time": "2017-01-18T18:55:45+00:00"
+        },
+        {
+            "name": "swiftmailer/swiftmailer",
+            "version": "v5.4.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/swiftmailer/swiftmailer.git",
+                "reference": "81fdccfaf8bdc5d5d7a1ef6bb3a61bbb1a6c4a3e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/81fdccfaf8bdc5d5d7a1ef6bb3a61bbb1a6c4a3e",
+                "reference": "81fdccfaf8bdc5d5d7a1ef6bb3a61bbb1a6c4a3e",
                 "shasum": ""
             },
             "require": {
@@ -1545,7 +1936,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2016-12-29T10:02:40+00:00"
+            "time": "2017-02-13T07:52:53+00:00"
         },
         {
             "name": "symfony/monolog-bundle",
@@ -2005,16 +2396,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v3.2.2",
+            "version": "v3.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "358c59fd21f9db7fdb465d1e07fba822d9e18e9e"
+                "reference": "6306409b3836ed2936c7b0454f00711d0128748c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/358c59fd21f9db7fdb465d1e07fba822d9e18e9e",
-                "reference": "358c59fd21f9db7fdb465d1e07fba822d9e18e9e",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/6306409b3836ed2936c7b0454f00711d0128748c",
+                "reference": "6306409b3836ed2936c7b0454f00711d0128748c",
                 "shasum": ""
             },
             "require": {
@@ -2097,6 +2488,7 @@
                 "ocramius/proxy-manager": "~0.4|~1.0|~2.0",
                 "phpdocumentor/reflection-docblock": "^3.0",
                 "predis/predis": "~1.0",
+                "sensio/framework-extra-bundle": "^3.0.2",
                 "symfony/phpunit-bridge": "~3.2",
                 "symfony/polyfill-apcu": "~1.1",
                 "symfony/security-acl": "~2.8|~3.0"
@@ -2143,7 +2535,70 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2017-01-12T21:36:55+00:00"
+            "time": "2017-02-06T13:15:43+00:00"
+        },
+        {
+            "name": "tecnickcom/tcpdf",
+            "version": "6.2.12",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tecnickcom/TCPDF.git",
+                "reference": "2f732eaa91b5665274689b1d40b285a7bacdc37f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tecnickcom/TCPDF/zipball/2f732eaa91b5665274689b1d40b285a7bacdc37f",
+                "reference": "2f732eaa91b5665274689b1d40b285a7bacdc37f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "fonts",
+                    "config",
+                    "include",
+                    "tcpdf.php",
+                    "tcpdf_parser.php",
+                    "tcpdf_import.php",
+                    "tcpdf_barcodes_1d.php",
+                    "tcpdf_barcodes_2d.php",
+                    "include/tcpdf_colors.php",
+                    "include/tcpdf_filters.php",
+                    "include/tcpdf_font_data.php",
+                    "include/tcpdf_fonts.php",
+                    "include/tcpdf_images.php",
+                    "include/tcpdf_static.php",
+                    "include/barcodes/datamatrix.php",
+                    "include/barcodes/pdf417.php",
+                    "include/barcodes/qrcode.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPLv3"
+            ],
+            "authors": [
+                {
+                    "name": "Nicola Asuni",
+                    "email": "info@tecnick.com",
+                    "homepage": "http://nicolaasuni.tecnick.com"
+                }
+            ],
+            "description": "TCPDF is a PHP class for generating PDF documents and barcodes.",
+            "homepage": "http://www.tcpdf.org/",
+            "keywords": [
+                "PDFD32000-2008",
+                "TCPDF",
+                "barcodes",
+                "datamatrix",
+                "pdf",
+                "pdf417",
+                "qrcode"
+            ],
+            "time": "2015-09-12T10:08:34+00:00"
         },
         {
             "name": "twig/twig",
@@ -2291,6 +2746,93 @@
             "time": "2016-12-28T10:59:05+00:00"
         },
         {
+<<<<<<< HEAD
+=======
+            "name": "whiteoctober/tcpdf-bundle",
+            "version": "1.0.2",
+            "target-dir": "WhiteOctober/TCPDFBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/whiteoctober/WhiteOctoberTCPDFBundle.git",
+                "reference": "e134861af736518ca24f4eab69699073460e4c08"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/whiteoctober/WhiteOctoberTCPDFBundle/zipball/e134861af736518ca24f4eab69699073460e4c08",
+                "reference": "e134861af736518ca24f4eab69699073460e4c08",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "symfony/framework-bundle": ">=2.0",
+                "tecnickcom/tcpdf": "*"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "WhiteOctober\\TCPDFBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rich Sage",
+                    "email": "rich.sage@gmail.com"
+                }
+            ],
+            "description": "A bundle to easily integrate TCPDF into Symfony2",
+            "homepage": "https://github.com/whiteoctober/WhiteOctoberTCPDFBundle",
+            "keywords": [
+                "TCPDF",
+                "pdf"
+            ],
+            "time": "2015-09-18T08:47:03+00:00"
+        },
+        {
+            "name": "willdurand/jsonp-callback-validator",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/willdurand/JsonpCallbackValidator.git",
+                "reference": "1a7d388bb521959e612ef50c5c7b1691b097e909"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/willdurand/JsonpCallbackValidator/zipball/1a7d388bb521959e612ef50c5c7b1691b097e909",
+                "reference": "1a7d388bb521959e612ef50c5c7b1691b097e909",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~3.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "JsonpCallbackValidator": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "William Durand",
+                    "email": "william.durand1@gmail.com",
+                    "homepage": "http://www.willdurand.fr"
+                }
+            ],
+            "description": "JSONP callback validator.",
+            "time": "2014-01-20T22:35:06+00:00"
+        },
+        {
+>>>>>>> 78215f9a2a3feabe66afc3b6246884fcb4ab6b4e
             "name": "zendframework/zend-code",
             "version": "2.6.3",
             "source": {
@@ -2344,6 +2886,7 @@
         },
         {
             "name": "zendframework/zend-eventmanager",
+<<<<<<< HEAD
             "version": "3.0.1",
             "source": {
                 "type": "git",
@@ -2358,12 +2901,33 @@
             },
             "require": {
                 "php": "^5.5 || ^7.0"
+=======
+            "version": "3.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/zend-eventmanager.git",
+                "reference": "c3bce7b7d47c54040b9ae51bc55491c72513b75d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/zend-eventmanager/zipball/c3bce7b7d47c54040b9ae51bc55491c72513b75d",
+                "reference": "c3bce7b7d47c54040b9ae51bc55491c72513b75d",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.6 || ^7.0"
+>>>>>>> 78215f9a2a3feabe66afc3b6246884fcb4ab6b4e
             },
             "require-dev": {
                 "athletic/athletic": "^0.1",
                 "container-interop/container-interop": "^1.1.0",
+<<<<<<< HEAD
                 "phpunit/phpunit": "~4.0",
                 "squizlabs/php_codesniffer": "^2.0",
+=======
+                "phpunit/phpunit": "^5.6",
+                "zendframework/zend-coding-standard": "~1.0.0",
+>>>>>>> 78215f9a2a3feabe66afc3b6246884fcb4ab6b4e
                 "zendframework/zend-stdlib": "^2.7.3 || ^3.0"
             },
             "suggest": {
@@ -2373,8 +2937,13 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
+<<<<<<< HEAD
                     "dev-master": "3.0-dev",
                     "dev-develop": "3.1-dev"
+=======
+                    "dev-master": "3.1-dev",
+                    "dev-develop": "3.2-dev"
+>>>>>>> 78215f9a2a3feabe66afc3b6246884fcb4ab6b4e
                 }
             },
             "autoload": {
@@ -2394,7 +2963,61 @@
                 "events",
                 "zf2"
             ],
+<<<<<<< HEAD
             "time": "2016-02-18T20:53:00+00:00"
+=======
+            "time": "2016-12-19T21:47:12+00:00"
+        },
+        {
+            "name": "zendframework/zend-json",
+            "version": "3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/zend-json.git",
+                "reference": "f42a1588e75c2a3e338cd94c37906231e616daab"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/zend-json/zipball/f42a1588e75c2a3e338cd94c37906231e616daab",
+                "reference": "f42a1588e75c2a3e338cd94c37906231e616daab",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.5 || ^7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0",
+                "squizlabs/php_codesniffer": "^2.3",
+                "zendframework/zend-stdlib": "^2.7 || ^3.0"
+            },
+            "suggest": {
+                "zendframework/zend-json-server": "For implementing JSON-RPC servers",
+                "zendframework/zend-xml2json": "For converting XML documents to JSON"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev",
+                    "dev-develop": "3.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Zend\\Json\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "provides convenience methods for serializing native PHP to JSON and decoding JSON to native PHP",
+            "homepage": "https://github.com/zendframework/zend-json",
+            "keywords": [
+                "json",
+                "zf2"
+            ],
+            "time": "2016-04-01T02:34:00+00:00"
+>>>>>>> 78215f9a2a3feabe66afc3b6246884fcb4ab6b4e
         }
     ],
     "packages-dev": [
@@ -2452,22 +3075,23 @@
         },
         {
             "name": "symfony/phpunit-bridge",
-            "version": "v3.2.2",
+            "version": "v3.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/phpunit-bridge.git",
-                "reference": "d32e4062c3a3dfb95709d2ca6dd89a327ae51c3b"
+                "reference": "996374975357b569ea319ec1c98c5ca0f7dda610"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/d32e4062c3a3dfb95709d2ca6dd89a327ae51c3b",
-                "reference": "d32e4062c3a3dfb95709d2ca6dd89a327ae51c3b",
+                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/996374975357b569ea319ec1c98c5ca0f7dda610",
+                "reference": "996374975357b569ea319ec1c98c5ca0f7dda610",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
             "suggest": {
+                "ext-zip": "Zip support is required when using bin/simple-phpunit",
                 "symfony/debug": "For tracking deprecated interfaces usages at runtime with DebugClassLoader"
             },
             "bin": [
@@ -2506,14 +3130,19 @@
             ],
             "description": "Symfony PHPUnit Bridge",
             "homepage": "https://symfony.com",
-            "time": "2017-01-06T17:19:17+00:00"
+            "time": "2017-01-21T17:06:35+00:00"
         }
     ],
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
         "friendsofsymfony/user-bundle": 20,
+<<<<<<< HEAD
         "kartik-v/bootstrap-star-rating": 20
+=======
+        "nomaya/social-bundle": 20,
+        "ob/highcharts-bundle": 20
+>>>>>>> 78215f9a2a3feabe66afc3b6246884fcb4ab6b4e
     },
     "prefer-stable": false,
     "prefer-lowest": false,

@@ -1,0 +1,59 @@
+{% extends 'layout/LayoutUser.html.twig' %}
+{% block content %}
+
+<form method="post" action="{{ path('coupon_generate') }}">
+
+
+    <input name="idoffre" type="hidden" value=" {{ offre.idOffre }}" />
+
+    <input name="iduser" type="hidden" value=" {{ offre.user.id }}" />
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="note note-success">
+                <p> partenaire : {{ offre.user.nomsociete }} </p>
+            </div>
+            <!-- BEGIN SAMPLE TABLE PORTLET-->
+            <div class="portlet box green">
+                <div class="portlet-title">
+
+                        <p class="text-align"> COUPON </p>
+
+                </div>
+                <div class="portlet-body flip-scroll">
+                    <table class="table table-bordered table-striped table-condensed flip-content">
+                        <thead class="flip-content">
+                        <tr>
+                            <th>Nom du Offre</th>
+                            <th>Offre</th>
+                            <th class="numeric">Prix</th>
+
+                        </tr>
+                        </thead>
+
+
+
+                        <td width="13%"><img height="130px" width="130px"  src="{{ asset(vich_uploader_asset(offre, 'imageFile')) }}"></td>
+                        <td>{{ offre.nomOffre }}</td>
+                        <td class="numeric" width="13%"><p style="font-size: 40px">{{ (offre.prix - ((offre.prix * offre.tauxReduction)/100)) }}DT</p></td>
+
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-md-12">
+             <button type="submit" class="btn red btn-lg">Valider</button>
+        </div>
+    </div>
+
+
+</form>
+
+
+{% endblock %}

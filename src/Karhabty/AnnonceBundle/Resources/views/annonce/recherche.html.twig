@@ -1,0 +1,207 @@
+{% extends 'layout/LayoutUser.html.twig' %}
+
+
+
+
+
+
+
+{% block content %}
+
+
+    <div class="col-md-12 ">
+        <!-- BEGIN SAMPLE FORM PORTLET-->
+        <div class="portlet light bordered">
+         <br>
+            <div class="portlet-body">
+
+                <form class="form-inline margin-bottom-40" role="form">
+                    <div class="form-group form-md-line-input has-success">
+                        <input type="text" class="form-control" id="title" placeholder="title">
+                        <div class="form-control-focus"> </div>
+                    </div>
+                    <div class="form-group form-md-line-input has-success">
+                        <input type="number" class="form-control" id="prix" placeholder="prix">
+                        <div class="form-control-focus"> </div>
+                    </div>
+                    <div class="form-group form-md-line-input">
+
+
+                            <select class="form-control" id="cat" >
+                                <option value="voiture">voiture</option>
+                                <option value="accesoire">accesoire</option>
+                                <option value="prix">piece</option>
+
+                            </select>
+                            <div class="form-control-focus"> </div>
+
+                    </div>
+
+                    <button type="button" class="btn btn-warning" id="recherche">Recherche</button>
+                </form>
+
+
+
+
+            </div>
+        </div>
+        <!-- END SAMPLE FORM PORTLET-->
+        <!-- BEGIN SAMPLE FORM PORTLET-->
+
+
+        <!-- END SAMPLE FORM PORTLET-->
+    </div>
+
+
+{% block recherche %}
+
+
+
+    <div class="col-md-12">
+        <div class="portlet light">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="icon-paper-plane font-yellow-casablanca"></i>
+                    <span class="caption-subject bold font-yellow-casablanca uppercase">list des Annonce</span>
+                    <span class="caption-helper">your cars baby</span>
+                </div>
+
+            </div>
+            {% for annonce in annonces %}
+                <div class="portlet light">
+                    <!-- BEGIN Portlet PORTLET-->
+
+                    <div class="row">
+                        <div class="list-group">
+                            <div class="media col-md-3">
+                                <figure class="pull-left">
+                                    <img class="media-object img-rounded img-responsive"  src="{{ asset(vich_uploader_asset(annonce, 'imageFile')) }}" alt="{{ annonce.imageName }}" >
+
+                                </figure>
+                            </div>
+                        </div>
+                        <div class="list-group">
+                            <div class="media col-md-6">
+                                <table class="table table-striped table-hover">
+                                    <thead>
+                                    <tr>
+
+                                        <th>title</th>
+                                        <th>ville</th>
+                                        <th>prix</th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    <tr>
+
+                                        <td><span class="badge badge-danger">{{ annonce.title }}</span></td>
+                                        <td><span class="badge badge-danger">{{ annonce.Ville }}</span></td>
+                                        <td><span class="badge badge-danger">{{ annonce.Prix }}</span></td>
+
+
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+
+
+
+
+
+                            </div>
+                        </div>
+
+                        <div class=" col-md-3">
+                            <a id="dude" href="{{ path('annonce_show', { 'id': annonce.id }) }} "  value="{{ annonce.id }}" class="btn default" > show
+                                <i class="fa fa-user"></i></a>
+                            <br>
+                            <br>
+                            <a href="{{ path('annonce_edit', { 'id': annonce.id }) }}" class="btn default">edit <i class="fa fa-user"></i></a>
+                            <br>
+                            <br>
+
+
+
+
+
+
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+                <!-- END Portlet PORTLET-->
+
+            {% endfor %}
+        </div>
+
+    </div>
+
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
+
+{% block lvljp %}
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+    <script>
+        $(document).ready(function() {
+            $(document).on('click', "#recherche", function() {
+                var prix = $("#prix").val();
+                var title= $("#title").val();
+                var category =$("#cat").val();
+
+                console.log(prix+title+category);
+                $.ajax({
+                    url:Routing.generate('Annonce_secret'),
+                    type: 'POST', // Send post data
+                    data: {prix:prix,title:title,category:category},
+                    async: false,
+                    success: function(s){
+                        json_events = s;
+                        console.log(s);
+                    }
+                });
+
+
+            });
+        });
+
+
+
+    </script>
+
+
+{% endblock %}

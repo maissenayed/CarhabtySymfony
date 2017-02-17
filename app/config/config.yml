@@ -4,12 +4,25 @@ imports:
     - { resource: services.yml }
     - { resource: "@KarhabtyAstuceBundle/Resources/config/services.yml" }
     - { resource: "@KarhabtyUserBundle/Resources/config/services.yml" }
-    - { resource: "@KarhabtyFutureConducteurBundle/Resources/config/services.yml" }
+    - { resource: "@KarhabtyOffreBundle/Resources/config/services.yml" }
+    - { resource: "@KarhabtyMapBundle/Resources/config/services.yml" }
 
-# Put parameters here that don't need to change on each machine where the app is deployed
-# http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+
+    - { resource: "@KarhabtyFutureConducteurBundle/Resources/config/services.yml" }
+    - { resource: "@KarhabtyCalendarBundle/Resources/config/services.yml" }
+    - { resource: "@KarhabtyAnnonceBundle/Resources/config/services.yml" }
+    - { resource: "@KarhabtyPaiementBundle/Resources/config/services.yml" }
+    - { resource: "@KarhabtyBankBundle/Resources/config/services.yml" }
+    - { resource: "@KarhabtyAdminBundle/Resources/config/services.yml" }
+
+
+
+
+
+
 parameters:
     locale: fr
+
 
 framework:
     #esi:             ~
@@ -70,6 +83,7 @@ swiftmailer:
     host:      "%mailer_host%"
     username:  "%mailer_user%"
     password:  "%mailer_password%"
+    encryption: ssl
     spool:     { type: memory }
 
 
@@ -77,18 +91,77 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb' and 'couchdb'
     firewall_name: main
     user_class: Karhabty\UserBundle\Entity\User
-
+    from_email:
+                address: projetintegrer@gmail.com
+                sender_name: Garci
     registration:
         form:
-            type: Karhabty\UserBundle\Form\RegistrationType
-            
+            type: Karhabty\UserBundle\Form\RegistrationParticulierType
+
 
         confirmation:
+<<<<<<< HEAD
                     enabled:    false
+=======
+                    enabled:    true
+
+    service:
+        mailer: fos_user.mailer.twig_swift
+
+
+
+>>>>>>> 78215f9a2a3feabe66afc3b6246884fcb4ab6b4e
 
 vich_uploader:
     db_driver: orm
     mappings:
+<<<<<<< HEAD
             astuce_image:
                 uri_prefix:         /images/astuces
                 upload_destination: '%kernel.root_dir%/../web/images/astuces'
+=======
+            offres_image:
+                uri_prefix:         /images/offres
+                upload_destination: '%kernel.root_dir%/../web/images/offres'
+
+            Voiture_image:
+                uri_prefix:        /images/Voiture
+                upload_destination: '%kernel.root_dir%/../web/images/Voiture'
+            Annonce_image:
+                             uri_prefix:        /images/Annonce
+                             upload_destination: '%kernel.root_dir%/../web/images/Annonce'
+
+
+nomaya_social:
+    buttons:
+        facebook:
+            url:            www.facebook.com/Esprit
+            locale:         "fr_FR"
+            send:           false
+            width:          300
+            showFaces:      false
+            layout:         "button_count"
+        twitter:
+            url:            null
+            locale:         "fr"
+            message:        "Je veux partager ça avec vous"
+            text:           "Tweet"
+            via:            "L'Equipe cartedevisitevirtuelle.fr"
+            tag:            "ttot"
+        googleplus:
+            url:            null
+            locale :        "fr"
+            size :          "medium"
+            annotation :    "bubble"
+            width :         300
+        linkedin:
+            url:            null
+            locale:         "fr_FR"
+            counter:        "right"
+        pinterest:
+            url:            null
+    links:
+        facebook:           "http://www.facebook.com/yann.chauvel"
+        googleplus:         "https://plus.google.com/105931415830389032796"
+    theme:                  'default' # optional
+>>>>>>> 78215f9a2a3feabe66afc3b6246884fcb4ab6b4e

@@ -2,7 +2,7 @@
 
 
 {% block body %}
-
+<h1>partner</h1>
 <body class="page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo">
 <!-- BEGIN HEADER -->
 {% block nav %}
@@ -48,12 +48,14 @@
                     <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                     <li class="dropdown dropdown-user dropdown-dark">
                         <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                            <span class="username username-hide-on-mobile"> Nick </span>
+                            <span class="username username-hide-on-mobile">{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
+                                                {% endif %}</span>
                             <!-- DOC: Do not remove below empty space(&nbsp;) as its purposely used -->
                             <img alt="" class="img-circle" src="../assets/layouts/layout4/img/avatar9.jpg" /> </a>
                         <ul class="dropdown-menu dropdown-menu-default">
                             <li>
-                                <a href="page_user_profile_1.html">
+                                <a href="{{ path('fos_user_profile_show') }}">
                                     <i class="icon-user"></i>Paramétre de compte</a>
                             </li>
 
@@ -62,7 +64,7 @@
 
 
                             <li>
-                                <a href="page_user_login_1.html">
+                                <a href="{{ path('fos_user_security_logout') }}">
                                     <i class="icon-key"></i>Déconnexion</a>
                             </li>
 
@@ -101,7 +103,7 @@
             <ul class="page-sidebar-menu" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
 
                 <li class="nav-item  ">
-                    <a href="#" class="nav-link nav-toggle">
+                    <a href="{{ path('offre_index') }}" class="nav-link nav-toggle">
                         <i class="fa fa-cart-plus" aria-hidden="true"></i>
                         <span class="title">vos offres</span>
                     </a>
@@ -110,16 +112,16 @@
 
 
                 <li class="nav-item  ">
-                    <a href="#" class="nav-link nav-toggle">
+                    <a href="{{ path('offre_new') }}" class="nav-link nav-toggle">
                         <i class="fa fa-plus-circle"></i>
-                        <span class="title">Ajouter une offres</span>
+                        <span class="title">Ajouter un offre</span>
                     </a>
                 </li>
 
 
 
                 <li class="nav-item  ">
-                    <a href="#" class="nav-link nav-toggle">
+                    <a href="{{ path('offres_statistique') }}" class="nav-link nav-toggle">
                         <i class="fa fa-bar-chart"></i>
                         <span class="title">statistique des ventes</span>
                     </a>
@@ -146,36 +148,6 @@
     <div class="page-content-wrapper">
         <!-- BEGIN CONTENT BODY -->
         <div class="page-content">
-            <!-- BEGIN PAGE HEAD-->
-            <div class="page-head">
-                <!-- BEGIN PAGE TITLE -->
-                <div class="page-title">
-                    <h1>home layout
-                        <small>global layout</small>
-                    </h1>
-                </div>
-                <!-- END PAGE TITLE -->
-
-            </div>
-            <!-- END PAGE HEAD-->
-
-
-            <!-- BEGIN PAGE BREADCRUMB -->
-            <ul class="page-breadcrumb breadcrumb">
-                <li>
-                    <a href="index.html">Home</a>
-                    <i class="fa fa-circle"></i>
-                </li>
-                <li>
-                    <span class="active">Home page</span>
-                </li>
-            </ul>
-            <!-- END PAGE BREADCRUMB -->
-            <!-- BEGIN PAGE BASE CONTENT -->
-
-
-
-
 
 
 

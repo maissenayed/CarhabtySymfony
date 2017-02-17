@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Annonce</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ annonce.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ annonce.title }}</td>
+            </tr>
+            <tr>
+                <th>Anneedeproduit</th>
+                <td>{% if annonce.AnneeDeProduit %}{{ annonce.AnneeDeProduit|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Anneepub</th>
+                <td>{% if annonce.AnneePub %}{{ annonce.AnneePub|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Model</th>
+                <td>{{ annonce.Model }}</td>
+            </tr>
+            <tr>
+                <th>Marque</th>
+                <td>{{ annonce.Marque }}</td>
+            </tr>
+            <tr>
+                <th>Region</th>
+                <td>{{ annonce.Region }}</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ annonce.Ville }}</td>
+            </tr>
+            <tr>
+                <th>Paye</th>
+                <td>{{ annonce.Paye }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ annonce.Prix }}</td>
+            </tr>
+            <tr>
+                <th>Category</th>
+                <td>{{ annonce.Category }}</td>
+            </tr>
+            <tr>
+                <th>Imagename</th>
+                <td>{{ annonce.imageName }}</td>
+            </tr>
+            <tr>
+                <th>Updatedat</th>
+                <td>{% if annonce.updatedAt %}{{ annonce.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('annonce_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('annonce_edit', { 'id': annonce.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

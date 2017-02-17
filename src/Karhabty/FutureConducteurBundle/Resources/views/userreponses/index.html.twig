@@ -1,0 +1,45 @@
+{% extends 'home_layout.html.twig' %}
+
+{% block content %}
+    <h1>Userreponses list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Reponsecontent</th>
+                <th>Ok</th>
+                <th>Test</th>
+                <th>Datetest</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for userReponse in userReponses %}
+            <tr>
+                <td><a href="{{ path('userreponses_show', { 'id': userReponse.id }) }}">{{ userReponse.id }}</a></td>
+                <td>{{ userReponse.reponseContent }}</td>
+                <td>{% if userReponse.ok %}Yes{% else %}No{% endif %}</td>
+                <td>{{ userReponse.test }}</td>
+                <td>{% if userReponse.dateTest %}{{ userReponse.dateTest|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('userreponses_show', { 'id': userReponse.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('userreponses_edit', { 'id': userReponse.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('userreponses_new') }}">Create a new userReponse</a>
+        </li>
+    </ul>
+{% endblock %}

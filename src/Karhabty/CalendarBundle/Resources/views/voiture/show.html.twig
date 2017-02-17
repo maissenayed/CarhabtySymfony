@@ -1,0 +1,101 @@
+{% extends 'layout/LayoutUser.html.twig' %}
+
+
+    {% block content %}
+        <div class="col-md-12">
+            <div class="portlet light">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-paper-plane font-yellow-casablanca"></i>
+                        <span class="caption-subject bold font-yellow-casablanca uppercase">Id
+
+
+                                        </span>
+                        <span class="caption-helper"> {{ voiture.id }}</span>
+                    </div>
+                    <div class="inputs">
+                        <a href="{{ path('voiture_new') }}" class="btn btn-circle btn-sm default">Create a new voiture </a>
+                    </div>
+                </div>
+
+                        <!-- BEGIN Portlet PORTLET-->
+
+                        <div class="row">
+                            <div class="list-group">
+                                <div class="media col-md-3">
+                                    <figure class="pull-left">
+                                        <img class="media-object img-rounded img-responsive"  src="{{ asset(vich_uploader_asset(voiture, 'imageFile')) }}" alt="{{ voiture.imageName }}" >
+
+                                    </figure>
+                                </div>
+                            </div>
+                            <div class="list-group">
+                                <div class="media col-md-6">
+                                    <table class="table table-striped table-hover">
+
+                                        <tbody>
+
+                                        <tr>
+                                            <th>Marque</th>
+                                            <td>{{ voiture.Marque }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Annee</th>
+                                            <td>{% if voiture.Annee %}{{ voiture.Annee|date('Y-m-d') }}{% endif %}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Model</th>
+                                            <td>{{ voiture.Model }}</td>
+                                        </tr>
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class=" col-md-3">
+
+
+
+                                        <a href="{{ path('voiture_index') }}" class="btn btn-circle btn-sm default">Back to the list</a>
+
+                                        <a href="{{ path('voiture_edit', { 'id': voiture.id }) }}" class="btn btn-circle btn-sm default">Edit</a>
+
+                                <br><br>
+                                        {{ form_start(delete_form) }}
+                                        <input type="submit" value="Delete" class="btn btn-circle btn-sm default">
+                                        {{ form_end(delete_form) }}
+
+                                <br><br>
+
+
+
+
+
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- END Portlet PORTLET-->
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+    {% endblock %}
+
+
+
+

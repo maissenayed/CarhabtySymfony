@@ -30,7 +30,17 @@
         "incenteev/composer-parameter-handler": "^2.0",
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "vich/uploader-bundle": "^1.4",
+<<<<<<< HEAD
         "kartik-v/bootstrap-star-rating": "@dev"
+=======
+        "friendsofsymfony/jsrouting-bundle": "^1.6",
+        "ancarebeca/full-calendar-bundle": "^4.0",
+        "stripe/stripe-php": "4.*",
+        "mpdf/mpdf": "^6.1",
+        "whiteoctober/tcpdf-bundle": "^1.0",
+        "nomaya/social-bundle": "dev-master",
+        "ob/highcharts-bundle": "dev-master"
+>>>>>>> 78215f9a2a3feabe66afc3b6246884fcb4ab6b4e
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

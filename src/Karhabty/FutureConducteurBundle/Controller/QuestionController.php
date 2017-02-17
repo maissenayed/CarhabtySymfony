@@ -2,10 +2,13 @@
 
 namespace Karhabty\FutureConducteurBundle\Controller;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Karhabty\FutureConducteurBundle\Entity\Question;
+use Karhabty\FutureConducteurBundle\Entity\Reponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Question controller.
@@ -26,7 +29,7 @@ class QuestionController extends Controller
 
         $questions = $em->getRepository('KarhabtyFutureConducteurBundle:Question')->findAll();
 
-        return $this->render('question/index.html.twig', array(
+        return $this->render('KarhabtyFutureConducteurBundle:question:index.html.twig', array(
             'questions' => $questions,
         ));
     }
@@ -40,10 +43,21 @@ class QuestionController extends Controller
     public function newAction(Request $request)
     {
         $question = new Question();
+
+
+
         $form = $this->createForm('Karhabty\FutureConducteurBundle\Form\QuestionType', $question);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+           foreach ($question->getReponses() as $var)
+            {
+                if($var->getReponseContent()!=null)
+                {$var->setQuestion($question);}
+                else
+                {$question->getReponses()->removeElement($var);}
+            }
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($question);
             $em->flush($question);
@@ -51,7 +65,7 @@ class QuestionController extends Controller
             return $this->redirectToRoute('question_show', array('id' => $question->getId()));
         }
 
-        return $this->render('question/new.html.twig', array(
+        return $this->render('KarhabtyFutureConducteurBundle:question:new.html.twig', array(
             'question' => $question,
             'form' => $form->createView(),
         ));
@@ -65,9 +79,11 @@ class QuestionController extends Controller
      */
     public function showAction(Question $question)
     {
+
+
         $deleteForm = $this->createDeleteForm($question);
 
-        return $this->render('question/show.html.twig', array(
+        return $this->render('KarhabtyFutureConducteurBundle:question:show.html.twig', array(
             'question' => $question,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -91,7 +107,7 @@ class QuestionController extends Controller
             return $this->redirectToRoute('question_edit', array('id' => $question->getId()));
         }
 
-        return $this->render('question/edit.html.twig', array(
+        return $this->render('KarhabtyFutureConducteurBundle:question:edit.html.twig', array(
             'question' => $question,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
