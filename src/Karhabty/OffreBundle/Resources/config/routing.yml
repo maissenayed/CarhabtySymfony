@@ -4,8 +4,6 @@ karhabty_offre_offre:
 
 
 
-
-
 coupon:
     path:      /coupon/{id}
     defaults: { _controller: "KarhabtyOffreBundle:Coupon:index" }

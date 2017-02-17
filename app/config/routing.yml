@@ -1,3 +1,11 @@
+karhabty_admin:
+    resource: "@KarhabtyAdminBundle/Resources/config/routing.yml"
+    prefix:   /
+
+karhabty_bank:
+    resource: "@KarhabtyBankBundle/Resources/config/routing.yml"
+    prefix:   /
+
 karhabty_paiement:
     resource: "@KarhabtyPaiementBundle/Resources/config/routing.yml"
     prefix:   /
@@ -56,9 +64,9 @@ my_very_secret_route:
 
 
 
-my_not_very_secret_route:
-    path:     /trie
-    defaults: { _controller: KarhabtyOffresBundle:Offre:trieOffre}
+count:
+    path:     /count
+    defaults: { _controller: KarhabtyOffreBundle:Offre:Count}
     options:
         expose: true
 
@@ -68,3 +76,9 @@ Annonce_secret:
     options:
         expose: true
 
+
+paiement:
+    path:     /checkout
+    defaults: { _controller: KarhabtyPaiementBundle:Paiement:paiement}
+    options:
+        expose: true

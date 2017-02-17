@@ -1,9 +1,20 @@
 {% extends 'layout/LayoutPartner.twig' %}
 
 {% block content %}
-    <h1>Offres list</h1>
 
-    <table>
+
+    <script ></script>
+
+
+<script>
+
+    $(document).ready(function() {
+        $('#example').DataTable();
+    } );
+</script>
+
+
+    <table id="example" class="table table-striped table-bordered" cellspacing="0">
         <thead>
             <tr>
                 <th>Idoffre</th>
@@ -19,7 +30,7 @@
         </thead>
         <tbody>
         {% for offre in offres %}
-            <tr>
+
 
                 <td>{{ offre.nomOffre }}</td>
                 <td>{{ offre.descriptionOffre }}</td>
@@ -29,20 +40,14 @@
                 <td>{{ offre.dateExpirationOffre | date }}</td>
                 <td><img src="{{ asset(vich_uploader_asset(offre, 'imageFile')) }}"></td>
 
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('offre_show', { 'id': offre.idOffre }) }}">Affiche l'offres</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('offre_edit', { 'id': offre.idOffre }) }}">Modifier l'offres</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
+
+
+            <td><a href="{{ path('offre_show', { 'id': offre.idOffre }) }}">Affiche l'offres</a></td>
+
+            <td> <a href="{{ path('offre_edit', { 'id': offre.idOffre }) }}">Modifier l'offres</a></td>
+
         {% endfor %}
-        </tbody>
-    </table>
+        </tbody></table>
 
 
 {% endblock %}

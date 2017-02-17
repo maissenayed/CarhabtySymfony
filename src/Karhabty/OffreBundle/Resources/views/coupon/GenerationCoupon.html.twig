@@ -24,16 +24,16 @@
 <h1>Votre coupon</h1>
 
 
-<p style="font-size: 25px">Nom :</p>
+<p style="font-size: 20px">Nom : {{ nom }}</p>
 <br>
-<p style="font-size: 25px">Prenom :</p>
+<p style="font-size: 20px">Prenom : {{ prenom }}</p>
 <br>
-<p style="font-size: 25px">date :</p>
+<p style="font-size: 20px">Prix : {{ prix }}DT</p>
+
+<p style="font-size: 20px">Offre : {{ offre }}</p>
 <br>
-<p style="font-size: 25px">prix :</p>
+<p style="font-size: 20px">Partenaire : {{ part }}</p>
 <br>
-<p style="font-size: 25px">Partenaire :</p>
-<br>
-<p style="font-size: 25px">adresse :</p>
-<br>
-<img src="https://api.qrserver.com/v1/create-qr-code/?data={{ alo }}&amp;size=100x100" height="50"/>
+<p style="font-size: 20px">Adresse : {{ adresse }}</p>
+<p>instruction : vous présentez ce coupon chez notre partenaire afin de finaliser la procédure de l'offre</p>
+<img src="https://api.qrserver.com/v1/create-qr-code/?data={{ ref }}&amp;size=100x100" height="50"/>

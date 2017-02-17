@@ -34,14 +34,31 @@ class OffreRepository extends EntityRepository
    }
 
 
+
+    public function getadresse($date){
+
+        $qb = $this->createQueryBuilder("e")->select('e');
+        $qb->andWhere('e.DateExpirationOffre > :now')
+            ->setParameter('now', $date )
+        ;
+        $result = $qb->getQuery()->getResult();
+
+        return $result;
+
+
+
+    }
+
+
+
+
     function offrespasses(\Datetime $date){
 
 
 
         $qb = $this->createQueryBuilder("e")->select('e');
         $qb->andWhere('e.DateExpirationOffre < :now')
-            ->setParameter('now', $date )
-        ;
+            ->setParameter('now', $date );
         $result = $qb->getQuery()->getResult();
 
         return $result;
@@ -52,7 +69,18 @@ class OffreRepository extends EntityRepository
     }
 
 
+    function countOffre($id){
 
+
+
+
+        $query=$this->getEntityManager()->createQuery("select count(m) from KarhabtyOffreBundle:Coupon m WHERE m.offre=:offre")
+            ->setParameter('offre',$id);
+        return $query->getResult();
+
+
+
+    }
 
 
 

@@ -6,10 +6,7 @@
 
     <input name="idoffre" type="hidden" value=" {{ offre.idOffre }}" />
 
-
-
     <input name="iduser" type="hidden" value=" {{ offre.user.id }}" />
-
 
     <div class="row">
         <div class="col-md-12">
@@ -38,7 +35,7 @@
 
                         <td width="13%"><img height="130px" width="130px"  src="{{ asset(vich_uploader_asset(offre, 'imageFile')) }}"></td>
                         <td>{{ offre.nomOffre }}</td>
-                        <td class="numeric" width="13%"><p style="font-size: 40px">{{ offre.prix - (offre.prix - ((offre.prix * offre.tauxReduction)/100)) }}DT</p></td>
+                        <td class="numeric" width="13%"><p style="font-size: 40px">{{ (offre.prix - ((offre.prix * offre.tauxReduction)/100)) }}DT</p></td>
 
 
                     </table>
@@ -54,14 +51,6 @@
              <button type="submit" class="btn red btn-lg">Valider</button>
         </div>
     </div>
-
-
-
-
-
-
-
-
 
 
 </form>

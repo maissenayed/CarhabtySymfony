@@ -22,7 +22,6 @@
                     <div class="well well-lg">
 
 
-
                         <div class="row price">
                             <div class="text-center" style="font-size: 60px">
                                 <strong><sup>{{ offre.prix - ((offre.prix * offre.tauxReduction)/100) }}DT</sup></strong>
@@ -42,14 +41,14 @@
 
                         <h3 class="text-center font-green-meadow" >  Ajouté le :  {{ offre.date | date('d-m-Y') }} </h3>
 
-                        <h3 class="text-center font-red">Expiration dans <br><br><div  class="text-center" id="{{ offre.idOffre }}"></div></h3>
+                        <h3 class="text-center font-red"><br><br><div  class="text-center" id="{{ offre.idOffre }}"></div></h3>
 
 
 
 
-        <button class="btn-block btn-lg m-icon-big btn purple-seance"><a
+                   <button class="btn-block btn-lg m-icon-big btn purple-seance"><a
                     style="text-decoration: none;color: inherit"
-                    href="{{ path('coupon', { 'id': offre.idOffre }) }}">J'ACHETE</a></button>
+                    href="{{ path('karhabty_paiement_homepage', { 'id': offre.idOffre }) }}">J'ACHETE</a></button>
 
 
 
@@ -108,15 +107,9 @@
 
 
 
-
-
-
-
-
-
-
     <a href="{{ path('offre_afficher') }}">voir les autres offres</a>
 
+     <div> {{ socialButtons() }}</div>
 
 
 
@@ -138,7 +131,7 @@
                 if (distance < 0) {
 
                     clearInterval(timer);
-                    document.getElementById('{{ offre.idOffre }}').innerHTML = 'EXPIRED!';
+                    document.getElementById('{{ offre.idOffre }}').innerHTML = 'EXPIREE!';
 
                     return;
                 }
@@ -147,7 +140,8 @@
                 var minutes = Math.floor((distance % _hour) / _minute);
                 var seconds = Math.floor((distance % _minute) / _second);
 
-                document.getElementById('{{ offre.idOffre }}').innerHTML = days + ' Jour(s) : ';
+                document.getElementById('{{ offre.idOffre }}').innerHTML = "Expiration dans :   "
+                document.getElementById('{{ offre.idOffre }}').innerHTML += days + ' Jour(s) : ';
                 document.getElementById('{{ offre.idOffre }}').innerHTML += hours + ' Heure(s) : ';
                 document.getElementById('{{ offre.idOffre }}').innerHTML += minutes + ' Minute(s) : ';
                 document.getElementById('{{ offre.idOffre }}').innerHTML += seconds + ' Seconde(s)';
@@ -196,7 +190,6 @@
         <script async defer
                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAe4BNAZTQY-9JxbRhpgFUNuxjuyeGOZtU&callback=initMap">
         </script>
-    </div>
 
 
 

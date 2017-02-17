@@ -42,4 +42,7 @@ offres_trie:
     path:      /trie
     defaults: { _controller: "KarhabtyOffreBundle:Offre:OffresPasses" }
 
+offres_statistique:
+    path:      /statistique
+    defaults: { _controller: "KarhabtyOffreBundle:Statistique:Stat" }
 

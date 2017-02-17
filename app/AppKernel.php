@@ -28,6 +28,10 @@ class AppKernel extends Kernel
             new Karhabty\AnnonceBundle\KarhabtyAnnonceBundle(),
             new Karhabty\PaiementBundle\KarhabtyPaiementBundle(),
             new WhiteOctober\TCPDFBundle\WhiteOctoberTCPDFBundle(),
+            new Nomaya\SocialBundle\NomayaSocialBundle(),
+            new Karhabty\BankBundle\KarhabtyBankBundle(),
+            new Karhabty\AdminBundle\KarhabtyAdminBundle(),
+            new Ob\HighchartsBundle\ObHighchartsBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

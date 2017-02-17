@@ -7,7 +7,7 @@ use Karhabty\UserBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-
+use Symfony\Component\HttpFoundation\Response;
 
 
 class OffreController extends Controller
@@ -93,7 +93,7 @@ class OffreController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('offre_edit', array('id' => $offre->getIdOffre()));
+            return $this->redirectToRoute('offre_index');
         }
 
         return $this->render('@KarhabtyOffre/offre/edit.html.twig', array(
@@ -146,22 +146,29 @@ class OffreController extends Controller
 
     }
 
-    function trieOffresAction(Request $request)
+    function CountAction(Request $request)
     {
 
 
         if ($request->isXmlHttpRequest()) {
 
-            $type = $request->request->get('type');
-            if($type == 'ecole')
 
-            return 0;
+            $id = $request->request->get('id');
 
 
-        }
+
+            $em = $this->getDoctrine()->getManager();
+            $count = $em->getRepository('KarhabtyOffreBundle:Offre')->countOffre($id);
+
+            return new JsonResponse($count);
+            }
+
+             }
 
 
-    }
+
+
+
 
 
 }

@@ -34,7 +34,9 @@
         "ancarebeca/full-calendar-bundle": "^4.0",
         "stripe/stripe-php": "4.*",
         "mpdf/mpdf": "^6.1",
-        "whiteoctober/tcpdf-bundle": "^1.0"
+        "whiteoctober/tcpdf-bundle": "^1.0",
+        "nomaya/social-bundle": "dev-master",
+        "ob/highcharts-bundle": "dev-master"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

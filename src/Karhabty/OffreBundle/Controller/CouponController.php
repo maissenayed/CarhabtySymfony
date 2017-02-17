@@ -6,6 +6,7 @@ use Karhabty\OffreBundle\Entity\Coupon;
 use Karhabty\OffreBundle\Entity\Offre;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Validator\Constraints\Date;
 
 
 class CouponController extends Controller
@@ -34,13 +35,12 @@ class CouponController extends Controller
                     $coupon->setReference("RFCC".''.$random);
                     $em = $this->getDoctrine()->getManager();
                     $offre = $em->getRepository("KarhabtyOffreBundle:Offre")->find($idof);
+
                     $coupon->setOffre($offre);
+                   // echo $coupon->getOffre()->getPrix();die;
                     $em->persist($coupon);
                     $em->flush();
         }
-
-
-
 
 
         return $this->render('@KarhabtyOffre/offre/paiement.html.twig',array());
@@ -79,17 +79,33 @@ class CouponController extends Controller
     public function testAction(){
 
 
-        $em = $this->getDoctrine()->getManager();
-        $coupon = $em->getRepository('KarhabtyOffreBundle:Coupon')->getCouponInformation();
+
+           $user = $this->getUser();
+           $em = $this->getDoctrine()->getManager();
+           $coupon = $em->getRepository('KarhabtyOffreBundle:Coupon')->findOneBy(array('user'=>$user),array('date'=>'DESC'));
 
 
 
 
-        $qrcode = "test";
+            $prix = $coupon->getOffre()->getPrix();
+            $nom= $coupon->getUser()->getNom();
+            $prenom =$coupon->getUser()->getPrenom();
+            $ref = $coupon->getReference();
+            $nomoffre= $coupon->getOffre()->getnomOffre();
+            $reduction= $coupon->getOffre()->getTauxReduction();
+            $adresse=$coupon->getOffre()->getUser()->getAdresse();
+            $partenaire=$coupon->getOffre()->getUser()->getNomsociete();
+
+            $prixfinal= $prix -(($prix * $reduction)/100);
+
+          //  echo  $nomoffre.'----'.$nom.'---'.$prenom.'---'.$prixfinal.'----'.$ref.'----'.$reduction.'%'.'----'.$adresse;die;
+
+
         // but in this case we will render a symfony view !
         // We are in a controller and we can use renderView function which retrieves the html from a view
         // then we send that html to the user.
-        $html = $this->renderView('@KarhabtyOffre/coupon/GenerationCoupon.html.twig',array('alo'=>$qrcode));
+        $html = $this->renderView('@KarhabtyOffre/coupon/GenerationCoupon.html.twig',array('ref'=>$ref ,'nom'=>$nom,'prenom'=>$prenom
+        ,'prix'=>$prixfinal,'offre'=>$nomoffre,'adresse'=>$adresse,'part'=>$partenaire));
 
         $this->returnPDFResponseFromHTML($html);
     }

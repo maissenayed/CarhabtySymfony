@@ -18,6 +18,7 @@ class calendarController extends Controller
     }
     public function loadAction(Request $request){
         if ($request->isXmlHttpRequest()) {
+
             $type = $request->request->get('type');
 
 

@@ -7,22 +7,6 @@ use Doctrine\ORM\EntityRepository;
 class CouponRepository extends EntityRepository
 {
 
-    function getCouponInformation(){
-
-
-
-
-
-
-
-
-
-    }
-
-
-
-
-
 
 
 

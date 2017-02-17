@@ -1,79 +1,177 @@
-<script src="//code.jquery.com/jquery-2.0.2.min.js"></script>
-<script src="//js.stripe.com/v2/"></script>
-<script>
-    (function() {
-        Stripe.setPublishableKey('pk_test_BPuRjkJzKhfAj7wznkgl16rh');
-    })();
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
+    <script src="{{ asset('assets/js/jquery.payment.js') }}"></script>
 
-
-    $('#payment-form').on('submit', generateToken);
-
-    var generateToken = function(e) {
-        var form = $(this);
-
-        // No pressing the buy now button more than once
-        form.find('button').prop('disabled', true);
-
-        // Create the token, based on the form object
-        Stripe.create(form, stripeResponseHandler);
-
-        // Prevent the form from submitting
-        e.preventDefault();
-    };
-
-    var stripeResponseHandler = function(status, response) {
-        var form = $('#payment-form');
-
-        // Any validation errors?
-        if (response.error) {
-            // Show the user what they did wrong
-            form.find('.payment-errors').text(response.error.message);
-
-            // Make the submit clickable again
-            form.find('button').prop('disabled', false);
-        } else {
-            // Otherwise, we're good to go! Submit the form.
-
-            // Insert the unique token into the form
-            $('<input>', {
-                'type': 'hidden',
-                'name': 'stripeToken',
-                'value': response.id
-            }).appendTo(form);
-
-            // Call the native submit method on the form
-            // to keep the submission from being canceled
-            form.get(0).submit();
+    <style type="text/css" media="screen">
+        .has-error input {
+            border-width: 2px;
         }
-    };
+        .validation.text-danger:after {
+            content: 'Validation failed';
+        }
+        .validation.text-success:after {
+            content: 'Validation passed';
+        }
+    </style>
+
+    <script>
+        jQuery(function($) {
+
+            $('.cc-number').payment('formatCardNumber');
+            $('.cc-exp').payment('formatCardExpiry');
+            $('.cc-cvc').payment('formatCardCVC');
+            $.fn.toggleInputError = function(erred) {
+                this.parent('.form-group').toggleClass('has-error', erred);
+                return this;
+            };
+            $('form').submit(function(e) {
+                e.preventDefault();
+                var cardType = $.payment.cardType($('.cc-number').val());
+                $('.cc-number').toggleInputError(!$.payment.validateCardNumber($('.cc-number').val()));
+                $('.cc-exp').toggleInputError(!$.payment.validateCardExpiry($('.cc-exp').payment('cardExpiryVal')));
+                $('.cc-cvc').toggleInputError(!$.payment.validateCardCVC($('.cc-cvc').val(), cardType));
+                $('.cc-brand').text(cardType);
+                $('.validation').removeClass('text-danger text-success');
+                $('.validation').addClass($('.has-error').length ? 'text-danger' : 'text-success');
+            });
+        });
+    </script>
+
+</head>
+<body>
+<div class="container">
+    <h1>
+        jquery.payment demo
+        <small><a class="btn btn-info btn-xs" href="https://github.com/stripe/jquery.payment">Fork on GitHub</a></small>
+    </h1>
+    <p>A general purpose library for building credit card forms, validating inputs and formatting numbers.</p>
+    <form novalidate autocomplete="on" method="POST">
+        <div class="form-group">
+            <label for="cc-number" class="control-label">Card number formatting <small class="text-muted">[<span class="cc-brand"></span>]</small></label>
+            <input id="cc-number" type="tel" class="input-lg form-control cc-number" autocomplete="cc-number" placeholder="•••• •••• •••• ••••" required>
+        </div>
+
+        <div class="form-group">
+            <label for="cc-exp" class="control-label">Card expiry formatting</label>
+            <input id="cc-exp" type="tel" class="input-lg form-control cc-exp" autocomplete="cc-exp" placeholder="•• / ••" required>
+        </div>
+
+        <div class="form-group">
+            <label for="cc-cvc" class="control-label">Card CVC formatting</label>
+            <input id="cc-cvc" type="tel" class="input-lg form-control cc-cvc" autocomplete="off" placeholder="•••" required>
+        </div>
 
 
-</script>
 
-<form action="" method="POST"  id="payment-form">
-<span class="payment-errors"></span>
+        <button type="submit" class="btn btn-lg btn-primary">Submit</button>
 
-<div class="row">
-    <label>
-        <span>Card Number</span>
-        <input type="text" data-stripe="number">
-    </label>
+        <h2 class="validation"></h2>
+    </form>
 </div>
+</body>
+</html>
 
-<div class="row">
-    <label>
-        <span>CVC</span>
-        <input type="text" data-stripe="cvc">
-    </label>
-</div>
 
-<div class="row">
-    <label>
-        <span>Expiration (MM/YYYY)</span>
-        <input type="text" data-stripe="exp-month">
-    </label>
-    <input type="text" data-stripe="exp-year">
-</div>
 
-<button type="submit">Buy Now</button>
-</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-xs-12 col-md-4">
+            <div class="panel panel-default credit-card-box">
+                <div class="panel-heading display-table" >
+                    <div class="row display-tr" >
+                        <h3 class="panel-title display-td" >Details de Paiement</h3>
+                        <div class="display-td" >
+                            <img class="img-responsive pull-right" src="http://i76.imgup.net/accepted_c22e0.png">
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+
+                    <form novalidate autocomplete="on" method="POST">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <label for="cardNumber">Numéro de la carte</label>
+
+
+                                    <div class="input-group">
+
+
+                                        <input id="cc-number" type="tel" class="input-lg form-control cc-number" autocomplete="cc-number" placeholder="•••• •••• •••• ••••" required>
+                                        <!--                              <input
+                          <!--
+                                                                              id="cc-number"
+                                                                              type="tel"
+                                                                              class="form-control cc-number"
+                                                                              autocomplete="cc-number"
+                                                                              placeholder="•••• •••• •••• ••••" required
+
+
+                                                                      /> -->
+                                        <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-7 col-md-7">
+                                <div class="form-group">
+                                    <label for="cardExpiry"><span class="hidden-xs">Expiration</span><span class="visible-xs-inline">EXP</span> DATE</label>
+
+                                    <input id="cc-exp" type="tel" class="input-lg form-control cc-exp" autocomplete="cc-exp" placeholder="•• / ••" required>
+
+                                </div>
+                            </div>
+                            <div class="col-xs-5 col-md-5 pull-right">
+                                <div class="form-group">
+                                    <label for="cardCVC">CVC</label>
+
+                                    <input id="cc-cvc" type="tel" class="input-lg form-control cc-cvc" autocomplete="off" placeholder="•••" required>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <button class="subscribe btn btn-success btn-lg btn-block" type="submit">Payer</button>
+                            </div>
+                        </div>
+                        <div class="row" style="display:none;">
+                            <div class="col-xs-12">
+                                <p class="payment-errors"></p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+
