@@ -41,3 +41,7 @@ event_cancel:
     path:     /cancel/{id}
     defaults: { _controller: "KarhabtyEventsBundle:Event:cancel" }
     methods:  [GET]
+event_showD:
+    path:     /showD/{id}
+    defaults: { _controller: "KarhabtyEventsBundle:Event:listeParticipant" }
+    methods:  [GET]

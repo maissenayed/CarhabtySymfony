@@ -45,6 +45,7 @@ class Event
 
     public function findParticipationRequestsBy($criteria) {
         $participationRequests = $this->em->getRepository('KarhabtyEventsBundle:UserEventParticipation')->findBy($criteria);
+
         if(count($participationRequests) === 1 ){
             return reset($participationRequests);
         }elseif(empty($participationRequests)){
@@ -56,14 +57,18 @@ class Event
 
 
 
-    public function requestParticipation($userId,$eventId) {
+    public function requestParticipation($event,$user) {
+        if($this->existParticipationRequest($event,$user)){
+            return false;
+        }
         $participation = new UserEventParticipation();
-        $participation->setUser($userId)
-            ->setEvent($eventId)
+        $participation->setUser($user)
+            ->setEvent($event)
             ->setStatus('request')
             ->setCreatedDate(new \DateTime())
         ;
         $this->save($participation);
+        return true;
     }
 
     public function acceptParticipation ($participationRequest) {
@@ -81,6 +86,12 @@ class Event
     public function updateParticipation(\Karhabty\EventsBundle\Entity\UserEventParticipation $participationRequest, $status) {
         $participationRequest->setStatus($status);
         $this->save($participationRequest);
+    }
+
+    public function existParticipationRequest($event,$user) {
+        $result = $this->findParticipationRequestsBy(array('event'=>$event,'user'=>$user));
+
+        return $result;
     }
 
 

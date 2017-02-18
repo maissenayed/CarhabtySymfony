@@ -1,62 +1,27 @@
 {% extends 'layout/LayoutUser.html.twig' %}
 
 {% block content %}
-    <h1>Event</h1>
+    <h1>Evénement</h1>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ event.id }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ event.description }}</td>
-            </tr>
-            <tr>
-                <th>Photo</th>
-                <td>{{ event.photo }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ event.title }}</td>
-            </tr>
-            <tr>
-                <th>Access</th>
-                <td>{{ event.access }}</td>
-            </tr>
-            <tr>
-                <th>Address</th>
-                <td>{{ event.address }}</td>
-            </tr>
-            <tr>
-                <th>Eventdate</th>
-                <td>{% if event.eventDate %}{{ event.eventDate|date('Y-m-d') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Createddate</th>
-                <td>{% if event.createdDate %}{{ event.createdDate|date('Y-m-d') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Updateddate</th>
-                <td>{% if event.updatedDate %}{{ event.updatedDate|date('Y-m-d') }}{% endif %}</td>
-            </tr>
-        </tbody>
-    </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('event_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('event_edit', { 'id': event.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+        <div class="list-icon-container">
+
+        <div >
+            <h3 class="uppercase" >
+                {{ event.title }}
+            </h3>
+            <div class="list-thumb">
+                <a href="javascript:;">
+                    <img src="{{ asset('uploads/brochures/' ~ event.photo) }}" class="img-responsive"  style="max-height: 200px;">
+                </a>
+            </div>
+            <p>{{ event.description }}</p>
+            <div class="list-datetime bold uppercase font-red"> {% if event.eventDate %}{{ event.eventDate|date('d-m-Y') }}{% endif %} </div>
+        </div>
+
+
+
+    <h1>Liste Des Participations</h1>
 
 <div class="portlet-body">
     <div class="tab-content">
@@ -67,10 +32,10 @@
                 <div class="mt-action">
                         <div class="mt-action-row">
                             <div class="mt-action-info ">
-
-                                <div class="mt-action-details ">
-                                    <span class="mt-action-author">{{ participationRequest.user.nom }} {{ participationRequest.user.prenom}}</span>
-                                </div>
+                                <h3 class="uppercase" >
+                                    {{ participationRequest.user.nom }}  {{ participationRequest.user.prenom}}
+                                </h3>
+                                <a class="uppercase" href="{{ path('event_showD', {'id': app.user.id  }) }}">détails de participant</a>
                             </div>
                             <div class="mt-action-buttons ">
                                 <div class="btn-group btn-group-circle">
@@ -86,5 +51,9 @@
             </div>
         </div>
     </div>
+
+
+
+
 
 {% endblock %}

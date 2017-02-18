@@ -78,6 +78,7 @@ class EventController extends Controller
      */
     public function newAction(Request $request)
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
         $event = new Event();
         $form = $this->createForm('Karhabty\EventsBundle\Form\EventType', $event);
         $form->handleRequest($request);
@@ -115,9 +116,17 @@ class EventController extends Controller
      * Finds and displays a event entity.
      *
      */
-    public function showAction(Event $event)
+    public function showAction(Request $request,Event $event)
     {
         $this->denyAccessUnlessGranted('ROLE_USER');
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        if($user->getId() !== $event->getUser()->getId()){
+            $request->getSession()
+                ->getFlashBag()
+                ->add('error', "Vous n'êtes pas autorisé à gérer cet événement")
+            ;
+            return $this->redirectToRoute('event_index');
+        }
 
         $deleteForm = $this->createDeleteForm($event);
 
@@ -143,7 +152,7 @@ class EventController extends Controller
         if($user->getId() !== $event->getUser()->getId()){
             $request->getSession()
                 ->getFlashBag()
-                ->add('error', "You don't have permission to handle this event")
+                ->add('error', "Vous n'êtes pas autorisé à gérer cet événement")
             ;
             return $this->redirectToRoute('event_index');
         }
@@ -176,7 +185,7 @@ class EventController extends Controller
         if($user->getId() !== $event->getUser()->getId()){
             $request->getSession()
                 ->getFlashBag()
-                ->add('error', "You don't have permission to handle this event")
+                ->add('error', "Vous n'êtes pas autorisé à gérer cet événement")
             ;
             return $this->redirectToRoute('event_index');
         }
@@ -191,7 +200,7 @@ class EventController extends Controller
         }
         $request->getSession()
             ->getFlashBag()
-            ->add('success', "Your Event was successfully deleted ! ")
+            ->add('success', "Votre événement a été supprimé avec succès! ")
         ;
 
         return $this->redirectToRoute('event_index');
@@ -203,12 +212,21 @@ class EventController extends Controller
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
         $eventService = $this->get('karhabty.event.service');
-        $eventService->requestParticipation($user,$event);
+        $result = $eventService->requestParticipation($event,$user);
 
-        $request->getSession()
-            ->getFlashBag()
-            ->add('success', "Your participation request was successfully sent ! ")
-        ;
+        if(!$result){
+            $request->getSession()
+                ->getFlashBag()
+                ->add('error', "Vous avez déjà demandé une participation! ")
+            ;
+        }else{
+            $request->getSession()
+                ->getFlashBag()
+                ->add('success', "Votre demande de participation a été envoyée avec succès!")
+            ;
+        }
+
+
 
         return $this->redirectToRoute('event_index');
     }
@@ -220,7 +238,7 @@ class EventController extends Controller
         if($user->getId() !== $participationRequest->getEvent()->getUser()->getId()){
             $request->getSession()
                 ->getFlashBag()
-                ->add('error', "You don't have permission to handle this event")
+                ->add('error', "Vous n'êtes pas autorisé à gérer cet événement")
             ;
             return $this->redirectToRoute('event_show',array('id'=>$participationRequest->getEvent()->getId()));
         }
@@ -231,7 +249,7 @@ class EventController extends Controller
 
         $request->getSession()
             ->getFlashBag()
-            ->add('success', "this participation request to your event was successfully accepted ! ")
+            ->add('success', "Cette demande de participation à votre événement a été acceptée avec succès! ")
         ;
         $email = $participationRequest->getEvent()->getUser()->getEmail();
         $this->_sendMail($email);
@@ -247,7 +265,7 @@ class EventController extends Controller
         if($user->getId() !== $participationRequest->getEvent()->getUser()->getId()){
             $request->getSession()
                 ->getFlashBag()
-                ->add('error', "You don't have permission to handle this event")
+                ->add('error', "Vous n'êtes pas autorisé à gérer cet événement")
             ;
             return $this->redirectToRoute('event_show',array('id'=>$participationRequest->getEvent()->getId()));
         }
@@ -255,7 +273,7 @@ class EventController extends Controller
         $eventService->declineParticipation($participationRequest) ;
         $request->getSession()
             ->getFlashBag()
-            ->add('success', "this participation request to your event was successfully declined ! ")
+            ->add('success', "Cette demande de participation à votre événement a été refusée avec succès! ")
         ;
 
         return $this->redirectToRoute('event_show',array('id'=>$participationRequest->getEvent()->getId()));
@@ -275,7 +293,7 @@ class EventController extends Controller
         if($user->getId() !== $participationRequest->getUser()->getId()){
             $request->getSession()
                 ->getFlashBag()
-                ->add('error', "You don't have permission to cancel this request")
+                ->add('error', "Vous n'êtes pas autorisé à annuler cette demande")
             ;
             return $this->redirectToRoute('event_index');
         }
@@ -283,7 +301,7 @@ class EventController extends Controller
 
         $request->getSession()
             ->getFlashBag()
-            ->add('success', "Your participation to event was successfully canceled ! ")
+            ->add('success', "Votre participation à l'événement a été annulée avec succès! ")
         ;
         return $this->redirectToRoute('event_index');
 
@@ -309,9 +327,9 @@ class EventController extends Controller
 
     private function _sendMail($data = array()) {
         $message = \Swift_Message::newInstance()
-            ->setSubject('Hello Email')
+            ->setSubject('Evennements de site Carhabty')
             ->setFrom('send@example.com')
-            ->setTo(array('mehdi.abidi@esprit.tn'))
+            ->setTo(array('mohamedkhayreddine.allala@esprit.tn'))
             ->setBody(
                 $this->renderView(
                     'KarhabtyEventsBundle:event:mail.html.twig',
@@ -322,5 +340,12 @@ class EventController extends Controller
         ;
         $result = $this->get('mailer')->send($message);
 
+    }
+
+    function listeParticipantAction()
+    {
+        $em=$this->getDoctrine()->getManager();
+        $model=$em->getRepository(' KarhabtyUserBundle:User')->findAll();
+        return $this->render('KarhabtyUserBundle:User:participantDetails.html.twig',array('participationRequests'=>$model));
     }
 }
