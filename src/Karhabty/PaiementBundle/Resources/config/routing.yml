@@ -1,0 +1,4 @@
+karhabty_paiement_homepage:
+    path:     /paiement/{id}
+    defaults: { _controller: KarhabtyPaiementBundle:Paiement:index }
+

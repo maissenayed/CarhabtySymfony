@@ -17,8 +17,8 @@ use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 /**
- * @ORM\Entity
  * @Vich\Uploadable
+ * @ORM\Entity(repositoryClass="Karhabty\AnnonceBundle\Repository\AnnonceRepository")
  */
 class Annonce
 {
@@ -70,6 +70,26 @@ class Annonce
      * @ORM\Column(type="string",length=255)
      */
     private $Category;
+    /**
+     * @ORM\Column(type="string",length=255)
+     */
+    private $Descreption;
+
+    /**
+     * @return mixed
+     */
+    public function getDescreption()
+    {
+        return $this->Descreption;
+    }
+
+    /**
+     * @param mixed $Descreption
+     */
+    public function setDescreption($Descreption)
+    {
+        $this->Descreption = $Descreption;
+    }
 
     /**
      * @return mixed
@@ -360,5 +380,28 @@ class Annonce
 
 
 
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     *
+     * @return Annonce
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
 }
-?>

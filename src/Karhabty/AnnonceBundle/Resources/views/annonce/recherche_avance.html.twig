@@ -1,0 +1,44 @@
+{% extends 'KarhabtyAnnonceBundle:annonce:recherche.html.twig' %}
+
+{% block recherche %}
+
+    <div class="col-md-9">
+    <div class="portlet light">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="icon-paper-plane font-yellow-casablanca"></i>
+                <span class="caption-subject bold font-yellow-casablanca uppercase">list des Annonce</span>
+                <span class="caption-helper">your cars baby</span>
+            </div>
+        </div>
+        <div class="portlet-title">
+
+
+
+            {% for annonce in annonces %}
+
+                <!-- BEGIN Portlet PORTLET-->
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" style="margin-top: 30px" id="{{ annonce.id }}">
+                    <div class="hovereffect">
+                        <img class="img-responsive" src="{{ asset(vich_uploader_asset(annonce, 'imageFile')) }}" style="min-height:233px;height:233px;min-width:350px;width:350px;" alt="{{ annonce.title }}">
+
+                        <div class="overlay">
+                            <h2>{{ annonce.title }}</h2>
+                            <a class="info" href="{{ path('annonce_show', {'id' : annonce.id} ) }}">plus de détails</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- END Portlet PORTLET-->
+            {% endfor %}
+        </div>
+
+
+
+
+    </div>
+
+
+
+
+
+{% endblock %}

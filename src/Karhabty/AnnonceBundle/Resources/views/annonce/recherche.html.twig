@@ -1,0 +1,187 @@
+{% extends 'layout/LayoutUser.html.twig' %}
+
+
+
+
+
+
+
+{% block content %}
+
+{% block related %}
+<div class="col-md-3">
+        <div class="portlet light">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="icon-paper-plane font-yellow-casablanca"></i>
+                    <span class="caption-subject bold font-yellow-casablanca uppercase">list des Annonce</span>
+                    <span class="caption-helper">your cars baby</span>
+                </div>
+                </div>
+            <div class="portlet-title">
+
+
+
+            {% for annonce in related %}
+
+                    <!-- BEGIN Portlet PORTLET-->
+                <div  style="margin-top: 30px" id="{{ annonce.id }}">
+                    <div class="hovereffect">
+                        <img class="img-responsive" src="{{ asset(vich_uploader_asset(annonce, 'imageFile')) }}" style="min-height:233px;height:233px;min-width:350px;width:350px;" alt="{{ annonce.title }}">
+
+                        <div class="overlay">
+                            <h2>{{ annonce.title }}</h2>
+                            <a class="info" href="{{ path('annonce_show', {'id' : annonce.id} ) }}">plus de détails</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- END Portlet PORTLET-->
+         {% endfor %}
+         </div>
+
+
+
+
+    </div>
+
+</div>
+
+
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="col-md-9 ">
+        <!-- BEGIN SAMPLE FORM PORTLET-->
+        <div class="portlet light bordered">
+         <br>
+            <div class="portlet-body">
+
+                <form class="form-inline margin-bottom-40" role="form"  action="{{ path('annonce_recherche') }}" method="POST">
+
+
+
+
+                    <div class="form-group form-md-line-input has-success">
+                        <input type="text" class="form-control" id="title" placeholder="title" name="title">
+                        <div class="form-control-focus"> </div>
+                    </div>
+                    <div class="form-group form-md-line-input has-success">
+                        <input type="number" class="form-control" name="prix" placeholder="prix">
+                        <div class="form-control-focus"> </div>
+                    </div>
+                    <div class="form-group form-md-line-input">
+
+
+                            <select class="form-control" name="category" >
+                                <option value="voiture">voiture</option>
+                                <option value="accesoire">accesoire</option>
+                                <option value="prix">piece</option>
+
+                            </select>
+                            <div class="form-control-focus"> </div>
+
+                    </div>
+
+
+
+                    <button type="submit" class="btn btn-warning" id="recherche">Recherche</button>
+
+
+
+                </form>
+
+
+
+
+            </div>
+        </div>
+        <!-- END SAMPLE FORM PORTLET-->
+        <!-- BEGIN SAMPLE FORM PORTLET-->
+
+
+        <!-- END SAMPLE FORM PORTLET-->
+    </div>
+
+
+{% block recherche %}
+
+
+
+    <div class="col-md-9">
+        <div class="portlet light">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="icon-paper-plane font-yellow-casablanca"></i>
+                    <span class="caption-subject bold font-yellow-casablanca uppercase">list des Annonce</span>
+                    <span class="caption-helper">your cars baby</span>
+                </div>
+                </div>
+            <div class="portlet-title">
+
+
+
+            {% for annonce in annonces %}
+
+                    <!-- BEGIN Portlet PORTLET-->
+                <div class="col-lg-4 " style="margin-top: 30px" id="{{ annonce.id }}">
+                    <div class="hovereffect">
+                        <img class="img-responsive" src="{{ asset(vich_uploader_asset(annonce, 'imageFile')) }}" style="min-height:233px;height:233px;min-width:350px;width:350px;" alt="{{ annonce.title }}">
+
+                        <div class="overlay">
+                            <h2>{{ annonce.title }}</h2>
+                            <a class="info" href="{{ path('annonce_show', {'id' : annonce.id} ) }}">plus de détails</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- END Portlet PORTLET-->
+         {% endfor %}
+         </div>
+
+
+
+
+    </div>
+
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
+
+{% block lvljp %}
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+
+
+
+{% endblock %}

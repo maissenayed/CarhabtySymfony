@@ -5,8 +5,10 @@ namespace Karhabty\OffreBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class OffreType extends AbstractType
 {
@@ -17,11 +19,10 @@ class OffreType extends AbstractType
     {
         $builder
             ->add('nomOffre')
-            ->add('descriptionOffre')
+            ->add('descriptionOffre',TextareaType::class)
             ->add('prix')
             ->add('tauxReduction')
-            ->add('typeOffre')
-
+            ->add('dateExpirationOffre',DateType::class)
             ->add('imageFile', FileType::class, array('data_class' => null));
     }
     

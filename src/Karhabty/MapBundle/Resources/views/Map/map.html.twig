@@ -1,35 +1,27 @@
-{% extends'layout/LayoutUser.html.twig' %}
+{% extends ':layout:LayoutUser.html.twig' %}
 
 {% block content%}
 
 
     <div class="col-md-6">
+
+            <div class="portlet-body">
+                <div id="gmap_basic" class="gmaps">
+            </div>
+
         <div class="portlet-body">
             <div id="gmap_basic" class="gmaps">
-
             </div>
         </div>
-        <!-- END BASIC PORTLET-->
     </div>
 
     <div class="col-md-6">
-
-
-
-
         <form>
             <div class="col-md-5    ">
-
                 <input type="text" class="form-control" id="address"/>
                 <input type="button" class="btn green" value="Localiser" onclick="searchAddress();"/>
-
             </div>
-
         </form>
-
-
-
-
     </div>
 
 
@@ -60,6 +52,9 @@
 
 
 
+
+
+
             function calculateAndDisplayRoute(directionsService, directionsDisplay, o, e) {
                 directionsService.route({
                     origin: o,
@@ -76,7 +71,12 @@
 
 
 
-            directionsDisplay.setMap(map);
+            var y = new google.maps.LatLng(36.82247761166621,10.09667158126831);
+            var x = new google.maps.LatLng(36.8064948, 10.181531599999971);
+
+
+
+
 
 
             //get current position
@@ -110,17 +110,16 @@
 
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(maPosition, function() {
-                    //handleLocationError(true, infoWindow, map.getCenter());
+
                     console.log("Ok");
                 });
             } else {
-                // Browser doesn't support Geolocation
-                //handleLocationError(false, infoWindow, map.getCenter());
+
                 console.log("Error");
             }
 
 
-
+            calculateAndDisplayRoute(directionsService, directionsDisplay, y,x);
 
 
         }
@@ -160,7 +159,7 @@
 
                     map.setZoom(17);
 
-                    calculateAndDisplayRoute(directionsService, directionsDisplay, myPosition, myResult);
+
 
                 }
             });
@@ -178,12 +177,6 @@
             }
         }
 
-        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-            infoWindow.setPosition(pos);
-            infoWindow.setContent(browserHasGeolocation ?
-                    'Error: The Geolocation service failed.' :
-                    'Error: Your browser doesn\'t support geolocation.');
-        }
 
     </script>
     <script async defer

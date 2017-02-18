@@ -6,8 +6,9 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Karhabty\UserBundle\Entity;
+
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Karhabty\OffreBundle\Repository\OffreRepository")
  * @ORM\Table(name="offre")
  * @Vich\Uploadable
  */
@@ -19,9 +20,11 @@ class Offre
 
     /**
      * @ORM\Id
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="id",type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
+
+
     private $idOffre;
 
 
@@ -141,35 +144,9 @@ class Offre
         $this->tauxReduction = $tauxReduction;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getTypeOffre()
-    {
-        return $this->typeOffre;
-    }
-
-    /**
-     * @param mixed $typeOffre
-     */
-    public function setTypeOffre($typeOffre)
-    {
-        $this->typeOffre = $typeOffre;
-    }
 
 
 
-    /**
-     * @ORM\Column(type="string")
-     */
-
-
-    private $typeOffre;
-
-
-    /**
-     * @return mixed
-     */
     public function getDate()
     {
         return $this->date;
@@ -184,6 +161,8 @@ class Offre
     }
 
     /**
+     * @ORM\Column(type="datetime")
+     *
      * @var \DateTime
      */
     private $date;
@@ -193,7 +172,7 @@ class Offre
 
     public function __construct()
     {
-        $this->date = new \DateTime();
+        $this->date = new \DateTimeImmutable();
     }
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
@@ -211,12 +190,23 @@ class Offre
      */
     private $imageName;
 
+
+
     /**
-     * @ORM\Column(type="datetime")
-     *
-     * @var \DateTime
+     * @return mixed
      */
-    private $updatedAt;
+    public function getDateExpirationOffre()
+    {
+        return $this->DateExpirationOffre;
+    }
+
+    /**
+     * @param mixed $DateExpirationOffre
+     */
+    public function setDateExpirationOffre($DateExpirationOffre)
+    {
+        $this->DateExpirationOffre = $DateExpirationOffre;
+    }
 
     /**
      * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
@@ -229,17 +219,24 @@ class Offre
      *
      * @return offre
      */
+
+
+
+
+    /**
+     * @ORM\Column(type="date")
+     */
+
+
+    private $DateExpirationOffre;
+
+
+
     public function setImageFile(File $image = null)
     {
         $this->imageFile = $image;
 
-        if ($image) {
-            // It is required that at least one field changes if you are using doctrine
-            // otherwise the event listeners won't be called and the file is lost
-            $this->updatedAt = new \DateTimeImmutable();
-        }
 
-        return $this;
     }
 
     /**

@@ -23,7 +23,16 @@ class RegistrationPartenaireType extends AbstractType
             ->add('adresse')
             ->add('nomsociete')
             ->add('siret')
-            ->add('activite');
+            ->add('activite',ChoiceType::class, array(
+                'choices'  => array(
+                    'Auto-école' => 'ecole',
+                    'Mécanicien' => 'mecanicien',
+                    'Lavage' => 'lavage',
+                    'vendeur Piéce d\étaché' => 'piece',
+                    'vendeur d\'Accessoires' => 'accessoire',
+
+                ),
+            ));
 
     }
 

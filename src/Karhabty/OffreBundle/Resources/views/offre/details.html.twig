@@ -1,0 +1,196 @@
+{% extends 'layout/LayoutUser.html.twig' %}
+
+
+{% block content %}
+
+    <p style="font-size: 30px" class="font-blue-ebonyclay" >{{ offre.user.nomsociete }} : {{ offre.nomOffre }}</p>
+    <div class="row">
+        <div class="col-md-6 col-sm-6">
+
+            <div class="portlet-body">
+                <img class="thumbnail" src="{{ asset(vich_uploader_asset(offre, 'imageFile')) }}">
+            </div>
+
+        </div>
+        <div class="col-md-6 col-sm-6">
+            <div class="portlet light tasks-widget bordered">
+                <div class="portlet-title">
+
+                    <h2>Détails de l'offre</h2>
+                </div>
+                <div class="portlet-body">
+                    <div class="well well-lg">
+
+
+                        <div class="row price">
+                            <div class="text-center" style="font-size: 60px">
+                                <strong><sup>{{ offre.prix - ((offre.prix * offre.tauxReduction)/100) }}DT</sup></strong>
+                            </div>
+                        </div>
+                        <div class="row details">
+                            <div class="col-md-4 col-sm-4 col-xs-4 valeur">
+                                <p class="dark-gray" style="font-size: 20px">Valeur</p><strong style="font-size: 40px" >{{ offre.prix }}<sup>DT</sup></strong></div>
+                            <div class="col-md-4 col-sm-4 col-xs-4 remise">
+                                <p class="dark-gray " style="font-size: 20px">Remise</p><strong style="font-size: 40px" >{{ offre.tauxReduction }}%</strong></div>
+                            <div class="col-md-4 col-sm-4 col-xs-4 economie">
+                                <p style="font-size: 20px">économie</p><strong style="font-size: 40px" ><sup>{{ offre.prix - (offre.prix - ((offre.prix * offre.tauxReduction)/100)) }}DT</sup></strong>
+                            </div>
+                        </div><br><br>
+
+
+
+                        <h3 class="text-center font-green-meadow" >  Ajouté le :  {{ offre.date | date('d-m-Y') }} </h3>
+
+                        <h3 class="text-center font-red"><br><br><div  class="text-center" id="{{ offre.idOffre }}"></div></h3>
+
+
+
+
+              <button class="btn-block btn-lg m-icon-big btn purple-seance"><a
+                    style="text-decoration: none;color: inherit"
+                    href="{{ path('coupon', { 'id': offre.idOffre }) }}">J'ACHETE</a></button>
+
+
+
+
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <div class="m-heading-1 border-green m-bordered">
+        <h2>Description du l'offre</h2>
+        <p> {{ offre.descriptionOffre }} </p>
+    </div>
+
+
+
+<div class="row">
+    <div class="col-md-6">
+
+        <div class="portlet-body">
+            <div id="gmap_basic" class="gmaps"></div>
+        </div>
+
+    </div>
+
+
+
+
+    <div class="col-md-6 ">
+        <!-- BEGIN Portlet PORTLET-->
+        <div class="portlet box blue">
+            <div class="portlet-title">
+                <div class="caption">
+                    <h4 style="text-align: center">{{ offre.user.nomsociete }}</h4></div>
+
+            </div>
+            <div class="portlet-body">
+
+            <ul>
+
+                <li><i class="fa fa-map-marker"></i>  {{ offre.user.adresse }}</li>
+                <li><i class="fa fa-user"></i> {{ offre.user.activite }}</li>
+                <li><i class="fa fa-phone"></i> {{ offre.user.telephone }}</li>
+
+             </ul>
+           </div>
+        </div>
+     </div>
+</div>
+
+
+
+    <a href="{{ path('offre_afficher') }}">voir les autres offres</a>
+
+     <div> {{ socialButtons() }}</div>
+
+
+
+
+
+        <script>
+
+            var end = new Date('{{ offre.dateExpirationOffre | date('Y-m-d') }}');
+
+            var _second = 1000;
+            var _minute = _second * 60;
+            var _hour = _minute * 60;
+            var _day = _hour * 24;
+            var timer;
+
+            function showRemaining() {
+                var now = new Date();
+                var distance = end - now;
+                if (distance < 0) {
+
+                    clearInterval(timer);
+                    document.getElementById('{{ offre.idOffre }}').innerHTML = 'EXPIREE!';
+
+                    return;
+                }
+                var days = Math.floor(distance / _day);
+                var hours = Math.floor((distance % _day) / _hour);
+                var minutes = Math.floor((distance % _hour) / _minute);
+                var seconds = Math.floor((distance % _minute) / _second);
+
+                document.getElementById('{{ offre.idOffre }}').innerHTML = "Expiration dans :   "
+                document.getElementById('{{ offre.idOffre }}').innerHTML += days + ' Jour(s) : ';
+                document.getElementById('{{ offre.idOffre }}').innerHTML += hours + ' Heure(s) : ';
+                document.getElementById('{{ offre.idOffre }}').innerHTML += minutes + ' Minute(s) : ';
+                document.getElementById('{{ offre.idOffre }}').innerHTML += seconds + ' Seconde(s)';
+
+            }
+
+            timer = setInterval(showRemaining, 1000);
+        </script>
+
+
+        <script type="text/javascript">
+            var map;
+            function initMap() {
+
+                // création de la map
+
+                map = new google.maps.Map(document.getElementById('gmap_basic'), {
+                    zoom: 12
+                });
+                searchAddress();
+            }
+
+            function createMarker(latlng) {
+
+                marker = new google.maps.Marker({
+                    map: map,
+                    position: latlng
+                });
+
+            }
+
+            function searchAddress() {
+                var addressInput = "{{ offre.user.adresse }}";
+                var geocoder = new google.maps.Geocoder();
+                geocoder.geocode({address: addressInput}, function (results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        var myResult = results[0].geometry.location; // reference LatLng value
+                        createMarker(myResult); // call the function that adds the marker
+                        map.setCenter(myResult);
+                        map.setZoom(17);
+                    }
+                });
+            }
+
+        </script>
+        <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAe4BNAZTQY-9JxbRhpgFUNuxjuyeGOZtU&callback=initMap">
+        </script>
+
+
+
+{% endblock %}
