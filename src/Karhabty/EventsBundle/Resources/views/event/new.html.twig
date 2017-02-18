@@ -2,20 +2,9 @@
 
 {% block content %}
     <h1>Création d'un événement</h1>
-
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('event_index') }}">Back to the list</a>
-        </li>
-    </ul>
-
-    <form action="#" id="event-creation" method="POST" class="form-horizontal" novalidate="novalidate">
-        {{ form_row(form._token) }}
+    {{ form_errors(form) }}
+    <form action="" id="event-creation" method="POST" enctype="multipart/form-data" class="form-horizontal" novalidate="novalidate">
+        {{ form_widget(form._token) }}
         <div class="form-body">
             <div class="alert alert-danger display-hide">
                 <button class="close" data-close="alert"></button> You have some form errors. Please check below. </div>
@@ -31,6 +20,16 @@
                         <input type="text" class="form-control" name="karhabty_eventsbundle_event[title]"> </div>
                 </div>
             </div>
+            <div class="form-group  margin-top-20">
+                <label class="control-label col-md-3">Photo
+                    <span class="required" aria-required="true"> * </span>
+                </label>
+                <div class="col-md-4">
+                    <div class="input-icon right">
+                        <i class="fa"></i>
+                        {{ form_widget(form.photo) }} </div>
+                </div>
+            </div>
             <div class="form-group">
                 <label class="control-label col-md-3">Description
                     <span class="required" aria-required="true"> * </span>
@@ -38,7 +37,7 @@
                 <div class="col-md-4">
                     <div class="input-icon right">
                         <i class="fa"></i>
-                        <textarea class="form-control" name="karhabty_eventsbundle_event[Description]" rows="4" cols="44"></textarea>
+                        <textarea class="form-control" name="karhabty_eventsbundle_event[description]" rows="4" cols="44"></textarea>
                     </div>
                 </div>
             </div>
@@ -49,7 +48,7 @@
                 <div class="col-md-4">
                     <div class="input-icon right">
                         <i class="fa"></i>
-                        <textarea class="form-control" name="karhabty_eventsbundle_event[Adress]" rows="4" cols="44"></textarea>
+                        <textarea class="form-control" name="karhabty_eventsbundle_event[address]" rows="4" cols="44"></textarea>
                     </div>
                 </div>
             </div>
@@ -61,11 +60,11 @@
                     <div class="input-icon right">
                         <div class="mt-radio-inline">
                             <label class="mt-radio">
-                                <input type="radio" name="karhabty_eventsbundle_event[access]" id="optionsRadios4" value="option1" checked=""> Publique
+                                <input type="radio" name="karhabty_eventsbundle_event[access]" id="optionsRadios4" value="private" checked=""> Publique
                                 <span></span>
                             </label>
                             <label class="mt-radio">
-                                <input type="radio" name="karhabty_eventsbundle_event[access]" id="optionsRadios5" value="option2"> Privé
+                                <input type="radio" name="karhabty_eventsbundle_event[access]" id="optionsRadios5" value="public"> Privé
                                 <span></span>
                             </label>
                         </div>
@@ -77,8 +76,8 @@
                     <span class="required" aria-required="true"> * </span>
                 </label>
                 <div class="col-md-4">
-                    <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" data-date-start-date="+0d">
-                    <input class="form-control" type="text" class="form-control" readonly="">
+                    <div class="input-group input-medium date date-picker" data-date-format="yyyy-mm-dd" data-date-start-date="+0d">
+                    <input class="form-control" name="karhabty_eventsbundle_event[eventDate]" type="text" class="form-control">
                     <span class="input-group-btn">
                         <button class="btn default" type="button">
                             <i class="fa fa-calendar"></i>
@@ -87,6 +86,7 @@
                     </div>
                 </div>
             </div>
+            {{ form_widget(form.captcha) }}
         </div>
         <div class="form-actions">
             <div class="row">

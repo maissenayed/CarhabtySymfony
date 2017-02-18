@@ -36,6 +36,7 @@ class AppKernel extends Kernel
             new Karhabty\BankBundle\KarhabtyBankBundle(),
             new Karhabty\AdminBundle\KarhabtyAdminBundle(),
             new Ob\HighchartsBundle\ObHighchartsBundle(),
+            new Gregwar\CaptchaBundle\GregwarCaptchaBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

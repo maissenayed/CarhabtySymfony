@@ -26,10 +26,6 @@ var FormValidation = function () {
                 },
                 'karhabty_eventsbundle_event[address]': {
                     required: true
-                },
-                'karhabty_eventsbundle_event[eventDate]': {
-                    required: true,
-                    date: true
                 }
             },
 

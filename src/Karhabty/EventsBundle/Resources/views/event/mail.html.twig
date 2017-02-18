@@ -1,1 +1,4 @@
-<h3>Vous êtes cordialement invités à l'événnement de ****qui aura lieu ************ !</h3>
+<p>Bonjour {{ data.user.prenom }},</p>
+<p>Vous êtes cordialement invités à l'événnement de {{ data.event.title }} qui aura lieu le {{ data.event.eventDate|date('d/m/Y') }} !</p>
+<p>Bien à vous ! </p>
+<p>L'équipe Karhabty</p>

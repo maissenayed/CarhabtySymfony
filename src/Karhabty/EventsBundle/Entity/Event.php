@@ -68,10 +68,6 @@ class Event
      */
     private $createdDate;
 
-    /**
-     * @ORM\Column(type="date")
-     */
-    private $updatedDate;
 
     /**
      * @return mixed
@@ -232,24 +228,6 @@ class Event
     public function setCreatedDate($createdDate)
     {
         $this->createdDate = $createdDate;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUpdatedDate()
-    {
-        return $this->updatedDate;
-    }
-
-    /**
-     * @param mixed $updatedDate
-     * @return Event
-     */
-    public function setUpdatedDate($updatedDate)
-    {
-        $this->updatedDate = $updatedDate;
         return $this;
     }
 

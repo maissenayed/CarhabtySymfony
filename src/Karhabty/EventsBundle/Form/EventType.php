@@ -15,11 +15,14 @@ class EventType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('description')->add('photo',FileType::class,array(
+            'data_class'=> null,
             "label" => "Fichiers",
             "required" => FALSE,
             "attr" => array(
                 "multiple" => "multiple",)))
-            ->add('title')->add('access')->add('address')->add('eventDate')->add('createdDate')->add('updatedDate')->add('user')        ;
+            ->add('title')->add('access')->add('address')->add('eventDate')       ;
+
+        $builder->add('captcha', 'Gregwar\CaptchaBundle\Type\CaptchaType');
     }
     
     /**

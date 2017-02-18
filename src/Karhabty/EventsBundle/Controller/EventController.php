@@ -83,9 +83,17 @@ class EventController extends Controller
         $form = $this->createForm('Karhabty\EventsBundle\Form\EventType', $event);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted()) {
             // $file stores the uploaded PDF file
             $file = $event->getPhoto();
+            $user = $this->get('security.token_storage')->getToken()->getUser();
+            $event->setUser($user);
+            //$test = $event->setEventDate($request->get('karhabty_eventsbundle_event'));
+            $eventDate = $request->get('karhabty_eventsbundle_event')['eventDate'];
+
+            $eventDate = \DateTime::createFromFormat('Y-m-d',$eventDate);
+            $event->setEventDate($eventDate);
+            $event->setCreatedDate(new \DateTime('now'));
 
             // Generate a unique name for the file before saving it
             $fileName = md5(uniqid()).'.'.$file->guessExtension();
@@ -161,10 +169,35 @@ class EventController extends Controller
         $editForm = $this->createForm('Karhabty\EventsBundle\Form\EventType', $event);
         $editForm->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+        if ($editForm->isSubmitted()) {
+            // $file stores the uploaded PDF file
+            $file = $event->getPhoto();
+            $user = $this->get('security.token_storage')->getToken()->getUser();
+            $event->setUser($user);
+            //$test = $event->setEventDate($request->get('karhabty_eventsbundle_event'));
+            $eventDate = $request->get('karhabty_eventsbundle_event')['eventDate'];
 
-            return $this->redirectToRoute('event_edit', array('id' => $event->getId()));
+            $eventDate = \DateTime::createFromFormat('Y-m-d',$eventDate);
+            $event->setEventDate($eventDate);
+            $event->setCreatedDate(new \DateTime('now'));
+
+            // Generate a unique name for the file before saving it
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+
+            // Move the file to the directory where brochures are stored
+            $file->move(
+                $this->getParameter('brochures_directory'),
+                $fileName
+            );
+            // Update the 'brochure' property to store the PDF file name
+            // instead of its contents
+            $event->setPhoto($fileName);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($event);
+            $em->flush($event);
+
+            return $this->redirectToRoute('event_show', array('id' => $event->getId()));
         }
 
         return $this->render('KarhabtyEventsBundle:event:edit.html.twig', array(
@@ -214,6 +247,7 @@ class EventController extends Controller
         $eventService = $this->get('karhabty.event.service');
         $result = $eventService->requestParticipation($event,$user);
 
+
         if(!$result){
             $request->getSession()
                 ->getFlashBag()
@@ -251,8 +285,13 @@ class EventController extends Controller
             ->getFlashBag()
             ->add('success', "Cette demande de participation à votre événement a été acceptée avec succès! ")
         ;
-        $email = $participationRequest->getEvent()->getUser()->getEmail();
-        $this->_sendMail($email);
+        $user = $participationRequest->getEvent()->getUser();
+        $event = $participationRequest->getEvent();
+        $mailData = array(
+            'user'=> $user,
+            'event' => $event
+        );
+        $this->_sendMail($mailData);
 
         return $this->redirectToRoute('event_show',array('id'=>$participationRequest->getEvent()->getId()));
 
@@ -326,10 +365,16 @@ class EventController extends Controller
 
 
     private function _sendMail($data = array()) {
+        $env = $this->container->get('kernel')->getEnvironment();
+        $user = $data['user'];
+        $email = $user->getEmail();
+        if($env === 'dev'){
+            $email = 'mehdi.abidi@esprit.tn';
+        }
         $message = \Swift_Message::newInstance()
             ->setSubject('Evennements de site Carhabty')
-            ->setFrom('send@example.com')
-            ->setTo(array('mohamedkhayreddine.allala@esprit.tn'))
+            ->setFrom('noreply@karhabty.com')
+            ->setTo(array($email))
             ->setBody(
                 $this->renderView(
                     'KarhabtyEventsBundle:event:mail.html.twig',

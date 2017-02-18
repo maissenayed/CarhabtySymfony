@@ -1,21 +1,99 @@
 {% extends 'layout/LayoutUser.html.twig' %}
 
 {% block content %}
-    <h1>Event edit</h1>
-
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('event_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    <h1>Modification de l'évènement</h1>
+    {{ form_errors(edit_form) }}
+    <form action="" id="event-creation" method="POST" enctype="multipart/form-data" class="form-horizontal" novalidate="novalidate">
+        {{ form_widget(edit_form._token) }}
+        <div class="form-body">
+            <div class="alert alert-danger display-hide">
+                <button class="close" data-close="alert"></button> You have some form errors. Please check below. </div>
+            <div class="alert alert-success display-hide">
+                <button class="close" data-close="alert"></button> Your form validation is successful! </div>
+            <div class="form-group  margin-top-20">
+                <label class="control-label col-md-3">Titre
+                    <span class="required" aria-required="true"> * </span>
+                </label>
+                <div class="col-md-4">
+                    <div class="input-icon right">
+                        <i class="fa"></i>
+                        <input type="text" class="form-control" name="karhabty_eventsbundle_event[title]" value="{{ edit_form.vars.value.title}}"> </div>
+                </div>
+            </div>
+            <div class="form-group  margin-top-20">
+                <label class="control-label col-md-3">Photo
+                    <span class="required" aria-required="true"> * </span>
+                </label>
+                <div class="col-md-4">
+                    <div class="input-icon right">
+                        <i class="fa"></i>
+                        {{ form_widget(edit_form.photo) }} </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3">Description
+                    <span class="required" aria-required="true"> * </span>
+                </label>
+                <div class="col-md-4">
+                    <div class="input-icon right">
+                        <i class="fa"></i>
+                        <textarea class="form-control" name="karhabty_eventsbundle_event[description]" rows="4" cols="44"> {{ edit_form.vars.value.description}}</textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3">Adresse
+                    <span class="required" aria-required="true"> * </span>
+                </label>
+                <div class="col-md-4">
+                    <div class="input-icon right">
+                        <i class="fa"></i>
+                        <textarea class="form-control" name="karhabty_eventsbundle_event[address]" rows="4" cols="44">{{ edit_form.vars.value.address}}</textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3">Accès
+                    <span class="required" aria-required="true"> * </span>
+                </label>
+                <div class="col-md-4">
+                    <div class="input-icon right">
+                        <div class="mt-radio-inline">
+                            <label class="mt-radio">
+                                <input type="radio" name="karhabty_eventsbundle_event[access]" id="optionsRadios4" value="private" checked=""> Publique
+                                <span></span>
+                            </label>
+                            <label class="mt-radio">
+                                <input type="radio" name="karhabty_eventsbundle_event[access]" id="optionsRadios5" value="public"> Privé
+                                <span></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group date date-picker">
+                <label class="control-label col-md-3">Date de l'évènement
+                    <span class="required" aria-required="true"> * </span>
+                </label>
+                <div class="col-md-4">
+                    <div class="input-group input-medium date date-picker" data-date-format="yyyy-mm-dd" data-date-start-date="+0d">
+                        <input class="form-control" name="karhabty_eventsbundle_event[eventDate]" type="text" class="form-control" value="{{ edit_form.vars.value.eventDate |date('Y-m-d')}}">
+                        <span class="input-group-btn">
+                        <button class="btn default" type="button">
+                            <i class="fa fa-calendar"></i>
+                        </button>
+                    </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-actions">
+            <div class="row">
+                <div class="col-md-offset-3 col-md-9">
+                    <button type="submit" class="btn green">Créer</button>
+                </div>
+            </div>
+        </div>
+    </form>
 {% endblock %}
+
