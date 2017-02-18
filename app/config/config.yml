@@ -115,3 +115,7 @@ vich_uploader:
             Annonce_image:
                              uri_prefix:        /images/Annonce
                              upload_destination: '%kernel.root_dir%/../web/images/Annonce'
+twig:
+    form_themes:
+        # other form themes
+        - 'VichUploaderBundle:Form:fields.html.twig'
