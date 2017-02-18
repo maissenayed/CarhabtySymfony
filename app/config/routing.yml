@@ -1,3 +1,15 @@
+karhabty_admin:
+    resource: "@KarhabtyAdminBundle/Resources/config/routing.yml"
+    prefix:   /
+
+karhabty_bank:
+    resource: "@KarhabtyBankBundle/Resources/config/routing.yml"
+    prefix:   /
+
+karhabty_paiement:
+    resource: "@KarhabtyPaiementBundle/Resources/config/routing.yml"
+    prefix:   /
+
 karhabty_annonce:
     resource: "@KarhabtyAnnonceBundle/Resources/config/routing.yml"
     prefix:   /annonce
@@ -28,7 +40,6 @@ karhabty_future_conducteur_question:
 
 karhabty_future_conducteur:
     resource: "@KarhabtyFutureConducteurBundle/Resources/config/routing.yml"
-
     prefix:   /
 
 karhabty_user:
@@ -50,12 +61,40 @@ my_very_secret_route:
     defaults: { _controller: KarhabtyCalendarBundle:calendar:load}
     options:
         expose: true
+
+
+
+count:
+    path:     /count
+    defaults: { _controller: KarhabtyOffreBundle:Offre:Count}
+    options:
+        expose: true
+
 Annonce_secret:
     path:     /Aload
     defaults: { _controller: KarhabtyAnnonceBundle:Annonce:recherche}
     options:
         expose: true
+
 annonce_recherche:
     path:     /annonces
     defaults: { _controller: "KarhabtyAnnonceBundle:Annonce:publicannonce" }
     methods:  [GET, POST]
+
+
+
+paiement:
+    path:     /checkout
+    defaults: { _controller: KarhabtyPaiementBundle:Paiement:paiement}
+    options:
+        expose: true
+
+
+
+coupon_generate:
+    path:     /generate
+    defaults: { _controller: KarhabtyOffreBundle:Coupon:generate}
+    options:
+        expose: true
+
+

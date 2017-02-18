@@ -5,10 +5,7 @@
 
     <table>
         <tbody>
-            <tr>
-                <th>Idoffre</th>
-                <td>{{ offre.idOffre }}</td>
-            </tr>
+
             <tr>
                 <th>Nomoffre</th>
                 <td>{{ offre.nomOffre }}</td>
@@ -26,9 +23,15 @@
                 <td>{{ offre.tauxReduction }}</td>
             </tr>
             <tr>
-                <th>Typeoffre</th>
-                <td>{{ offre.typeOffre }}</td>
+                <th>date exp</th>
+                <td>{{ offre.dateExpirationOffre | date }}</td>
             </tr>
+
+            <tr>
+                <th>date ajout</th>
+                <td>{{ offre.date | date }}</td>
+            </tr>
+
             <tr>
                 <th>Image</th>
                 <td> <img src="{{ asset(vich_uploader_asset(offre, 'imageFile')) }}"></td>
@@ -38,15 +41,11 @@
 
     <ul>
         <li>
-            <a href="{{ path('offre_index') }}">Back to the list</a>
+            <a href="{{ path('offre_index') }}">vos offres</a>
         </li>
         <li>
-            <a href="{{ path('offre_edit', { 'id': offre.idOffre }) }}">Edit</a>
+            <a href="{{ path('offre_edit', { 'id': offre.idOffre }) }}">Modifier l'offre</a>
         </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
+
     </ul>
 {% endblock %}

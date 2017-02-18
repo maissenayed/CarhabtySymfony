@@ -1,14 +1,14 @@
-offre_affiche:
+offre_afficher:
      path:     /
-     defaults: { _controller: "KarhabtyOffreBundle:Offre:alloffre" }
+     defaults: { _controller: "KarhabtyOffreBundle:Offre:getAlloffre" }
 
 offre_index:
-    path:     /show_Offre
+    path:     /dashborad_offres
     defaults: { _controller: "KarhabtyOffreBundle:Offre:index" }
     methods:  GET
 
 offre_show:
-    path:     /{id}/show
+    path:     /show/{id}
     defaults: { _controller: "KarhabtyOffreBundle:Offre:show" }
     methods:  GET
 
@@ -18,11 +18,31 @@ offre_new:
     methods:  [GET, POST]
 
 offre_edit:
-    path:     /{id}/edit
+    path:     edit/{id}
     defaults: { _controller: "KarhabtyOffreBundle:Offre:edit" }
     methods:  [GET, POST]
 
 offre_delete:
-    path:     /{id}/delete
+    path:     delete/{id}
     defaults: { _controller: "KarhabtyOffreBundle:Offre:delete" }
     methods:  DELETE
+
+
+offre_details:
+    path:      /detaille_offre/{id}
+    defaults: { _controller: "KarhabtyOffreBundle:Offre:detailOffre" }
+    methods:  GET
+
+
+offres_passes:
+    path:      /offres_passes
+    defaults: { _controller: "KarhabtyOffreBundle:Offre:OffresPasses" }
+
+offres_trie:
+    path:      /trie
+    defaults: { _controller: "KarhabtyOffreBundle:Offre:OffresPasses" }
+
+offres_statistique:
+    path:      /statistique
+    defaults: { _controller: "KarhabtyOffreBundle:Statistique:Stat" }
+

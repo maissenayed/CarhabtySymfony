@@ -33,6 +33,10 @@
             <link href="{{ asset('assets/layouts/layout4/css/layout.min.css')}}" rel="stylesheet" type="text/css" />
             <link href="{{ asset('assets/layouts/layout4/css/themes/light.min.css') }}" rel="stylesheet" type="text/css" id="style_color" />
             <link href="{{ asset('assets/layouts/layout4/css/custom.min.css') }}" rel="stylesheet" type="text/css" />
+
+            
+
+
             <link href="{{ asset('assets/css/style.css')}}" rel="stylesheet" type="text/css"/>
             <link href="{{  asset('assets/css/hover.css') }}" rel="stylesheet" type="text/css">
 
@@ -57,25 +61,49 @@
                 }
 
             </style>
+
         {% endblock %}
 
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 
     </head>
     <body>
+
+
+
+
+
+    {% block body %}
+
+
+
+
+
+
+    {% endblock %}
+
+
+
     <div class="se-pre-con"></div>
-        {% block body %}
 
 
 
 
 
 
-        {% endblock %}
+
+
+
         {% block javascripts %}
+
+
+
+
+            <script src="{{ asset('assets/js/jquery.js') }}" type="text/javascript"></script>
 
              {% block global %}
             <script src="{{  asset('assets/global/plugins/jquery.min.js') }}" type="text/javascript"></script>
+
             <script src="{{ asset('assets/global/plugins/bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>
             <script src="{{ asset('assets/global/plugins/js.cookie.min.js') }}" type="text/javascript"></script>
             <script src="{{ asset('assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js') }}" type="text/javascript"></script>
@@ -106,14 +134,14 @@
 
 
 
-
-
-
-
-
-
-
         {% endblock %}
+
+
+
+
+
+
+
 
 
 
@@ -138,5 +166,6 @@
 
 
     {% endblock %}
+
     </body>
 </html>

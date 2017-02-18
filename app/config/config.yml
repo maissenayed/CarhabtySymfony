@@ -10,6 +10,10 @@ imports:
     - { resource: "@KarhabtyFutureConducteurBundle/Resources/config/services.yml" }
     - { resource: "@KarhabtyCalendarBundle/Resources/config/services.yml" }
     - { resource: "@KarhabtyAnnonceBundle/Resources/config/services.yml" }
+    - { resource: "@KarhabtyPaiementBundle/Resources/config/services.yml" }
+    - { resource: "@KarhabtyBankBundle/Resources/config/services.yml" }
+    - { resource: "@KarhabtyAdminBundle/Resources/config/services.yml" }
+
 
 
 
@@ -78,6 +82,7 @@ swiftmailer:
     host:      "%mailer_host%"
     username:  "%mailer_user%"
     password:  "%mailer_password%"
+    encryption: ssl
     spool:     { type: memory }
 
 
@@ -85,17 +90,17 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb' and 'couchdb'
     firewall_name: main
     user_class: Karhabty\UserBundle\Entity\User
-
+    from_email:
+                address: projetintegrer@gmail.com
+                sender_name: Garci
     registration:
         form:
             type: Karhabty\UserBundle\Form\RegistrationParticulierType
 
 
         confirmation:
-                    enabled:    false
-                    from_email:
-                                    address: projetintegrer@gmail.com
-                                    sender_name: Demo registration
+                    enabled:    true
+
     service:
         mailer: fos_user.mailer.twig_swift
 
@@ -115,7 +120,44 @@ vich_uploader:
             Annonce_image:
                              uri_prefix:        /images/Annonce
                              upload_destination: '%kernel.root_dir%/../web/images/Annonce'
+
 twig:
     form_themes:
         # other form themes
         - 'VichUploaderBundle:Form:fields.html.twig'
+
+
+
+nomaya_social:
+    buttons:
+        facebook:
+            url:            www.facebook.com/Esprit
+            locale:         "fr_FR"
+            send:           false
+            width:          300
+            showFaces:      false
+            layout:         "button_count"
+        twitter:
+            url:            null
+            locale:         "fr"
+            message:        "Je veux partager ça avec vous"
+            text:           "Tweet"
+            via:            "L'Equipe cartedevisitevirtuelle.fr"
+            tag:            "ttot"
+        googleplus:
+            url:            null
+            locale :        "fr"
+            size :          "medium"
+            annotation :    "bubble"
+            width :         300
+        linkedin:
+            url:            null
+            locale:         "fr_FR"
+            counter:        "right"
+        pinterest:
+            url:            null
+    links:
+        facebook:           "http://www.facebook.com/yann.chauvel"
+        googleplus:         "https://plus.google.com/105931415830389032796"
+    theme:                  'default' # optional
+

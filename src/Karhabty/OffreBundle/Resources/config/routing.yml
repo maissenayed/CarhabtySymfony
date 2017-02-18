@@ -2,3 +2,23 @@ karhabty_offre_offre:
     resource: "@KarhabtyOffreBundle/Resources/config/routing/offre.yml"
     prefix:   /offre
 
+
+
+coupon:
+    path:      /coupon/{id}
+    defaults: { _controller: "KarhabtyOffreBundle:Coupon:index" }
+
+
+
+final_success:
+     path:      /success
+     defaults: { _controller: "KarhabtyOffreBundle:Coupon:success" }
+
+
+
+
+coupon_generate_pdf:
+    path:      /coupon_pdf
+    defaults: { _controller: "KarhabtyOffreBundle:Coupon:test" }
+
+
