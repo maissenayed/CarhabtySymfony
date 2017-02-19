@@ -31,4 +31,20 @@ class AnnonceRepository extends EntityRepository
 
         ->getResult();
     }
+    public function findAllOrderedBydate()
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+            //       'SELECT p FROM KarhabtyAnnonceBundle:Annonce p ORDER BY p.Model ASC'
+            // )
+            // ->getResult();
+
+                "SELECT p
+                      FROM KarhabtyAnnonceBundle:Annonce p
+                           ORDER BY p.AnneePub ASC"
+
+            )
+            ->getResult();
+    }
+
 }

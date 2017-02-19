@@ -70,6 +70,26 @@ class Annonce
      * @ORM\Column(type="string",length=255)
      */
     private $Category;
+    /**
+     * @ORM\Column(type="string",length=255)
+     */
+    private $Descreption;
+
+    /**
+     * @return mixed
+     */
+    public function getDescreption()
+    {
+        return $this->Descreption;
+    }
+
+    /**
+     * @param mixed $Descreption
+     */
+    public function setDescreption($Descreption)
+    {
+        $this->Descreption = $Descreption;
+    }
 
     /**
      * @return mixed

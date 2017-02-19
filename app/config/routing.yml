@@ -1,3 +1,5 @@
+karhabty_events:
+    resource: "@KarhabtyEventsBundle/Resources/config/routing.yml"
 karhabty_admin:
     resource: "@KarhabtyAdminBundle/Resources/config/routing.yml"
     prefix:   /
@@ -41,9 +43,9 @@ karhabty_future_conducteur_question:
 karhabty_future_conducteur:
     resource: "@KarhabtyFutureConducteurBundle/Resources/config/routing.yml"
     prefix:   /
-
 karhabty_user:
     resource: "@KarhabtyUserBundle/Resources/config/routing.yml"
+
     prefix:   /
 
 app:
@@ -75,6 +77,12 @@ Annonce_secret:
     defaults: { _controller: KarhabtyAnnonceBundle:Annonce:recherche}
     options:
         expose: true
+
+annonce_recherche:
+    path:     /annonces
+    defaults: { _controller: "KarhabtyAnnonceBundle:Annonce:publicannonce" }
+    methods:  [GET, POST]
+
 
 
 paiement:
