@@ -79,6 +79,15 @@ class OffreRepository extends EntityRepository
         return $query->getResult();
 
 
+    }
+    function countAllOffre(){
+
+
+
+
+        return $query=$this->getEntityManager()->createQuery("select count(m) from KarhabtyOffreBundle:Coupon m ")
+            ->getSingleScalarResult();
+
 
     }
 

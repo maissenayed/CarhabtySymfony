@@ -19,14 +19,13 @@ class VoitureController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
-        $voitures = $em->getRepository('KarhabtyCalendarBundle:Voiture')->findAll();
-
+        $user=$this->getUser();
+        $user=$user->getID();
+        $voitures = $em->getRepository('KarhabtyCalendarBundle:Voiture')->findby(array('user' => $user));
         return $this->render('@KarhabtyCalendar/voiture/index.html.twig', array(
             'voitures' => $voitures,
         ));
     }
-
     /**
      * Creates a new voiture entity.
      *
