@@ -16,13 +16,13 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new AppBundle\AppBundle(),
-<<<<<<< HEAD
+
             new Karhabty\AstuceBundle\KarhabtyAstuceBundle(),
-=======
+
 
             new Karhabty\EventsBundle\KarhabtyEventsBundle(),
 
->>>>>>> b308c0b126b2a57f76029eaf79603ea271c003c1
+
             new Karhabty\UserBundle\KarhabtyUserBundle(),
             new FOS\UserBundle\FOSUserBundle(),
 

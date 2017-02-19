@@ -37,6 +37,8 @@ class AstuceController extends Controller
             $id=$request->request->get('data');
         $em = $this->getDoctrine()->getManager();
         $Astuce = $em->getRepository('KarhabtyAstuceBundle:Astuce')->find($id);
+        $rates= $em->getRepository('KarhabtyAstuceBundle:Rating')->find(1);
+        return new Response(var_dump($rates));
         $em->remove($Astuce);
         $em->flush();
         return new JsonResponse(array('status'=>'success'));
@@ -45,25 +47,13 @@ class AstuceController extends Controller
 
     public function testAction($param)
     {
-        $em = $this->getDoctrine()->getManager();
-        $sortOption=$param;
-        echo($sortOption);
-        die;
-        if($sortOption=='ALL')
-        {$Astuce = $em->getRepository('KarhabtyAstuceBundle:Astuce')->findAll();}
-        else
-        {   die;
-            $Astuce= $em->getRepository('KarhabtyAstuceBundle:Astuce')->findByTheme($sortOption) ;
-
-        }
-        return $this->render('KarhabtyAstuceBundle:Astuce:listAstuce.html.twig', array('astuces' => $Astuce));
+        return new Response($param);
     }
 
     public function listAstuceAction($param)
     {
         $em = $this->getDoctrine()->getManager();
         $sortOption=$param;
-
         if($sortOption=='ALL')
         {$Astuce = $em->getRepository('KarhabtyAstuceBundle:Astuce')->findAll();}
         else
@@ -94,7 +84,7 @@ class AstuceController extends Controller
         $em = $this->getDoctrine()->getManager();
         $pub = $em->getRepository('KarhabtyAstuceBundle:Astuce')->find($idp);
 
-        $rate = $em->getRepository('KarhabtyAstuceBundle:Rating')->findOneBy(array('user'=>$this->getUser(),'id_astuce'=>$pub));
+        $rate = $em->getRepository('KarhabtyAstuceBundle:Rating')->findOneBy(array('user'=>$this->getUser(),'astuce'=>$pub));
         if ($rate == null)
             $rate = new Rating();
         $user = $this->getUser();
@@ -109,7 +99,7 @@ class AstuceController extends Controller
         $em->persist($rate);
 
         $em->flush();
-        $rate2 = $em->getRepository('KarhabtyAstuceBundle:Rating')->findOneBy(array('user'=>$this->getUser(),'id_astuce'=>$pub));
+        $rate2 = $em->getRepository('KarhabtyAstuceBundle:Rating')->findOneBy(array('user'=>$this->getUser(),'astuce'=>$pub));
         return new Response("ok");
 
     }
@@ -172,7 +162,7 @@ class AstuceController extends Controller
         $pub = $em->getRepository('KarhabtyAstuceBundle:Astuce')->findby(array('id'=>$idp));
 
 
-        $rating = $em->getRepository('KarhabtyAstuceBundle:Rating')->findBy(array('id_astuce' => $pub,'user'=>$user));
+        $rating = $em->getRepository('KarhabtyAstuceBundle:Rating')->findBy(array('astuce' => $pub,'user'=>$user));
         $rate = new Rating();
         if ($rating != null) {
 

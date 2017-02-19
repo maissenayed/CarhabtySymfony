@@ -33,7 +33,7 @@ class Rating
      * @ORM\ManyToOne(targetEntity="Astuce")
      * @ORM\JoinColumn(name="astuce_id", referencedColumnName="id")
      */
-    protected $id_astuce;
+    private $astuce;
 
     /**
      * @ORM\Column(type="integer")
@@ -77,17 +77,17 @@ class Rating
     /**
      * @return mixed
      */
-    public function getIdAstuce()
+    public function getAstuce()
     {
-        return $this->id_astuce;
+        return $this->astuce;
     }
 
     /**
      * @param mixed $id_astuce
      */
-    public function setIdAstuce($id_astuce)
+    public function setAstuce($id_astuce)
     {
-        $this->id_astuce = $id_astuce;
+        $this->astuce = $id_astuce;
     }
 
     /**

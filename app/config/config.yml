@@ -2,18 +2,11 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
-<<<<<<< HEAD
     - { resource: "@KarhabtyAstuceBundle/Resources/config/services.yml" }
-=======
-
     - { resource: "@KarhabtyEventsBundle/Resources/config/services.yml" }
-
->>>>>>> b308c0b126b2a57f76029eaf79603ea271c003c1
     - { resource: "@KarhabtyUserBundle/Resources/config/services.yml" }
     - { resource: "@KarhabtyOffreBundle/Resources/config/services.yml" }
     - { resource: "@KarhabtyMapBundle/Resources/config/services.yml" }
-
-
     - { resource: "@KarhabtyFutureConducteurBundle/Resources/config/services.yml" }
     - { resource: "@KarhabtyCalendarBundle/Resources/config/services.yml" }
     - { resource: "@KarhabtyAnnonceBundle/Resources/config/services.yml" }
@@ -107,15 +100,12 @@ fos_user:
         form:
             type: Karhabty\UserBundle\Form\RegistrationParticulierType
         confirmation:
-<<<<<<< HEAD
                     enabled:    false
 
-=======
-            enabled:    false
     from_email:
             address: you@example.com
             sender_name: You
->>>>>>> b308c0b126b2a57f76029eaf79603ea271c003c1
+
     service:
         mailer: fos_user.mailer.twig_swift
 vich_uploader:
@@ -175,9 +165,8 @@ nomaya_social:
         facebook:           "http://www.facebook.com/yann.chauvel"
         googleplus:         "https://plus.google.com/105931415830389032796"
     theme:                  'default' # optional
-<<<<<<< HEAD
-=======
 gregwar_captcha: ~
 
->>>>>>> b308c0b126b2a57f76029eaf79603ea271c003c1
+
+
 

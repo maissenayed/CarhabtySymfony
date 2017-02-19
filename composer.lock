@@ -4,11 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-<<<<<<< HEAD
-    "content-hash": "c5755c565fde9b0ed1811a40a5648d98",
-=======
-    "content-hash": "87e11850a3bc7aa3320f29310c52e6fe",
->>>>>>> b308c0b126b2a57f76029eaf79603ea271c003c1
+    "content-hash": "597287912d6b4f94a6ca31c56169bcf3",
     "packages": [
         {
             "name": "ancarebeca/full-calendar-bundle",
@@ -961,8 +957,6 @@
                 "User management"
             ],
             "time": "2017-02-17 15:49:11"
-<<<<<<< HEAD
-=======
         },
         {
             "name": "gregwar/captcha",
@@ -1065,7 +1059,6 @@
                 "visual"
             ],
             "time": "2016-09-21T08:36:55+00:00"
->>>>>>> b308c0b126b2a57f76029eaf79603ea271c003c1
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -1453,7 +1446,7 @@
                 "symfony2bundle",
                 "twitter"
             ],
-            "time": "2016-01-28T15:39:34+00:00"
+            "time": "2016-01-28 15:39:34"
         },
         {
             "name": "ob/highcharts-bundle",
@@ -1507,7 +1500,7 @@
                 "marcaube",
                 "ob"
             ],
-            "time": "2016-07-26T23:46:28+00:00"
+            "time": "2016-07-26 23:46:28"
         },
         {
             "name": "ocramius/proxy-manager",

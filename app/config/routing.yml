@@ -1,11 +1,10 @@
-<<<<<<< HEAD
 karhabty_astuce:
     resource: "@KarhabtyAstuceBundle/Resources/config/routing.yml"
 
-=======
+
 karhabty_events:
     resource: "@KarhabtyEventsBundle/Resources/config/routing.yml"
->>>>>>> b308c0b126b2a57f76029eaf79603ea271c003c1
+
 karhabty_admin:
     resource: "@KarhabtyAdminBundle/Resources/config/routing.yml"
     prefix:   /
@@ -98,14 +97,14 @@ paiement:
         expose: true
 
 
-<<<<<<< HEAD
+
 ajaxDeleteAstuce:
     path:     /deleteAstuceAjax
     defaults: { _controller: KarhabtyAstuceBundle:Astuce:deleteAstuce}
     options:
         expose: true
 
-=======
+
 
 coupon_generate:
     path:     /generate
@@ -114,4 +113,3 @@ coupon_generate:
         expose: true
 
 
->>>>>>> b308c0b126b2a57f76029eaf79603ea271c003c1
