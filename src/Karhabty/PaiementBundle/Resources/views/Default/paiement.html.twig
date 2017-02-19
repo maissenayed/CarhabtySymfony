@@ -73,7 +73,7 @@
                        if(stat == "success"){
 
                            document.getElementById('validation').innerHTML="paiement valider";
-
+                           window.location.href = "{{ path('final_success') }}";
                        }
                         else if(stat == "faild"){
 
@@ -126,7 +126,7 @@
 
 
 
-                            <button type="button" id="valider" class="btn btn-lg btn-primary">Submit</button>
+                            <button type="button" id="valider"  class="btn btn-lg btn-primary">Valider</button>
 
                             <h2 class="validation" id="validation"></h2>
 
@@ -138,17 +138,18 @@
             </div>
 
             <div class="col-xs-12 col-md-8" style="font-size: 12pt; line-height: 2em;">
-                <p><h1>Formulaire de Paiement</h1>
+                <h1>Formulaire de Paiement</h1>
                 <ul>
                     <li>Entrez les informations relatives à votre carte Bancaire</li>
                     <li>afin de terminer le processuce de paiement</li>
                     <li>Devise TND</li>
 
                 </ul>
-                </p>
+
                 <p>Rassurez vous vous etes en connexion sécurisée avec notre serveur de paiement</p>
 
-                <h2>Prix :{{ offre.prix - ((offre.prix * offre.tauxReduction)/100) }}DT</h2>
+                <h3> Société : {{ offre.user.nomsociete }}</h3>
+                <h3> Prix :{{ offre.prix - ((offre.prix * offre.tauxReduction)/100) }}DT</h3>
             </div>
 
         </div>

@@ -1,0 +1,4 @@
+services:
+    karhabty.event.service:
+        class: Karhabty\EventsBundle\Service\Event
+        arguments: ["@doctrine.orm.entity_manager"]

@@ -1,0 +1,5 @@
+karhabty_events_event:
+    resource: "@KarhabtyEventsBundle/Resources/config/routing/event.yml"
+    prefix:   /event
+
+

@@ -79,7 +79,7 @@ class VoitureController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('voiture_edit', array('id' => $voiture->getId()));
+            return $this->redirectToRoute('voiture_show', array('id' => $voiture->getId()));
         }
 
         return $this->render('@KarhabtyCalendar/voiture/edit.html.twig', array(

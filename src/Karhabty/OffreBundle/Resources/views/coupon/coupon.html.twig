@@ -1,12 +1,87 @@
 {% extends 'layout/LayoutUser.html.twig' %}
 {% block content %}
 
-<form method="post" action="{{ path('coupon_generate') }}">
 
 
-    <input name="idoffre" type="hidden" value=" {{ offre.idOffre }}" />
+    <script src="{{ asset('assets/js/jquery.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
 
-    <input name="iduser" type="hidden" value=" {{ offre.user.id }}" />
+<script>
+
+
+   // $('#valider').click(function() {
+   $(document).ready(function() {
+       $('#valider').click(function () {
+
+           $.ajax({
+
+               url: Routing.generate('coupon_generate'),
+               type: 'POST', // Send post data
+               data: {id: {{ offre.idOffre }}},
+               async: false,
+               success: function (s) {
+
+                   json_verif = s;
+                   var stat = json_verif['status'];
+
+                   if(stat == "success"){
+
+                       window.location.href = "{{ path('karhabty_paiement_homepage', { 'id': offre.idOffre }) }}";
+
+                   }
+
+
+               }
+           });
+
+       });
+
+   });
+
+/*
+
+
+    $(document).ready(function() {
+
+        $.ajax({
+
+            url: Routing.generate('count'),
+            type: 'POST', // Send post data
+            data: {id: },
+            async: false,
+            success: function (s) {
+
+
+                json_events = s;
+
+                nbachteur=json_events[0][1];
+                document.getElementById().innerHTML="Acheté(s) :"+nbachteur ;
+
+
+            }
+        });
+
+
+    });
+*/
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <div class="row">
         <div class="col-md-12">
@@ -48,7 +123,7 @@
 
     <div class="row">
         <div class="col-md-12">
-             <button type="submit" class="btn red btn-lg">Valider</button>
+             <button type="button" id="valider" class="btn red btn-lg">Valider</button>
         </div>
     </div>
 

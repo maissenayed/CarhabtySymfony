@@ -28,14 +28,46 @@ class AnnonceController extends Controller
             'annonces' => $annonces,
         ));
     }
-    public function publicannonceAction()
+    public function publicannonceAction(Request $request)
     {
+
         $em = $this->getDoctrine()->getManager();
+        $querydate = $em->getRepository('KarhabtyAnnonceBundle:Annonce')
+            ->findAllOrderedBydate();
+
+        $prix = $request->request->get('prix');
+        $title = $request->request->get('title');
+        $cat = $request->request->get('category');
+
+
+
+       if ($prix||$title||$cat) {
+
+
+            $query = $em->getRepository('KarhabtyAnnonceBundle:Annonce')
+                ->findAllOrderedByName($prix, $title, $cat);
+            return $this->render('@KarhabtyAnnonce/annonce/recherche_avance.html.twig', array(
+                'annonces' => $query,
+                'related'=>$querydate,
+
+
+            ));
+
+        }
+
+
+
+
+
 
         $annonces = $em->getRepository('KarhabtyAnnonceBundle:Annonce')->findAll();
 
         return $this->render('@KarhabtyAnnonce/annonce/recherche.html.twig', array(
             'annonces' => $annonces,
+            'related'=>$querydate,
+
+
+
         ));
     }
 
@@ -50,6 +82,7 @@ class AnnonceController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $annonce->setAnneePub(new \DateTime());
             $em = $this->getDoctrine()->getManager();
             $em->persist($annonce);
             $em->flush($annonce);
@@ -140,7 +173,8 @@ class AnnonceController extends Controller
      */
     public function rechercheAction(Request $request)
     {
-
+        $form = $this->createForm('Karhabty\AnnonceBundle\Form\search');
+        $form->handleRequest($request);
 
 
 

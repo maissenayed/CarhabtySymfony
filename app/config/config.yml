@@ -2,7 +2,13 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+<<<<<<< HEAD
     - { resource: "@KarhabtyAstuceBundle/Resources/config/services.yml" }
+=======
+
+    - { resource: "@KarhabtyEventsBundle/Resources/config/services.yml" }
+
+>>>>>>> b308c0b126b2a57f76029eaf79603ea271c003c1
     - { resource: "@KarhabtyUserBundle/Resources/config/services.yml" }
     - { resource: "@KarhabtyOffreBundle/Resources/config/services.yml" }
     - { resource: "@KarhabtyMapBundle/Resources/config/services.yml" }
@@ -22,7 +28,7 @@ imports:
 
 parameters:
     locale: fr
-
+    brochures_directory: '%kernel.root_dir%/../web/uploads/brochures'
 
 framework:
     #esi:             ~
@@ -65,6 +71,8 @@ doctrine:
         user:     "%database_user%"
         password: "%database_password%"
         charset:  UTF8
+        mapping_types:
+            enum: string
         # if using pdo_sqlite as your database driver:
         #   1. add the path in parameters.yml
         #     e.g. database_path: "%kernel.root_dir%/../var/data/data.sqlite"
@@ -82,6 +90,7 @@ swiftmailer:
     transport: "%mailer_transport%"
     host:      "%mailer_host%"
     username:  "%mailer_user%"
+    encryption: ssl
     password:  "%mailer_password%"
     encryption: ssl
     spool:     { type: memory }
@@ -92,22 +101,23 @@ fos_user:
     firewall_name: main
     user_class: Karhabty\UserBundle\Entity\User
     from_email:
-                address: projetintegrer@gmail.com
-                sender_name: Garci
+        address: projetintegrer@gmail.com
+        sender_name: Garci
     registration:
         form:
             type: Karhabty\UserBundle\Form\RegistrationParticulierType
-
-
         confirmation:
+<<<<<<< HEAD
                     enabled:    false
 
+=======
+            enabled:    false
+    from_email:
+            address: you@example.com
+            sender_name: You
+>>>>>>> b308c0b126b2a57f76029eaf79603ea271c003c1
     service:
         mailer: fos_user.mailer.twig_swift
-
-
-
-
 vich_uploader:
     db_driver: orm
     mappings:
@@ -125,6 +135,12 @@ vich_uploader:
             Annonce_image:
                              uri_prefix:        /images/Annonce
                              upload_destination: '%kernel.root_dir%/../web/images/Annonce'
+
+twig:
+    form_themes:
+        # other form themes
+        - 'VichUploaderBundle:Form:fields.html.twig'
+
 
 
 nomaya_social:
@@ -159,4 +175,9 @@ nomaya_social:
         facebook:           "http://www.facebook.com/yann.chauvel"
         googleplus:         "https://plus.google.com/105931415830389032796"
     theme:                  'default' # optional
+<<<<<<< HEAD
+=======
+gregwar_captcha: ~
+
+>>>>>>> b308c0b126b2a57f76029eaf79603ea271c003c1
 

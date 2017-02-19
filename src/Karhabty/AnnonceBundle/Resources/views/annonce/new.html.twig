@@ -1,16 +1,202 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout/LayoutUser.html.twig' %}
 
-{% block body %}
-    <h1>Annonce creation</h1>
-
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('annonce_index') }}">Back to the list</a>
-        </li>
-    </ul>
+{% block stylesheetswizerdfrom %}
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <link href="{{ asset('assets/global/plugins/select2/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{  asset('assets/global/plugins/select2/css/select2-bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+    <!-- END PAGE LEVEL PLUGINS -->
 {% endblock %}
+{% block level_p %}
+    <link href="{{ asset('assets/global/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/global/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/global/plugins/clockface/css/clockface.css')}}" rel="stylesheet" type="text/css" />
+
+
+{% endblock %}
+
+
+{% block content%}
+    <div class="portlet light bordered form-fit">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="icon-user font-blue-hoki"></i>
+                <span class="caption-subject font-blue-hoki bold uppercase">Form Sample</span>
+                <span class="caption-helper">demo form...</span>
+            </div>
+
+            <div class="actions">
+
+                <div class=" col-md-9">
+                    <a class="btn green" href="{{ path('annonce_index') }}">Back to the list <i class="fa fa-check"></i> </a>
+                </div>
+
+            </div>
+
+
+
+
+        </div>
+        <div class="portlet-body form">
+
+
+
+
+            <!-- BEGIN FORM-->
+            {{ form_start(form,{'attr':{'class':'form-horizontal form-bordered form-label-stripped'}}) }}
+            <div class="form-body">
+                <div class="form-group">
+                    <label class="control-label col-md-3">titre</label>
+                    <div class="col-md-9">
+                        {{ form_widget(form.title, {'attr': {'class': 'form-control','placeholder':'marque'}}) }}
+                        <span class="help-block"> titre e l'annonce </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">marque de voiture</label>
+                    <div class="col-md-9">
+                        {{ form_widget(form.Marque, {'attr': {'class': 'form-control','placeholder':'marque'}}) }}
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">Description</label>
+                    <div class="col-md-9">
+                        {{ form_widget(form.Descreption, {'attr': {'class': 'form-control','placeholder':'Description'}}) }}
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">model de voiture </label>
+                    <div class="col-md-9">
+                        {{ form_widget(form.Model, {'attr': {'class': 'form-control','placeholder':'model'}}) }}
+                        <span class="help-block"> This is inline help </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-3">date de sortie</label>
+                <div class="col-md-9">
+                    <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" >
+                        {{ form_widget(form.AnneeDeProduit, {'attr': {'class': 'form-control','placeholder':'annee'}}) }}
+                        <span class="input-group-btn"><button class="btn default" type="button"><i class="fa fa-calendar"></i></button></span>
+                    </div>
+                    <!-- /input-group -->
+                    <span class="help-block"> Select date </span>
+                </div>
+            </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-3">model de voiture</label>
+                    <div class="col-md-9">
+                        <style>
+                            .fileContainer {
+                                overflow: hidden;
+                                position: relative;
+                            }
+
+                            .fileContainer [type=file] {
+                                cursor: inherit;
+                                display: block;
+                                font-size: 999px;
+                                filter: alpha(opacity=0);
+                                min-height: 100%;
+                                min-width: 100%;
+                                opacity: 0;
+                                position: absolute;
+                                right: 0;
+                                text-align: right;
+                                top: 0;
+                            }
+                        </style>
+                        <!-- The fileinput-button span is used to style the file input field as button -->
+                        <button class="btn default">
+                            <div>
+                                {{ form_widget(form.imageFile)}}</div>
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">Region </label>
+                    <div class="col-md-9">
+                        {{ form_widget(form.Region, {'attr': {'class': 'form-control','placeholder':'model'}}) }}
+                        <span class="help-block"> This is inline help </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">Ville </label>
+                    <div class="col-md-9">
+                        {{ form_widget(form.Ville, {'attr': {'class': 'form-control','placeholder':'model'}}) }}
+                        <span class="help-block"> This is inline help </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">paye </label>
+                    <div class="col-md-9">
+                        {{ form_widget(form.Paye, {'attr': {'class': 'form-control','placeholder':'model'}}) }}
+                        <span class="help-block"> This is inline help </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">prix </label>
+                    <div class="col-md-9">
+                        {{ form_widget(form.Prix, {'attr': {'class': 'form-control','placeholder':'model'}}) }}
+                        <span class="help-block"> This is inline help </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">Category </label>
+                    <div class="col-md-9">
+                        {{ form_widget(form.Category, {'attr': {'class': 'form-control','placeholder':'model'}}) }}
+                        <span class="help-block"> This is inline help </span>
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="form-actions">
+                <div class="row">
+                    <div class="col-md-offset-3 col-md-9">
+                        <button type="submit" class="btn green">
+                            <i class="fa fa-check"></i> Submit</button>
+                        <button type="button" class="btn default">Cancel</button>
+                        {{ form_end(form) }}
+
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- END FORM-->
+
+
+
+
+        </div>
+    </div>
+
+
+
+
+{% endblock %}
+{% block lvljp %}
+    <script src="{{ asset('assets/global/plugins/bootstrap-daterangepicker/moment.min.js')}}" type="text/javascript"></script>
+    <script src="{{ asset('assets/global/plugins/bootstrap-daterangepicker/daterangepicker.js')}}" type="text/javascript"></script>
+    <script src="{{ asset('assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}" type="text/javascript"></script>
+    <script src="{{ asset('assets/global/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js')}}" type="text/javascript"></script>
+    <script src="{{ asset('assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js')}}" type="text/javascript"></script>
+    <script src="{{ asset('assets/global/plugins/clockface/js/clockface.js')}}" type="text/javascript"></script>
+
+
+
+{% endblock %}
+
+    {% block lvljs %}
+        <script src="{{ asset('assets/pages/scripts/components-date-time-pickers.min.js')}}" type="text/javascript"></script>
+        <script src="{{ asset('assets/pages/scripts/form-samples.min.js') }}" type="text/javascript"></script>
+    {% endblock %}
+
+

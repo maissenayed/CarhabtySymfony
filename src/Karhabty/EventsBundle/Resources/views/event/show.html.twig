@@ -1,0 +1,59 @@
+{% extends 'layout/LayoutUser.html.twig' %}
+
+{% block content %}
+    <h1>Evénement</h1>
+
+
+        <div class="list-icon-container">
+
+        <div >
+            <h3 class="uppercase" >
+                {{ event.title }}
+            </h3>
+            <div class="list-thumb">
+                <a href="javascript:;">
+                    <img src="{{ asset('uploads/brochures/' ~ event.photo) }}" class="img-responsive"  style="max-height: 200px;">
+                </a>
+            </div>
+            <p>{{ event.description }}</p>
+            <div class="list-datetime bold uppercase font-red"> {% if event.eventDate %}{{ event.eventDate|date('d-m-Y') }}{% endif %} </div>
+        </div>
+
+
+
+    <h1>Liste Des Participations</h1>
+
+<div class="portlet-body">
+    <div class="tab-content">
+        <div class="tab-pane active" id="tab_actions_pending">
+            <!-- BEGIN: Actions -->
+            {% for participationRequest in participationRequests %}
+            <div class="mt-actions">
+                <div class="mt-action">
+                        <div class="mt-action-row">
+                            <div class="mt-action-info ">
+                                <h3 class="uppercase" >
+                                    {{ participationRequest.user.nom }}  {{ participationRequest.user.prenom}}
+                                </h3>
+                                <a class="uppercase" href="{{ path('event_showD', {'id': app.user.id  }) }}">détails de participant</a>
+                            </div>
+                            <div class="mt-action-buttons ">
+                                <div class="btn-group btn-group-circle">
+                                    <button type="button" class="btn btn-outline green btn-sm"><a  href="{{ path('event_accept', { 'id': participationRequest.id }) }}">Accepter</a></button>
+                                    <button type="button" class="btn btn-outline red btn-sm"><a href="{{ path('event_decline', { 'id': participationRequest.id }) }}">Refuser</a></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                <!-- END: Actions -->
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+{% endblock %}

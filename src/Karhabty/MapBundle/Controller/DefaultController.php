@@ -15,12 +15,21 @@ class DefaultController extends Controller
 
     public function filterAction()
     {
-        $now = new \DateTime();
+       // $now = new \DateTime();
         $em = $this->getDoctrine()->getManager();
-        $offres = $em->getRepository('KarhabtyOffreBundle:Offre')->getadresse($now);
+        $offres = $em->getRepository('KarhabtyUserBundle:User')->findAll();
+
+        $e =array();
+            foreach ($offres as $of ){
+
+                $e[]=[$of->getAdresse(), $of->getActivite()];
 
 
-        return $this->render('KarhabtyMapBundle:Map:filter.html.twig',array('offres' => $offres));
+
+            }
+
+
+        return $this->render('KarhabtyMapBundle:Map:filter.html.twig',array('offres' => $e));
     }
 
 

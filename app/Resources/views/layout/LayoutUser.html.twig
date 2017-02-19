@@ -168,8 +168,13 @@
                         <ul class="dropdown-menu dropdown-menu-default">
                             <li>
 
+<<<<<<< HEAD
                                 <a href="{{ path('fos_user_profile_show') }}">
                                    </i>Garci</a>
+=======
+                                <a href=""></a>
+
+>>>>>>> b308c0b126b2a57f76029eaf79603ea271c003c1
                             </li>
                             <li>
                                 <a href="{{ path('voiture_index') }}">
@@ -177,13 +182,26 @@
                             </li>
 
                             <li>
-                                <a href="app_calendar.html">
+
+                                <a href="{{ path('annonce_index') }}">
                                     </i>Mes Annoces</a>
+
+                                <a href="app_calendar.html">
+                                    Mes Annoces</a>
+
+<<<<<<< HEAD
+=======
                             </li>
 
+>>>>>>> b308c0b126b2a57f76029eaf79603ea271c003c1
+                            <li>
+                                <a href="{{ path('mes_coupon') }}">
+                                    Mes Coupons
+                                </a>
+                            </li>
 
                             <li>
-                                <a href="app_calendar.html">
+                                <a  href="{{path('event_filter',{criteria:'mine'})}}">
                                     Mes Evénements</a>
                             </li>
 
@@ -235,16 +253,49 @@
             <ul class="page-sidebar-menu" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="500">
 
 
+<<<<<<< HEAD
                 <li class="nav-item  ">
                     <a href="{{ path('offre_afficher') }}" class="nav-link nav-toggle">
                         <i class="fa fa-cart-plus" aria-hidden="true"></i>
                         <span class="title">Offres</span>
+=======
+
+
+                <li class="nav-item start active">
+
+                    <a class="nav-link nav-toggle">
+                        <i class="fa fa-cart-plus"></i>
+                        <span class="title">offres</span>
+                        <span class="selected"></span>
+                        <span class="arrow"></span>
+>>>>>>> b308c0b126b2a57f76029eaf79603ea271c003c1
                     </a>
+
+                    <ul class="sub-menu" style="display: none;">
+
+                        <li class="nav-item start active open">
+                            <a href="{{ path('offre_afficher') }}" class="nav-link ">
+
+                                <span class="title">Toutes Nos Offres</span>
+
+                            </a>
+                        </li>
+
+                        <li class="nav-item start ">
+                            <a href="{{ path('offres_passes') }}" class="nav-link ">
+
+                                <span class="title">Offres Passées</span>
+
+                            </a>
+                        </li>
+
+                    </ul>
                 </li>
 
 
+
                 <li class="nav-item  ">
-                    <a href="#" class="nav-link nav-toggle">
+                    <a href="{{ path('annonce_recherche') }}" class="nav-link nav-toggle">
                         <i class="fa fa-car" aria-hidden="true"></i>
                         <span class="title">Annonces</span>
                     </a>
@@ -268,7 +319,7 @@
 
 
                 <li class="nav-item  ">
-                    <a href="#" class="nav-link nav-toggle">
+                    <a href="{{path('event_index')}}" class="nav-link nav-toggle">
                         <i class="fa fa-calendar" aria-hidden="true"></i>
                         <span class="title">Evénements</span>
                     </a>
@@ -310,7 +361,22 @@
         <!-- BEGIN CONTENT BODY -->
         <div class="page-content">
             <!-- BEGIN PAGE HEAD-->
-
+            {% if app.session.flashBag.has('success') %}
+                <div class="custom-alerts alert alert-success fade in">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                    {% for msg in app.session.flashBag.get('success') %}
+                        {{ msg }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+            {% if app.session.flashBag.has('error') %}
+                <div class="custom-alerts alert alert-warning fade in">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                    {% for msg in app.session.flashBag.get('error') %}
+                        {{ msg }}
+                    {% endfor %}
+                </div>
+            {% endif %}
 
 
             {% block content %}
@@ -331,11 +397,15 @@
 
 <!-- BEGIN FOOTER -->
 <div class="page-footer">
+<<<<<<< HEAD
     <div class="page-footer-inner"> 2014 &copy; Metronic by keenthemes.
         <a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes"
            title="Purchase Metronic just for 27$ and get lifetime updates for free" target="_blank">Purchase
             Metronic!</a>
     </div>
+=======
+    <div class="page-footer-inner"> Carhabty &copy; 2017</div>
+>>>>>>> b308c0b126b2a57f76029eaf79603ea271c003c1
     <div class="scroll-to-top">
         <i class="icon-arrow-up"></i>
     </div>

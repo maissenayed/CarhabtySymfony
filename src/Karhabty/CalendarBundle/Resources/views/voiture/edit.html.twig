@@ -6,6 +6,15 @@
     <link href="{{  asset('assets/global/plugins/select2/css/select2-bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- END PAGE LEVEL PLUGINS -->
 {% endblock %}
+{% block level_p %}
+    <link href="{{ asset('assets/global/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/global/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/global/plugins/clockface/css/clockface.css')}}" rel="stylesheet" type="text/css" />
+
+
+{% endblock %}
 
 
 
@@ -44,154 +53,92 @@
                 <span class="caption-subject font-blue-hoki bold uppercase">Form Sample</span>
                 <span class="caption-helper">demo form...</span>
             </div>
+
             <div class="actions">
-                <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
-                    <i class="icon-cloud-upload"></i>
-                </a>
-                <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
-                    <i class="icon-wrench"></i>
-                </a>
-                <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
-                    <i class="icon-trash"></i>
-                </a>
+
+                    <div class=" col-md-9">
+                        <a class="btn green" href="{{ path('voiture_index') }}">Back to the list <i class="fa fa-check"></i> </a>
+                    </div>
+
             </div>
+
+
+
+
         </div>
         <div class="portlet-body form">
+
+
+
+
             <!-- BEGIN FORM-->
-            <form action="#" class="form-horizontal form-bordered form-label-stripped">
+            {{ form_start(edit_form,{'attr':{'class':'form-horizontal form-bordered form-label-stripped'}}) }}
                 <div class="form-body">
                     <div class="form-group">
-                        <label class="control-label col-md-3">First Name</label>
+                        <label class="control-label col-md-3">marque devoiture</label>
                         <div class="col-md-9">
-                            <input type="text" placeholder="small" class="form-control">
+                            {{ form_widget(edit_form.Marque, {'attr': {'class': 'form-control','placeholder':'marque'}}) }}
                             <span class="help-block"> This is inline help </span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-md-3">Last Name</label>
+                        <label class="control-label col-md-3">model de voiture</label>
                         <div class="col-md-9">
-                            <input type="text" placeholder="medium" class="form-control">
+                            {{ form_widget(edit_form.Model, {'attr': {'class': 'form-control','placeholder':'model'}}) }}
                             <span class="help-block"> This is inline help </span>
                         </div>
                     </div>
+
                     <div class="form-group">
-                        <label class="control-label col-md-3">Gender</label>
+                        <label class="control-label col-md-3">date de sortie</label>
                         <div class="col-md-9">
-                            <select class="form-control">
-                                <option value="">Male</option>
-                                <option value="">Female</option>
-                            </select>
-                            <span class="help-block"> Select your gender. </span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3">Date of Birth</label>
-                        <div class="col-md-9">
-                            <input type="text" class="form-control" placeholder="dd/mm/yyyy"> </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3">Category</label>
-                        <div class="col-md-9">
-                            <select class="form-control select2_category">
-                                <option value="Category 1">Category 1</option>
-                                <option value="Category 2">Category 2</option>
-                                <option value="Category 3">Category 5</option>
-                                <option value="Category 4">Category 4</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3">Multi-Value Select</label>
-                        <div class="col-md-9">
-                            <select class="form-control select2_sample1" multiple="">
-                                <optgroup label="NFC EAST">
-                                    <option>Dallas Cowboys</option>
-                                    <option>New York Giants</option>
-                                    <option>Philadelphia Eagles</option>
-                                    <option>Washington Redskins</option>
-                                </optgroup>
-                                <optgroup label="NFC NORTH">
-                                    <option>Chicago Bears</option>
-                                    <option>Detroit Lions</option>
-                                    <option>Green Bay Packers</option>
-                                    <option>Minnesota Vikings</option>
-                                </optgroup>
-                                <optgroup label="NFC SOUTH">
-                                    <option>Atlanta Falcons</option>
-                                    <option>Carolina Panthers</option>
-                                    <option>New Orleans Saints</option>
-                                    <option>Tampa Bay Buccaneers</option>
-                                </optgroup>
-                                <optgroup label="NFC WEST">
-                                    <option>Arizona Cardinals</option>
-                                    <option>St. Louis Rams</option>
-                                    <option>San Francisco 49ers</option>
-                                    <option>Seattle Seahawks</option>
-                                </optgroup>
-                                <optgroup label="AFC EAST">
-                                    <option>Buffalo Bills</option>
-                                    <option>Miami Dolphins</option>
-                                    <option>New England Patriots</option>
-                                    <option>New York Jets</option>
-                                </optgroup>
-                                <optgroup label="AFC NORTH">
-                                    <option>Baltimore Ravens</option>
-                                    <option>Cincinnati Bengals</option>
-                                    <option>Cleveland Browns</option>
-                                    <option>Pittsburgh Steelers</option>
-                                </optgroup>
-                                <optgroup label="AFC SOUTH">
-                                    <option>Houston Texans</option>
-                                    <option>Indianapolis Colts</option>
-                                    <option>Jacksonville Jaguars</option>
-                                    <option>Tennessee Titans</option>
-                                </optgroup>
-                                <optgroup label="AFC WEST">
-                                    <option>Denver Broncos</option>
-                                    <option>Kansas City Chiefs</option>
-                                    <option>Oakland Raiders</option>
-                                    <option>San Diego Chargers</option>
-                                </optgroup>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3">Membership</label>
-                        <div class="col-md-9">
-                            <div class="radio-list">
-                                <label>
-                                    <div class="radio"><span><input type="radio" name="optionsRadios2" value="option1"></span></div> Free </label>
-                                <label>
-                                    <div class="radio"><span class="checked"><input type="radio" name="optionsRadios2" value="option2" checked=""></span></div> Professional </label>
+                            <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" >
+                                {{ form_widget(edit_form.Annee, {'attr': {'class': 'form-control','placeholder':'annee'}}) }}
+                                <span class="input-group-btn">
+                                                            <button class="btn default" type="button">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </button>
+                                                        </span>
                             </div>
+                            <!-- /input-group -->
+                            <span class="help-block"> Select date </span>
                         </div>
                     </div>
+
+
                     <div class="form-group">
-                        <label class="control-label col-md-3">Street</label>
+                        <label class="control-label col-md-3">model de voiture</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control"> </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3">City</label>
-                        <div class="col-md-9">
-                            <input type="text" class="form-control"> </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3">State</label>
-                        <div class="col-md-9">
-                            <input type="text" class="form-control"> </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3">Post Code</label>
-                        <div class="col-md-9">
-                            <input type="text" class="form-control"> </div>
-                    </div>
-                    <div class="form-group last">
-                        <label class="control-label col-md-3">Country</label>
-                        <div class="col-md-9">
-                            <select class="form-control"> </select>
+                            <style>
+                                .fileContainer {
+                                    overflow: hidden;
+                                    position: relative;
+                                }
+
+                                .fileContainer [type=file] {
+                                    cursor: inherit;
+                                    display: block;
+                                    font-size: 999px;
+                                    filter: alpha(opacity=0);
+                                    min-height: 100%;
+                                    min-width: 100%;
+                                    opacity: 0;
+                                    position: absolute;
+                                    right: 0;
+                                    text-align: right;
+                                    top: 0;
+                                }
+                            </style>
+                            <!-- The fileinput-button span is used to style the file input field as button -->
+                            <button class="btn default">
+                                <div>
+                                    {{ form_widget(edit_form.imageFile)}}</div>
+                            </button>
                         </div>
                     </div>
+
+
+
                 </div>
                 <div class="form-actions">
                     <div class="row">
@@ -199,11 +146,23 @@
                             <button type="submit" class="btn green">
                                 <i class="fa fa-check"></i> Submit</button>
                             <button type="button" class="btn default">Cancel</button>
+                            {{ form_end(edit_form) }}
+
+                            <div class="col-md-offset-6 ">
+                                {{ form_start(delete_form,{'attr':{'class':'form-horizontal form-bordered form-label-stripped'}}) }}
+                            <button type="submit" class="btn green">
+                                <i class="fa fa-check"></i> supprimer</button>
+                            {{ form_end(delete_form) }}</div>
                         </div>
                     </div>
+
                 </div>
-            </form>
+
             <!-- END FORM-->
+
+
+
+
         </div>
     </div>
 
@@ -227,79 +186,10 @@
 
 
 
-    <h1>Voiture edit</h1>
-
-    {{ form_start(edit_form) }}
-    {{ form_widget(edit_form) }}
-    {{ form_row(edit_form.Annee) }}
-    {{ form_row(edit_form.imageFile) }}
-    {{ form_row(edit_form.Marque) }}
-    {{ form_row(edit_form.Model) }}
-
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('voiture_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
-{% endblock %}
-
-{% block javascriptswizerd %}
-    <script src="{{  asset('assets/global/plugins/jquery.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/global/plugins/bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/global/plugins/js.cookie.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/global/plugins/jquery.blockui.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/global/plugins/uniform/jquery.uniform.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}" type="text/javascript"></script>
-    <!-- END CORE PLUGINS -->
-    <!-- BEGIN PAGE LEVEL PLUGINS -->
-    <script src="{{ asset('assets/global/plugins/fancybox/source/jquery.fancybox.pack.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/global/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js')}}" type="text/javascript"></script>
-    <script src="{{ asset('assets/global/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/global/plugins/jquery-file-upload/js/vendor/jquery.ui.widget.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/global/plugins/jquery-file-upload/js/vendor/tmpl.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/global/plugins/jquery-file-upload/js/vendor/load-image.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/global/plugins/jquery-file-upload/js/vendor/canvas-to-blob.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/global/plugins/jquery-file-upload/blueimp-gallery/jquery.blueimp-gallery.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/global/plugins/jquery-file-upload/js/jquery.iframe-transport.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/global/plugins/jquery-file-upload/js/jquery.fileupload.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/global/plugins/jquery-file-upload/js/jquery.fileupload-process.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/global/plugins/jquery-file-upload/js/jquery.fileupload-image.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/global/plugins/jquery-file-upload/js/jquery.fileupload-audio.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/global/plugins/jquery-file-upload/js/jquery.fileupload-video.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/global/plugins/jquery-file-upload/js/jquery.fileupload-validate.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/global/plugins/jquery-file-upload/js/jquery.fileupload-ui.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/global/plugins/select2/js/select2.full.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/global/plugins/jquery-validation/js/jquery.validate.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/global/plugins/jquery-validation/js/additional-methods.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/global/plugins/bootstrap-wizard/jquery.bootstrap.wizard.min.js') }}" type="text/javascript"></script>
 
 
 
 
-
-
-
-    <!-- END PAGE LEVEL PLUGINS -->
-    <!-- BEGIN THEME GLOBAL SCRIPTS -->
-    <script src="{{ asset('assets/global/scripts/app.min.js') }}" type="text/javascript"></script>
-    <!-- END THEME GLOBAL SCRIPTS -->
-    <!-- BEGIN PAGE LEVEL SCRIPTS -->
-    <script src="{{ asset('assets/pages/scripts/form-samples.min.js') }}" type="text/javascript"></script>
-    <!-- END PAGE LEVEL SCRIPTS -->
-    <!-- BEGIN THEME LAYOUT SCRIPTS -->
-    <script src="{{ asset('assets/layouts/layout4/scripts/layout.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/layouts/layout4/scripts/demo.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/layouts/global/scripts/quick-sidebar.min.js') }}" type="text/javascript"></script>
 
 
 
@@ -309,3 +199,22 @@
 
 
 {% endblock %}
+
+
+{% block lvljp %}
+    <script src="{{ asset('assets/global/plugins/bootstrap-daterangepicker/moment.min.js')}}" type="text/javascript"></script>
+    <script src="{{ asset('assets/global/plugins/bootstrap-daterangepicker/daterangepicker.js')}}" type="text/javascript"></script>
+    <script src="{{ asset('assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}" type="text/javascript"></script>
+    <script src="{{ asset('assets/global/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js')}}" type="text/javascript"></script>
+    <script src="{{ asset('assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js')}}" type="text/javascript"></script>
+    <script src="{{ asset('assets/global/plugins/clockface/js/clockface.js')}}" type="text/javascript"></script>
+
+
+
+{% endblock %}
+
+    {% block lvljs %}
+        <script src="{{ asset('assets/pages/scripts/components-date-time-pickers.min.js')}}" type="text/javascript"></script>
+        <script src="{{ asset('assets/pages/scripts/form-samples.min.js') }}" type="text/javascript"></script>
+    {% endblock %}
+

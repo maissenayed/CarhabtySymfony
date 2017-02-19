@@ -16,9 +16,16 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new AppBundle\AppBundle(),
+<<<<<<< HEAD
             new Karhabty\AstuceBundle\KarhabtyAstuceBundle(),
+=======
+
+            new Karhabty\EventsBundle\KarhabtyEventsBundle(),
+
+>>>>>>> b308c0b126b2a57f76029eaf79603ea271c003c1
             new Karhabty\UserBundle\KarhabtyUserBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+
             new Karhabty\OffreBundle\KarhabtyOffreBundle(),
             new Karhabty\MapBundle\KarhabtyMapBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
@@ -33,6 +40,7 @@ class AppKernel extends Kernel
             new Karhabty\BankBundle\KarhabtyBankBundle(),
             new Karhabty\AdminBundle\KarhabtyAdminBundle(),
             new Ob\HighchartsBundle\ObHighchartsBundle(),
+            new Gregwar\CaptchaBundle\GregwarCaptchaBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
