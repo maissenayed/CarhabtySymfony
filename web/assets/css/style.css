@@ -1,3 +1,11 @@
+<<<<<<< HEAD
+.thumbnail img{
+
+width: 100%;
+    height: auto;
+    display: block;
+}
+=======
 a.list-group-item {
     height:auto;
     min-height:220px;
@@ -9,3 +17,4 @@ a.list-group-item.active small {
     margin:20px auto 1px;
 }
 
+>>>>>>> 78215f9a2a3feabe66afc3b6246884fcb4ab6b4e

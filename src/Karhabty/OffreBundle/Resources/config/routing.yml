@@ -22,3 +22,6 @@ coupon_generate_pdf:
     defaults: { _controller: "KarhabtyOffreBundle:Coupon:test" }
 
 
+mes_coupon:
+    path:      /mescoupons
+    defaults: { _controller: "KarhabtyOffreBundle:Coupon:MesCoupon" }

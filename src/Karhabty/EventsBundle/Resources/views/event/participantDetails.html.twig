@@ -1,0 +1,25 @@
+{% extends 'layout/LayoutUser.html.twig' %}
+
+{% block content %}
+<h1>Informations De Participant</h1>
+
+{% for participationRequest in participationRequests %}
+<
+<div class="list-icon-container">
+
+    <div >
+        <h3 class="uppercase" >
+            {{ participationRequest.user.nom }}
+        </h3>
+
+        <p>{{ participationRequest.user.prenom}}</p>
+
+    </div>
+
+
+    {% endfor %}
+
+
+
+    {% endblock %}
+

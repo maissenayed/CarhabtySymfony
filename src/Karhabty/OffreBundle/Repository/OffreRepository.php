@@ -93,4 +93,16 @@ class OffreRepository extends EntityRepository
 
 
 
+    function countStat($id){
+
+
+        $query=$this->getEntityManager()->createQuery("select count(m) from KarhabtyOffreBundle:Coupon m WHERE m.user=:user")
+            ->setParameter('user',$id);
+        return $query->getResult();
+
+
+
+    }
+
+
 }

@@ -44,5 +44,5 @@ offres_trie:
 
 offres_statistique:
     path:      /statistique
-    defaults: { _controller: "KarhabtyOffreBundle:Statistique:Stat" }
+    defaults: { _controller: "KarhabtyOffreBundle:Statistique:chart" }
 
