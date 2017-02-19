@@ -2,6 +2,7 @@
 
 namespace Karhabty\PaiementBundle\Controller;
 
+use Karhabty\BankBundle\Entity\Account;
 use Karhabty\OffreBundle\Entity\Offre;
 use Nomaya\SocialBundle\DependencyInjection\NomayaSocialExtension;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -15,6 +16,9 @@ class PaiementController extends Controller
 
     function indexAction(Offre $offre)
     {
+
+        $account = new account();
+        $account->setSolde($account->getSolde()-$offre->getPrix());
 
         return $this->render('@KarhabtyPaiement/Default/paiement.html.twig', array(
             'offre' => $offre
@@ -33,7 +37,6 @@ class PaiementController extends Controller
     {
 
 
-
         if ($request->isXmlHttpRequest()) {
 
             $card = $request->request->get('card');
@@ -47,6 +50,7 @@ class PaiementController extends Controller
             $verif = $em->getRepository('KarhabtyBankBundle:Card')->findBy(array('numCard'=>$card,'cvc'=>$cvc,'expdate'=>$exp));
 
             if($verif == null){
+
 
                 return new JsonResponse(array('status' => 'faild'));
 

@@ -2,27 +2,36 @@
 
 {% block content%}
 
+	<div class="row">
+	<div class="col-md-12">
 
-	<div class="col-md-6">
 
+		<div class="col-md-6">
 		<div class="portlet-body">
 			<div id="gmap_basic" class="gmaps">
 			</div>
 
-			<div class="portlet-body">
-				<div id="gmap_basic" class="gmaps">
-				</div>
+
 			</div>
 		</div>
 
 		<div class="col-md-6">
 			<form>
-				<div class="col-md-5    ">
-
-					<input type="button" class="btn green" value="Localiser" onclick="calcRoute();"/>
-				</div>
+			<label for="lavage">Lavage</label>
+			<input type="checkbox"  data-toggle="toggle" value="lavage" id="lavage">
+			<label>Auto-école</label>
+			<input type="checkbox"  data-toggle="toggle" value="auto">
+			<label>Mécanicien</label>
+			<input type="checkbox"  data-toggle="toggle" value="mec">
+			<label>Vendeur piéce de rechange</label>
+			<input type="checkbox"  data-toggle="toggle" value="vendeur">
 			</form>
 		</div>
+
+
+
+
+
 
 
 		<script type="text/javascript">
@@ -33,7 +42,11 @@
 
             function initMap() {
                 var directionsService = new google.maps.DirectionsService;
-                var directionsDisplay = new google.maps.DirectionsRenderer;
+                var directionsDisplay = new google.maps.DirectionsRenderer({
+
+                    suppressMarkers: true
+
+				});
                 var map = new google.maps.Map(document.getElementById('gmap_basic'), {
                     zoom: 7,
                     center: {lat: 36.84446074079564, lng: 10.111777782440186}
@@ -41,7 +54,8 @@
 
                 var markerPostion = new google.maps.Marker({
                     map: map,
-                    title: 'Hello World!'
+                    title: 'Hello World!',
+					icon:"{{ asset('assets/img/marker.png') }}"
                 });
 
                 directionsDisplay.setMap(map);
@@ -66,24 +80,71 @@
                             title: 'Hello World!'
                         });
 */
+
+                     		var markers = [];
+
+                        var activities_checked = [];
+                        $('input:checkbox').change(
+                            function(){
+                                if ($(this).is(':checked')) {
+                                    if($.inArray($(this).val(), activities_checked)<0)
+                                    activities_checked.push($(this).val());
+                                }else{
+                                    var index = activities_checked.indexOf($(this).val());
+                                    activities_checked.splice(index, 1);
+
+								}
+								console.log("active");
+
+
+                                markers.forEach(function (item, index) {
+
+                                    item.setMap(null);
+                                });
+                                markers = [];
+
+
+                                putmarker();
+                            });
+
+						function putmarker() {
+                            console.log("dude");
+
+
+                            var h =[];
                           {%  for off in offres %}
 
-						 var h ="{{ off.user.adresse }}";
+						 	h.push(["{{ off[0] }}","{{ off[1] }}"]);
+							{% endfor %}
+
+
+                            h.forEach(function (item, index) {
+
+
 						 var geocoder = new google.maps.Geocoder();
-						 geocoder.geocode({address:h }, function(results, status) {
+						 geocoder.geocode({address:item[0] }, function(results, status) {
 						 if (status == google.maps.GeocoderStatus.OK) {
 
-						 var myResult = results[0].geometry.location; // reference LatLng value
+						 var myResult = results[0].geometry.location;
 
-						 //createMarker(myResult); // call the function that adds the marker
+                             console.log($.inArray(item[1], activities_checked)>=0);
+                             console.log(activities_checked);
+                             console.log(item[1]);
+                             if($.inArray(item[1], activities_checked)>=0) {
 
-						 marker = new google.maps.Marker({
-						 map: map,
-						 position: myResult
-						 });
-						 map.setCenter(myResult);
-                             marker.setMap(map);
-						 // map.setZoom(17);
+                              marker = new google.maps.Marker({
+							 map: map,
+							 position: myResult
+
+							 });
+
+                              markers.push(marker);
+
+
+                                 map.setCenter(myResult);
+                                 marker.setMap(map);
+                                 // map.setZoom(17);
+
 
                              marker.addListener('click', function() {
 
@@ -91,16 +152,15 @@
 
                              });
 
-						 }
+						 } }
 						 });
 
+                            });
 
 
 
-                        {% endfor %}
-
-                   //     searchAddress();
-
+                    }
+                        putmarker();
 
 
                     }, function() {

@@ -1,0 +1,48 @@
+{% extends 'layout/LayoutUser.html.twig' %}
+
+{% block content %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+
+<h1>Mes Coupons Achetés</h1>
+
+
+
+
+    <table class="table">
+        <thead class="thead-inverse">
+        <tr>
+
+            <th>Offre</th>
+            <th>Partenaire</th>
+            <th>Adresse</th>
+            <th>Prix</th>
+            <th>Référence</th>
+        </tr>
+        </thead>
+
+        {% for coupon in coup %}
+        <tbody>
+
+
+
+            <td style="font-size: 20px">{{ coupon.offre.nomOffre }}</td>
+
+            <td style="font-size: 20px"> {{ coupon.offre.user }}</td>
+
+            <td style="font-size: 20px"> {{ coupon.offre.user.adresse }}</td>
+
+            <td>{{ coupon.offre.prix }}DT</td>
+
+            <td>{{ coupon.reference }}</td>
+
+        {% endfor %}
+
+
+        </tbody>
+    </table>
+
+
+
+
+{% endblock %}

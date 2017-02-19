@@ -79,10 +79,22 @@ class CouponController extends Controller
         //$pdf->SetMargins(20,20,40, true);
         $pdf->AddPage();
 
-        $filename = 'coupon';
+
+        // Change the path to whatever you like, even public:// will do or you could also make use of the private file system by using private://
+        $path =  'localhost/Car';
+
+// Supply a filename including the .pdf extension
+
+        $filename = 'coupon.pdf';
+// Create the full path
+
+        $full_path = $path . '/' . $filename;
+
+
+
 
         $pdf->writeHTMLCell($w = 0, $h = 0, $x = '', $y = '', $html, $border = 0, $ln = 1, $fill = 0, $reseth = true, $align = '', $autopadding = true);
-        $pdf->Output($filename.".pdf",'I');
+      return  $pdf->Output($full_path,'D');
     }
 
 
@@ -126,6 +138,23 @@ class CouponController extends Controller
 
 
 
+
+
+    public function MesCouponAction(){
+
+
+        $user = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $coupon = $em->getRepository('KarhabtyOffreBundle:Coupon')->MesCoupon($user);
+
+
+
+
+
+       return $this->render('@KarhabtyOffre/coupon/MesCoupon.html.twig',array('coup'=>$coupon));
+
+
+    }
 
 
 

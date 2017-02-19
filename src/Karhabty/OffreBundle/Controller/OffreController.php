@@ -154,9 +154,6 @@ class OffreController extends Controller
 
 
             $id = $request->request->get('id');
-
-
-
             $em = $this->getDoctrine()->getManager();
             $count = $em->getRepository('KarhabtyOffreBundle:Offre')->countOffre($id);
 
