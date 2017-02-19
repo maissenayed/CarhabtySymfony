@@ -23,9 +23,6 @@ class AppKernel extends Kernel
             new Karhabty\MapBundle\KarhabtyMapBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
             new Karhabty\FutureConducteurBundle\KarhabtyFutureConducteurBundle(),
-<<<<<<< HEAD
-            new Vich\UploaderBundle\VichUploaderBundle(),
-=======
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new AncaRebeca\FullCalendarBundle\FullCalendarBundle(),
             new Karhabty\CalendarBundle\KarhabtyCalendarBundle(),
@@ -36,7 +33,6 @@ class AppKernel extends Kernel
             new Karhabty\BankBundle\KarhabtyBankBundle(),
             new Karhabty\AdminBundle\KarhabtyAdminBundle(),
             new Ob\HighchartsBundle\ObHighchartsBundle(),
->>>>>>> 78215f9a2a3feabe66afc3b6246884fcb4ab6b4e
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

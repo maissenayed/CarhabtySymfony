@@ -4,22 +4,24 @@
 {% block stylesheets %}
     {{ parent() }}
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
-    <link href="{{ asset('assets/ahlem/css/star-rating.min.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/ahlem/css/theme.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/ahlem/css/star-rating.min.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('assets/ahlem/css/theme.min.css') }}" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/ahlem/css/sweetalert.css') }}">
-  <!--  <link rel="stylesheet" type="text/css" href="{{ asset('assets/ahlem/css/style.css') }}">-->
-    {%  endblock %}
+    <!--  <link rel="stylesheet" type="text/css" href="{{ asset('assets/ahlem/css/style.css') }}">-->
+{% endblock %}
 
  {% block javascripts %}
      {{ parent() }}
      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.js"></script>
-     <script src="{{  asset('assets/ahlem/js/star-rating.min.js') }}" type="text/javascript"></script>
-     <script src="{{  asset('assets/ahlem/js/theme.min.js') }}" type="text/javascript"></script>
-     <script src="{{  asset('assets/ahlem/js/sweetalert.min.js') }}"> </script>
+     <script src="{{ asset('assets/ahlem/js/star-rating.min.js') }}" type="text/javascript"></script>
+     <script src="{{ asset('assets/ahlem/js/theme.min.js') }}" type="text/javascript"></script>
+     <script src="{{ asset('assets/ahlem/js/sweetalert.min.js') }}"></script>
      <script type="text/javascript" src="{{ asset('assets/ahlem/js/jquery.leanModal.min.js') }}"></script>
+     <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+     <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
      <script>
          // A $( document ).ready() block.
-         $( "#delA" ).click(function() {
+         $("#delA").click(function () {
              swal({
                      title: "Are you sure?",
                      text: "You will not be able to recover this imaginary file!",
@@ -31,15 +33,13 @@
                      closeOnConfirm: false,
                      closeOnCancel: false
                  },
-                 function(isConfirm){
+                 function (isConfirm) {
                      if (isConfirm) {
-                         $.ajax({
-                             url: url,
-                             data: data,
-                             success: success,
-                             dataType: dataType
+                         myvar={{ i.id }};
+                         $.post(Routing.generate('ajaxDeleteAstuce'),{'data':myvar},function (response) {
+                             swal("Deleted!", "Your imaginary file has been deleted.", "success");
                          });
-                         swal("Deleted!", "Your imaginary file has been deleted.", "success");
+
                      } else {
                          swal("Cancelled", "Your imaginary file is safe :)", "error");
                      }
@@ -48,10 +48,8 @@
      </script>
 
 
- {%  endblock %}
+ {% endblock %}
 {% block content %}
-
-
 
     <!-- Modal -->
     <div id="myModal" class="modal fade" role="dialog">
@@ -73,87 +71,118 @@
 
         </div>
     </div>
+<div class="col-md-9">
+    <h1>{{ i.theme }}</h1>
 
-        <h1>{{ i.theme }}</h1>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-12">
+
+                <img class="col-md-6"
+                     src="{{ asset(vich_uploader_asset(i, 'imageFile')) }}" alt="{{ i.theme }}"/>
+            <div class="col-md-6">
+                <div class="caption">
+                    <h3>{{ i.titre}}</h3>
+                    <p>{{ i.description }}</p>
+                    <p>
+
+                        <a id="delA" class="btn btn-circle btn-icon-only btn-default">
+                            <i class="icon-trash"></i>
+                        </a>
+
+                        <a class="btn btn-circle btn-icon-only btn-default"
+                           href="{{ path('updateAstuce', {'id':i.id}) }}">
+                            <i class="icon-wrench"></i>
+                        </a>
+                        <a class="btn btn-circle btn-icon-only btn-default" data-toggle="modal" data-target="#myModal">
+                            <i class="fa fa-commenting-o"></i>
+                        </a>
+
+                    <form method="post" action="{{ path('rate') }}">
+                        <input id="input-id" type="number" value="{{ rate.value }}" class="rating"  data-size="xs"  name="rate" >
+                        <input type="hidden" value="{{ i.id }}" name="idp"/>
+
+                        <input type="submit" value="valider" class="btn btn-circle blue">
+                    </form>
+
+                        {{ form_start(form) }}
+                    <h3>Ajouter un commentaire</h3>
+                    {{ form_widget (form.commentaire,{ 'attr': {'class':'form-control','row':'3' }}) }}
+                    <br>
+                    <button type="submit" class="btn btn-circle blue">Valider</button>
+
+                    {{ form_end(form) }}
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
 
-        <div class="row">
-            <div class="col-sm-6 col-md-12">
 
-                    <div style="width:50%; float:left;">
-                        <img style="height:299px;width:450px;display: block;"
-                             src="{{ asset(vich_uploader_asset(i, 'imageFile')) }}" alt="{{ i.theme }}"/>
-                    </div>
-                    <div style="width: 50%; float:right;">
-                        <div class="caption">
-                            <h3>{{ i.titre }}</h3>
-                            <p>{{ i.description }}</p>
-                            <p>
+    {% if relatedAstuces|length >0 %}
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                {% for relatedAstuce in relatedAstuces %}
+                    {% if loop.index != 1 %}
+                        <li data-target="#myCarousel" data-slide-to="0"></li>
 
-                                <a id="delA" class="btn btn-circle btn-icon-only btn-default"  >
-                                    <i class="icon-trash"></i>
-                                </a>
+                    {% endif %}
+                {% endfor %}
+            </ol>
 
-                                <a class="btn btn-circle btn-icon-only btn-default" href="{{ path('updateAstuce', {'id':i.id}) }}">
-                                    <i class="icon-wrench"></i>
-                                </a>
-                                <a class="btn btn-circle btn-icon-only btn-default" data-toggle="modal" data-target="#myModal" >
-                                    <i class="fa fa-commenting-o"></i>
-                                </a>
-                                <input id="input-id" type="text" class="rating" data-size="xs" >
-                            {{ form_start(form) }}
-                            <h3>Ajouter un commentaire</h3>
-                            {{ form_widget (form.commentaire,{ 'attr': {'class':'form-control','row':'3' }}) }}
-                            <button type="submit" class="btn btn-circle btn-success">Success</button>
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" style="height: 300px" role="listbox">
 
-                            {{ form_end(form) }}
-                            </p>
+                <div class="item active">
+                    <img class="img-responsive center-block"
+                         src="{{ asset(vich_uploader_asset(relatedAstuces[0], 'imageFile')) }}" style="height: 300px;"
+                         alt="Image introuvable">
+                </div>
+                {% for relatedAstuce in relatedAstuces %}
+                    {% if loop.index != 1 %}
+                        <div class="item" style="">
+                            <img class="img-responsive center-block"
+                                 src="{{ asset(vich_uploader_asset(relatedAstuce, 'imageFile')) }}"
+                                 style="height: 300px;"
+                                 alt="Image introuvable">
                         </div>
-                    </div>
+                    {% endif %}
+                {% endfor %}
 
             </div>
+
+            <!-- Left and right controls -->
+            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
 
+    {% endif %}
 
-
-
-
-    <div class="related-products-wrapper">
-        <h3 class="related-products-title">Related Astuces</h3>
+</div>
+    <div class="related-products-wrapper col-md-3 col-sm-12" style="margin-top: 20px">
         <div class="related-products-carousel">
-            {% for relatedAstuce in relatedAstuces %}
-                <div class="single-product">
-
-                    <div class="product-f-image">
-                        <h3>{{ relatedAstuce.titre }}</h3>
-                        <img src="{{ asset(vich_uploader_asset(relatedAstuce, 'imageFile')) }}"
-                             style="min-height:233px;height:233px;min-width:350px;width:350px;" alt="{{ relatedAstuce.theme }}"/>
-                        <div class="product-hover">
-                            <a href="{{ path('infoAstuce', {'id' : relatedAstuce.id} ) }}" class="view-details-link"><i
-                                        class="fa fa-link"></i> Voir détails </a>
-                        </div>
-                    </div>
-
-
-
-                </div>
-            {% endfor %}
             <div class="single-sidebar">
                 <h3 class="sidebar-title">les astuces récentes </h3>
-                <div class="thubmnail-recent">
+
                     {% for recentAstuce in recentAstuces %}
-
-                        <h3>{{ recentAstuce.titre }}</h3>
-                        <img src="{{ asset(vich_uploader_asset(recentAstuce, 'imageFile')) }}"
-                             style="min-height:233px;height:233px;min-width:350px;width:350px;" alt="{{ recentAstuce.theme }}"/>
-                        <div class="product-hover">
-                            <a href="{{ path('infoAstuce', {'id' : recentAstuce.id} ) }}" class="view-details-link"><i
-                                        class="fa fa-link"></i> Voir détails </a>
+                        <div class="card  col-sm-3" style="width: 20rem;margin-top: 20px">
+                            <img class="card-img-top img-responsive" src="{{ asset(vich_uploader_asset(recentAstuce, 'imageFile')) }}" alt="{{ recentAstuce.theme }}">
+                            <div class="card-block">
+                                <h4 class="card-title">{{ recentAstuce.titre }}</h4>
+                                <a href="{{ path('infoAstuce', {'id' : recentAstuce.id} ) }}" class="btn btn-circle blue">Voir Détails</a>
+                            </div>
                         </div>
-
-
                     {% endfor %}
-                </div>
             </div>
         </div>
     </div>

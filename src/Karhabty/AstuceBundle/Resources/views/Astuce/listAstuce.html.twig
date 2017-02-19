@@ -1,12 +1,13 @@
 {% extends 'Layout/LayoutUser.html.twig' %}
 {% block content %}
+
     <div>
-        <div class="shake-slow">
-            <a href="{{ path('addAstuce') }}" class="btn btn-circle grey-salsa btn-outline btn-sm">
-                <i class="fa fa-plus"></i>
-                Ajouter Astuce
-            </a>
-        </div>
+
+        <a href="{{ path('addAstuce') }}" class="btn btn-circle grey-salsa btn-outline btn-sm">
+            <i class="fa fa-plus"></i>
+            Ajouter Astuce
+        </a>
+
         <h1>Des astuces qui peuvent vous intéresser </h1>
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         <div class="container">
@@ -23,20 +24,16 @@
                                             <i class="fa fa-caret-down"></i>
                                         </button>
                                         <ul class="dropdown-menu dropdown-menu-right no-margin">
-                                            <li><a href="Entretien"
-                                                   onclick="document.getElementById('selectedSort').value='Entretien'">Entretien</a></li>
-                                            <li><a href="VenteEtAchat"
-                                                   onclick="document.getElementById('selectedSort').value='Vente et Achat'">Vente et Achat</a>
+                                            <li><a href="{{ path('listAstuce',{'param': 'Entretien'}) }}" value="Entretien">Entretien</a></li>
+                                            <li><a href="{{ path('listAstuce',{'param': 'Vente Et Achat'}) }}" value="VenteEtAchat">Vente et Achat</a>
                                             </li>
-                                            <li><a href="Conduite"
-                                                   onclick="document.getElementById('selectedSort').value='Conduite'">Conduite</a>
+                                            <li><a href="{{ path('listAstuce',{'param': 'Conduite'}) }}" value="Conduite">Conduite</a>
                                             </li>
-                                            <li><a href="Consommation"
-                                                   onclick="document.getElementById('selectedSort').value='Consommation'">Consommation</a>
+                                            <li><a href="{{ path('listAstuce',{'param': 'Consommation'}) }}" value="Consommation">Consommation</a>
                                             </li>
-                                            <li><a href="Autre"
-                                                   onclick="document.getElementById('selectedSort').value='Autre'">Autre</a>
+                                            <li><a href="{{ path('listAstuce',{'param': 'Autre'}) }}" value="Autre">Autre</a>
                                             </li>
+
                                         </ul>
                                     </div>
 
@@ -55,12 +52,14 @@
             </div>
         </div>
     </div>
-
+    <div>
+    </div>
 
 
     {% for i in astuces %}
 
-        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" style="margin-top: 30px" id="{{ i.id }}">
             <div class="hovereffect">
                 <img class="img-responsive" src="{{ asset(vich_uploader_asset(i, 'imageFile')) }}" style="min-height:233px;height:233px;min-width:350px;width:350px;" alt="{{ i.theme }}">
 
@@ -71,12 +70,13 @@
             </div>
         </div>
 
-
-
     {% endfor %}
 
     <div class="scroll-to-top" style="display: block;">
         <i class="icon-arrow-up"></i>
     </div>
+
+
+
 
 {% endblock %}

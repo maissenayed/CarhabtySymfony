@@ -26,7 +26,7 @@ class AstuceType extends AbstractType
             ))
             ->add('titre')
             ->add('description', TextareaType::class)
-            ->add('date', DateTimeType::class)
+            ->add('date', DateTimeType::class , ['widget' => 'single_text', 'format' => 'dd-MM-yyyy:hh:mm:ss'] )
 
             ->add('imageFile', FileType::class)
             ->add('Valider', SubmitType::class)

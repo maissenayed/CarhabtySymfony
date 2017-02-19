@@ -1,8 +1,3 @@
-karhabty_astuce_homepage:
-    path:     /
-    defaults: { _controller: KarhabtyAstuceBundle:Default:index }
-
-
 
 addAstuce:
     path:     /addAstuce
@@ -14,8 +9,8 @@ deleteAstuce:
 
 
 listAstuce:
-    path:     /listAstuce
-    defaults: { _controller: KarhabtyAstuceBundle:Astuce:listAstuce}
+    path:     /listAstuce/{param}
+    defaults: { _controller: KarhabtyAstuceBundle:Astuce:listAstuce,'param': 'ALL'}
 
 updateAstuce:
     path:     /updateAstuce/{id}
@@ -24,12 +19,26 @@ updateAstuce:
 
 
 infoAstuce:
-    path:     /infoAstuce/{id}
+    path:     /infoAstuce
     defaults: { _controller: KarhabtyAstuceBundle:Astuce:infoAstuce}
-theme:
-    path:     /{theme}
-    defaults: { _controller: KarhabtyAstuceBundle:Astuce:theme}
+
+
+test:
+    path:     /test/{param}
+    defaults: { _controller: KarhabtyAstuceBundle:Astuce:test}
+
+rate:
+    path:     /rat
+    defaults: { _controller: KarhabtyAstuceBundle:Astuce:rate}
+
+
 
 addComm:
     path:     /AddComm
     defaults: { _controller: KarhabtyAstuceBundle:Astuce:addComment}
+
+ajaxDeleteAstuce:
+    path:     /deleteAstuceAjax
+    defaults: { _controller: KarhabtyAstuceBundle:Astuce:deleteAstuce}
+    options:
+        expose: true

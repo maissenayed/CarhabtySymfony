@@ -2,13 +2,16 @@
 
 namespace Karhabty\AstuceBundle\Controller;
 
+use Karhabty\AstuceBundle\Entity\Rating;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Karhabty\AstuceBundle\Entity\Astuce;
 use Karhabty\AstuceBundle\Entity\Comment;
 use Karhabty\AstuceBundle\Entity\AstuceRepository;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Karhabty\AstuceBundle\Form\AstuceType;
 use Karhabty\AstuceBundle\Form\CommentType;
+use Symfony\Component\HttpFoundation\Response;
 
 class AstuceController extends Controller
 {
@@ -26,19 +29,46 @@ class AstuceController extends Controller
         return $this->render('KarhabtyAstuceBundle:Astuce:addAstuce.html.twig', array('form' => $form->createView()));
     }
 
-    public function deleteAstuceAction($id)
+    public function deleteAstuceAction(Request $request)
     {
+
+        if($request->isXmlHttpRequest())
+        {
+            $id=$request->request->get('data');
         $em = $this->getDoctrine()->getManager();
         $Astuce = $em->getRepository('KarhabtyAstuceBundle:Astuce')->find($id);
         $em->remove($Astuce);
         $em->flush();
-        return $this->redirect($this->generateUrl('listAstuce', array()));
+        return new JsonResponse(array('status'=>'success'));
+        }
     }
 
-    public function listAstuceAction()
+    public function testAction($param)
     {
         $em = $this->getDoctrine()->getManager();
-        $Astuce = $em->getRepository('KarhabtyAstuceBundle:Astuce')->findAll();
+        $sortOption=$param;
+        echo($sortOption);
+        die;
+        if($sortOption=='ALL')
+        {$Astuce = $em->getRepository('KarhabtyAstuceBundle:Astuce')->findAll();}
+        else
+        {   die;
+            $Astuce= $em->getRepository('KarhabtyAstuceBundle:Astuce')->findByTheme($sortOption) ;
+
+        }
+        return $this->render('KarhabtyAstuceBundle:Astuce:listAstuce.html.twig', array('astuces' => $Astuce));
+    }
+
+    public function listAstuceAction($param)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $sortOption=$param;
+
+        if($sortOption=='ALL')
+        {$Astuce = $em->getRepository('KarhabtyAstuceBundle:Astuce')->findAll();}
+        else
+        {$Astuce= $em->getRepository('KarhabtyAstuceBundle:Astuce')->findByTheme($sortOption) ;
+        }
         return $this->render('KarhabtyAstuceBundle:Astuce:listAstuce.html.twig', array('astuces' => $Astuce));
     }
 
@@ -56,14 +86,58 @@ class AstuceController extends Controller
         return $this->render('KarhabtyAstuceBundle:Astuce:updateAstuce.html.twig', array('form' => $form->createView()));
     }
 
-    public function infoAstuceAction(Request $req,$id)
+
+
+    public function rateAction(Request $request)
+    {
+        $idp = $request->get('idp');
+        $em = $this->getDoctrine()->getManager();
+        $pub = $em->getRepository('KarhabtyAstuceBundle:Astuce')->find($idp);
+
+        $rate = $em->getRepository('KarhabtyAstuceBundle:Rating')->findOneBy(array('user'=>$this->getUser(),'id_astuce'=>$pub));
+        if ($rate == null)
+            $rate = new Rating();
+        $user = $this->getUser();
+
+        $num = $request->get('rate');
+
+        $rate->setUser($user);
+
+
+        $rate->setIdAstuce($pub);
+        $rate->setValue($num);
+        $em->persist($rate);
+
+        $em->flush();
+        $rate2 = $em->getRepository('KarhabtyAstuceBundle:Rating')->findOneBy(array('user'=>$this->getUser(),'id_astuce'=>$pub));
+        return new Response("ok");
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public function infoAstuceAction(Request $req)
     {
 
+
+        $idp = $req->get('id');
 
         #Signle Astuce
         $ba3 = $this->getDoctrine()
             ->getRepository('KarhabtyAstuceBundle:Astuce')
-            ->find($id);
+            ->find($idp);
 
 
         $comment = new Comment();
@@ -77,7 +151,7 @@ class AstuceController extends Controller
         }
         if (!$ba3) {
             throw $this->createNotFoundException(
-                'No astuce found for id ' . $id
+                'No astuce found for id '
             );
         }
         #RecentProduct
@@ -90,8 +164,39 @@ class AstuceController extends Controller
         $relatedAstuce = $this->getDoctrine()
             ->getRepository('KarhabtyAstuceBundle:Astuce')
             ->relatedAstuce($currentAstuce->getTheme());
-        return ($this->render("KarhabtyAstuceBundle:Astuce:infoAstuce.html.twig"
-            , array('i' => $ba3 , 'relatedAstuces' => $relatedAstuce , 'recentAstuces' => $recentAstuce,'form'=>$form->createView())));
+
+
+        $user = $this->getUser();
+
+        $em = $this->getDoctrine()->getManager();
+        $pub = $em->getRepository('KarhabtyAstuceBundle:Astuce')->findby(array('id'=>$idp));
+
+
+        $rating = $em->getRepository('KarhabtyAstuceBundle:Rating')->findBy(array('id_astuce' => $pub,'user'=>$user));
+        $rate = new Rating();
+        if ($rating != null) {
+
+            /*$rate->setValue($rating[3]);*/
+            $keys = array_keys($rating);
+
+            $rate->setValue($rating[$keys[0]]->getValue());
+
+
+            if ($rate->getValue() != 0) {
+
+                return ($this->render("KarhabtyAstuceBundle:Astuce:infoAstuce.html.twig"
+                    , array('pub' => $pub, 'rate' => $rate,'i' => $ba3 , 'relatedAstuces' => $relatedAstuce , 'recentAstuces' => $recentAstuce,'form'=>$form->createView())));
+
+            }
+
+        } else {
+            $rate->setValue(0);
+            return ($this->render("KarhabtyAstuceBundle:Astuce:infoAstuce.html.twig"
+                , array('pub' => $pub, 'rate' => $rate,'us'=>$user,'i' => $ba3 , 'relatedAstuces' => $relatedAstuce , 'recentAstuces' => $recentAstuce,'form'=>$form->createView())));
+
+        }
+
+
 
     }
     public function themeAction($theme) {

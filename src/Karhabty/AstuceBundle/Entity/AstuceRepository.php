@@ -4,14 +4,10 @@
 namespace Karhabty\AstuceBundle\Entity;
 use Doctrine\ORM\EntityRepository;
 
-/**
-
-
- */
-
 
 class AstuceRepository extends EntityRepository
 {
+
     public function findDetailsAstuceDQL($id) {
 
         $query = $this->_em->createQuery('SELECT ro FROM KarhabtyAstuceBundle:Astuce ro where ro.id=:id')
@@ -27,7 +23,15 @@ class AstuceRepository extends EntityRepository
         $results = $query->getResult();
         return $results;
     }
-    public function recentAstuce($date) {
+
+
+    public  function cxx(){
+
+
+
+    }
+
+    public function recentAstuce() {
 
         $qb = $this->createQueryBuilder('p')
             ->select('p')

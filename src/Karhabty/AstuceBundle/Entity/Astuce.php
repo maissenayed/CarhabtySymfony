@@ -11,7 +11,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
- * @ORM\Entity
  * @Vich\Uploadable
  * @ORM\Entity(repositoryClass="Karhabty\AstuceBundle\Entity\AstuceRepository")
  * @ORM\Table()
@@ -23,7 +22,7 @@ class Astuce
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
 
     private  $id;
@@ -86,7 +85,11 @@ class Astuce
     private $updatedAt;
 
 
-
+    /**
+     * Bidirectional - One-To-Many (INVERSE SIDE)
+     *
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="astuce", cascade={"persist", "remove"})
+     */
     private $comments;
 
 

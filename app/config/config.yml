@@ -100,26 +100,21 @@ fos_user:
 
 
         confirmation:
-<<<<<<< HEAD
                     enabled:    false
-=======
-                    enabled:    true
 
     service:
         mailer: fos_user.mailer.twig_swift
 
 
 
->>>>>>> 78215f9a2a3feabe66afc3b6246884fcb4ab6b4e
 
 vich_uploader:
     db_driver: orm
     mappings:
-<<<<<<< HEAD
             astuce_image:
                 uri_prefix:         /images/astuces
                 upload_destination: '%kernel.root_dir%/../web/images/astuces'
-=======
+
             offres_image:
                 uri_prefix:         /images/offres
                 upload_destination: '%kernel.root_dir%/../web/images/offres'
@@ -164,4 +159,4 @@ nomaya_social:
         facebook:           "http://www.facebook.com/yann.chauvel"
         googleplus:         "https://plus.google.com/105931415830389032796"
     theme:                  'default' # optional
->>>>>>> 78215f9a2a3feabe66afc3b6246884fcb4ab6b4e
+

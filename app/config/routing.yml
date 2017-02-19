@@ -1,7 +1,6 @@
-<<<<<<< HEAD
 karhabty_astuce:
     resource: "@KarhabtyAstuceBundle/Resources/config/routing.yml"
-=======
+
 karhabty_admin:
     resource: "@KarhabtyAdminBundle/Resources/config/routing.yml"
     prefix:   /
@@ -33,7 +32,6 @@ karhabty_offre:
 karhabty_future_conducteur_reponse:
     resource: "@KarhabtyFutureConducteurBundle/Controller/ReponseController.php"
     type:     annotation
->>>>>>> 78215f9a2a3feabe66afc3b6246884fcb4ab6b4e
 
 karhabty_future_conducteur_user_reponses:
     resource: "@KarhabtyFutureConducteurBundle/Controller/UserReponsesController.php"
@@ -87,3 +85,11 @@ paiement:
     defaults: { _controller: KarhabtyPaiementBundle:Paiement:paiement}
     options:
         expose: true
+
+
+ajaxDeleteAstuce:
+    path:     /deleteAstuceAjax
+    defaults: { _controller: KarhabtyAstuceBundle:Astuce:deleteAstuce}
+    options:
+        expose: true
+
