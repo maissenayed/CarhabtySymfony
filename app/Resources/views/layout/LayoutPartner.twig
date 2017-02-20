@@ -2,7 +2,7 @@
 
 
 {% block body %}
-<h1>partner</h1>
+
 <body class="page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo">
 <!-- BEGIN HEADER -->
 {% block nav %}
@@ -105,7 +105,7 @@
                 <li class="nav-item  ">
                     <a href="{{ path('offre_index') }}" class="nav-link nav-toggle">
                         <i class="fa fa-cart-plus" aria-hidden="true"></i>
-                        <span class="title">vos offres</span>
+                        <span class="title">Tableau de bord offres</span>
                     </a>
                 </li>
 
@@ -114,7 +114,7 @@
                 <li class="nav-item  ">
                     <a href="{{ path('offre_new') }}" class="nav-link nav-toggle">
                         <i class="fa fa-plus-circle"></i>
-                        <span class="title">Ajouter un offre</span>
+                        <span class="title">Ajouter une offre</span>
                     </a>
                 </li>
 
@@ -149,6 +149,29 @@
         <!-- BEGIN CONTENT BODY -->
         <div class="page-content">
 
+
+
+
+
+            {% if app.session.flashBag.has('error_handle') %}
+                <div class="custom-alerts alert alert-warning fade in">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                    {% for msg in app.session.flashBag.get('error_handle') %}
+                        {{ msg }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+
+
+            {% if app.session.flashBag.has('success_handle') %}
+                <div class="custom-alerts alert alert-success fade in">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                    {% for msg in app.session.flashBag.get('success_handle') %}
+                        {{ msg }}
+                    {% endfor %}
+                </div>
+            {% endif %}
 
 
 

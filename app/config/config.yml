@@ -16,6 +16,7 @@ imports:
     - { resource: "@KarhabtyPaiementBundle/Resources/config/services.yml" }
     - { resource: "@KarhabtyBankBundle/Resources/config/services.yml" }
     - { resource: "@KarhabtyAdminBundle/Resources/config/services.yml" }
+    - { resource: "@KarhabtyMailBundle/Resources/config/services.yml" }
 
 
 

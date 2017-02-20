@@ -1403,7 +1403,7 @@
                 "symfony2bundle",
                 "twitter"
             ],
-            "time": "2016-01-28T15:39:34+00:00"
+            "time": "2016-01-28 15:39:34"
         },
         {
             "name": "ob/highcharts-bundle",
@@ -1457,7 +1457,7 @@
                 "marcaube",
                 "ob"
             ],
-            "time": "2016-07-26T23:46:28+00:00"
+            "time": "2016-07-26 23:46:28"
         },
         {
             "name": "ocramius/proxy-manager",

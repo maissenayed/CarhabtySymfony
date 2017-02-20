@@ -8,6 +8,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Validator\Constraints\Date;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 
 class OffreController extends Controller
@@ -15,6 +17,7 @@ class OffreController extends Controller
 
     public function indexAction()
     {
+        $this->denyAccessUnlessGranted('ROLE_PARTENAIRE');
 
         $user = $this->getUser();
         $userId = $user->getId();
@@ -26,7 +29,7 @@ class OffreController extends Controller
     }
 
 
-    public function getAlloffreAction()
+    public function getAlloffreAction(Request $request)
     {
 
         $now = new \DateTime();
@@ -34,6 +37,8 @@ class OffreController extends Controller
         $em = $this->getDoctrine()->getManager();
         $offres = $em->getRepository('KarhabtyOffreBundle:Offre')->getoffres($now);
 
+        if($offres == null)
+            $request->getSession()->getFlashBag()->add('error_handle', "il y a pas d'offres disponible");
 
         return $this->render('KarhabtyOffreBundle:offre:Offres.html.twig', array(
             'offres' => $offres, 'eco' => $economie
@@ -43,6 +48,9 @@ class OffreController extends Controller
 
     public function newAction(Request $request)
     {
+
+        $this->denyAccessUnlessGranted('ROLE_PARTENAIRE');
+
         $offre = new Offre();
         $offre->setUser($this->getUser());
         $form = $this->createForm('Karhabty\OffreBundle\Form\OffreType', $offre);
@@ -50,12 +58,34 @@ class OffreController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            if ($offre->getPrix() <= 0 ) {
 
+                $request->getSession()
+                    ->getFlashBag()
+                    ->add('error_handle', "réessayer a nouveau Prix négative ou null");
+
+
+            }
+
+            elseif ($offre->getTauxReduction() <= 0){
+
+                $request->getSession()
+                    ->getFlashBag()
+                    ->add('error_handle', "réessayer a nouveau Taux de réduction négative");
+
+
+            }
+            else{
             $em = $this->getDoctrine()->getManager();
             $em->persist($offre);
             $em->flush($offre);
 
+            $request->getSession()
+                    ->getFlashBag()
+                    ->add('success_handle', "offre ajouter avec succée")
+                ;
             return $this->redirectToRoute('offre_index');
+        }
         }
 
         return $this->render('@KarhabtyOffre/offre/new.html.twig', array(
@@ -77,7 +107,7 @@ class OffreController extends Controller
     public function detailOffreAction(Offre $offre)
     {
 
-
+       // $this->denyAccessUnlessGranted('ROLE_PARTICULIER');
         return $this->render('@KarhabtyOffre/offre/details.html.twig', array(
             'offre' => $offre
 
@@ -87,25 +117,50 @@ class OffreController extends Controller
 
     public function editAction(Request $request, Offre $offre)
     {
+
+        $this->denyAccessUnlessGranted('ROLE_PARTENAIRE');
         $deleteForm = $this->createDeleteForm($offre);
         $editForm = $this->createForm('Karhabty\OffreBundle\Form\OffreType', $offre);
         $editForm->handleRequest($request);
+
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('offre_index');
+            if ($offre->getPrix() <= 0 ) {
+
+                $request->getSession()
+                    ->getFlashBag()
+                    ->add('error_handle', "réessayer a nouveau Prix négative");
+
+
+            }
+
+            elseif ($offre->getTauxReduction() <= 0){
+
+                $request->getSession()
+                    ->getFlashBag()
+                    ->add('error_handle', "réessayer a nouveau Taux de réduction négative");
+
+
+            }
+
+            else {
+
+                $this->getDoctrine()->getManager()->flush();
+
+                return $this->redirectToRoute('offre_index');
+            } }
+
+            return $this->render('@KarhabtyOffre/offre/edit.html.twig', array(
+                'offre' => $offre,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
+            ));
         }
-
-        return $this->render('@KarhabtyOffre/offre/edit.html.twig', array(
-            'offre' => $offre,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
 
 
     public function deleteAction(Request $request, Offre $offre)
     {
+
         $form = $this->createDeleteForm($offre);
         $form->handleRequest($request);
 
@@ -130,25 +185,22 @@ class OffreController extends Controller
 
 
 
-    function OffresPassesAction()
+    function OffresPassesAction(Request $request)
     {
-
 
         $now = new \DateTime();
         $em = $this->getDoctrine()->getManager();
         $offre = $em->getRepository('KarhabtyOffreBundle:Offre')->offrespasses($now);
 
+        if($offre == null)
+            $request->getSession()->getFlashBag()->add('error_handle', "il y a pas d'anciennes offres disponible");
 
-        return $this->render('@KarhabtyOffre/offre/offresPasses.html.twig', array(
-            'offres' => $offre
+        return $this->render('@KarhabtyOffre/offre/offresPasses.html.twig', array('offres' => $offre)); }
 
-        ));
 
-    }
 
     function CountAction(Request $request)
     {
-
 
         if ($request->isXmlHttpRequest()) {
 
@@ -160,7 +212,7 @@ class OffreController extends Controller
             return new JsonResponse($count);
             }
 
-             }
+        return new JsonResponse(array('status'=>'failed'));   }
 
 
 
