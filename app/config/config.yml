@@ -1,4 +1,4 @@
-imports:
+﻿imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
@@ -13,6 +13,7 @@ imports:
     - { resource: "@KarhabtyPaiementBundle/Resources/config/services.yml" }
     - { resource: "@KarhabtyBankBundle/Resources/config/services.yml" }
     - { resource: "@KarhabtyAdminBundle/Resources/config/services.yml" }
+    - { resource: "@KarhabtyMailBundle/Resources/config/services.yml" }
 
 
 
@@ -100,7 +101,11 @@ fos_user:
         form:
             type: Karhabty\UserBundle\Form\RegistrationParticulierType
         confirmation:
+
+            enabled:    true
+
                     enabled:    false
+
 
     from_email:
             address: you@example.com

@@ -1,7 +1,4 @@
 karhabty_map_homepage:
     path:     /map
-    defaults: { _controller: KarhabtyMapBundle:Default:index }
-
-karhabty_map:
-    path:     /filter
     defaults: { _controller: KarhabtyMapBundle:Default:filter }
+

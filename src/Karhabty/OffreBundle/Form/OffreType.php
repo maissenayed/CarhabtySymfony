@@ -22,7 +22,12 @@ class OffreType extends AbstractType
             ->add('descriptionOffre',TextareaType::class)
             ->add('prix')
             ->add('tauxReduction')
-            ->add('dateExpirationOffre',DateType::class)
+            ->add('dateExpirationOffre',DateType::class, array(
+                'widget' => 'single_text',
+                'attr' => array(
+                    'min' => date('Y-m-d')
+                )
+            ))
             ->add('imageFile', FileType::class, array('data_class' => null));
     }
     

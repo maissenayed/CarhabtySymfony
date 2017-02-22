@@ -25,7 +25,7 @@ class RegistrationPartenaireType extends AbstractType
             ->add('siret')
             ->add('activite',ChoiceType::class, array(
                 'choices'  => array(
-                    'Auto-école' => 'ecole',
+                    'Auto-école' => 'auto',
                     'Mécanicien' => 'mecanicien',
                     'Lavage' => 'lavage',
                     'vendeur Piéce d\étaché' => 'piece',

@@ -8,7 +8,7 @@
         <div class="col-md-6 col-sm-6">
 
             <div class="portlet-body">
-                <img class="thumbnail" src="{{ asset(vich_uploader_asset(offre, 'imageFile')) }}">
+                <img width="500px" height="620px"  src="{{ asset(vich_uploader_asset(offre, 'imageFile')) }}">
             </div>
 
         </div>
@@ -64,11 +64,18 @@
 
 
 
-    <div class="m-heading-1 border-green m-bordered">
-        <h2>Description du l'offre</h2>
-        <p> {{ offre.descriptionOffre }} </p>
-    </div>
+    <div class="portlet light bordered">
+        <div class="portlet-title">
+<h1>Description</h1>
+        </div>
+        <div class="portlet-body">
+            <div id="context" data-toggle="context" data-target="#context-menu">
+                <p>{{ offre.descriptionOffre }} </p>
+            </div>
+            <!-- Your custom menu with dropdown-menu as default styling -->
 
+        </div>
+    </div>
 
 
 <div class="row">
@@ -93,13 +100,13 @@
             </div>
             <div class="portlet-body">
 
-            <ul>
 
-                <li><i class="fa fa-map-marker"></i>  {{ offre.user.adresse }}</li>
-                <li><i class="fa fa-user"></i> {{ offre.user.activite }}</li>
-                <li><i class="fa fa-phone"></i> {{ offre.user.telephone }}</li>
 
-             </ul>
+              <h4> <i class="fa fa-map-marker"></i>  {{ offre.user.adresse }}</h4><br><br>
+                <h4> <i class="fa fa-user"></i> {{ offre.user.activite }}</h4><br><br>
+                <h4> <i class="fa fa-phone"></i> {{ offre.user.telephone }}</h4>
+
+
            </div>
         </div>
      </div>
@@ -131,7 +138,7 @@
                 if (distance < 0) {
 
                     clearInterval(timer);
-                    document.getElementById('{{ offre.idOffre }}').innerHTML = 'EXPIREE!';
+                    document.getElementById('{{ offre.idOffre }}').innerHTML = '<i class="fa fa-exclamation-triangle"></i>EXPIREE!';
 
                     return;
                 }
@@ -140,7 +147,7 @@
                 var minutes = Math.floor((distance % _hour) / _minute);
                 var seconds = Math.floor((distance % _minute) / _second);
 
-                document.getElementById('{{ offre.idOffre }}').innerHTML = "Expiration dans :   "
+                document.getElementById('{{ offre.idOffre }}').innerHTML = "Expiration dans :   ";
                 document.getElementById('{{ offre.idOffre }}').innerHTML += days + ' Jour(s) : ';
                 document.getElementById('{{ offre.idOffre }}').innerHTML += hours + ' Heure(s) : ';
                 document.getElementById('{{ offre.idOffre }}').innerHTML += minutes + ' Minute(s) : ';

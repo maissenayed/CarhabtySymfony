@@ -81,14 +81,14 @@ class CouponController extends Controller
 
 
         // Change the path to whatever you like, even public:// will do or you could also make use of the private file system by using private://
-        $path =  'localhost/Car';
+        $path =  'Carhabty';
 
 // Supply a filename including the .pdf extension
 
-        $filename = 'coupon.pdf';
+        $filename = 'Coupon.pdf';
 // Create the full path
 
-        $full_path = $path . '/' . $filename;
+        $full_path = $path .''. $filename;
 
 
 
@@ -122,7 +122,7 @@ class CouponController extends Controller
             $adresse=$coupon->getOffre()->getUser()->getAdresse();
             $partenaire=$coupon->getOffre()->getUser()->getNomsociete();
 
-            $prixfinal= $prix -(($prix * $reduction)/100);
+            $prixfinal= $prix -(($prix*$reduction)/100);
 
           //  echo  $nomoffre.'----'.$nom.'---'.$prenom.'---'.$prixfinal.'----'.$ref.'----'.$reduction.'%'.'----'.$adresse;die;
 

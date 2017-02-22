@@ -5,10 +5,12 @@ namespace Karhabty\UserBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass="Karhabty\UserBundle\Repository\UserRepository")
  * @ORM\Table(name="utilisateur")
+ * @Vich\Uploadable
  */
 class User extends BaseUser
 {

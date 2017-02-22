@@ -2,6 +2,8 @@
 
 {% block content%}
 
+
+	<h2>Localisation des Partenaires avec la Map</h2>
 	<div class="row">
 	<div class="col-md-12">
 
@@ -16,47 +18,56 @@
 		</div>
 
 		<div class="col-md-6">
+			<div class="portlet light">
+			<h2>Filtre des Partenaires</h2>
 			<form>
+
+
+
+
 			<label for="lavage">Lavage</label>
-			<input type="checkbox"  data-toggle="toggle" value="lavage" id="lavage">
+			<input type="checkbox"  data-toggle="toggle" value="lavage" id="lavage"><br>
 			<label>Auto-école</label>
-			<input type="checkbox"  data-toggle="toggle" value="auto">
+			<input type="checkbox"  data-toggle="toggle" value="auto"><br>
 			<label>Mécanicien</label>
-			<input type="checkbox"  data-toggle="toggle" value="mec">
+			<input type="checkbox"  data-toggle="toggle" value="mecanicien"><br>
 			<label>Vendeur piéce de rechange</label>
 			<input type="checkbox"  data-toggle="toggle" value="vendeur">
 			</form>
-		</div>
-
-
-
-
-
-
+			</div>
+			</div>
 
 		<script type="text/javascript">
-            var map;
-            var latlng;
-            var myResult;
+
             var marker;
 
             function initMap() {
+
                 var directionsService = new google.maps.DirectionsService;
                 var directionsDisplay = new google.maps.DirectionsRenderer({
-
-                    suppressMarkers: true
+                suppressMarkers: true
 
 				});
+
+
                 var map = new google.maps.Map(document.getElementById('gmap_basic'), {
                     zoom: 7,
                     center: {lat: 36.84446074079564, lng: 10.111777782440186}
                 });
+
+
+                var infoBulleCurrentPos = new google.maps.InfoWindow({
+                    content: 'Vous etes ici ! '
+                });
+
 
                 var markerPostion = new google.maps.Marker({
                     map: map,
                     title: 'Hello World!',
 					icon:"{{ asset('assets/img/marker.png') }}"
                 });
+
+                infoBulleCurrentPos.open(map, markerPostion);
 
                 directionsDisplay.setMap(map);
 
@@ -72,16 +83,7 @@
                         markerPostion.setMap(map);
 
 
-                   //     var x= new google.maps.LatLng(36.83896555078597,10.20104169845581);
-
-                     /*   var marker = new google.maps.Marker({
-                            position: x,
-                            map: map,
-                            title: 'Hello World!'
-                        });
-*/
-
-                     		var markers = [];
+						var markers = [];
 
                         var activities_checked = [];
                         $('input:checkbox').change(
@@ -94,8 +96,7 @@
                                     activities_checked.splice(index, 1);
 
 								}
-								console.log("active");
-
+							//	console.log("active");
 
                                 markers.forEach(function (item, index) {
 
@@ -103,77 +104,74 @@
                                 });
                                 markers = [];
 
-
                                 putmarker();
                             });
 
-						function putmarker() {
-                            console.log("dude");
-
+						    function putmarker() {
 
                             var h =[];
-                          {%  for off in offres %}
-
-						 	h.push(["{{ off[0] }}","{{ off[1] }}"]);
+                            {%  for off in offres %}
+						 	h.push(["{{ off[0] }}","{{ off[1] }}","{{ off[2] }}"]);
 							{% endfor %}
 
 
                             h.forEach(function (item, index) {
 
 
-						 var geocoder = new google.maps.Geocoder();
-						 geocoder.geocode({address:item[0] }, function(results, status) {
-						 if (status == google.maps.GeocoderStatus.OK) {
+					        	 var geocoder = new google.maps.Geocoder();
+					        	 geocoder.geocode({address:item[0] }, function(results, status) {
+						         if (status == google.maps.GeocoderStatus.OK) {
 
-						 var myResult = results[0].geometry.location;
+						         var myResult = results[0].geometry.location;
+									//debug array checked
+                                 console.log($.inArray(item[1], activities_checked)>=0);
+                                 console.log(activities_checked);
+                                 console.log(item[1]);
 
-                             console.log($.inArray(item[1], activities_checked)>=0);
-                             console.log(activities_checked);
-                             console.log(item[1]);
-                             if($.inArray(item[1], activities_checked)>=0) {
+                                 if($.inArray(item[1], activities_checked)>=0) {
 
-                              marker = new google.maps.Marker({
-							 map: map,
-							 position: myResult
 
-							 });
+                                  marker = new google.maps.Marker({
+								  map: map,
+							      position: myResult,
+						          icon:"{{ asset('assets/img/part.png') }}"
+								  });
 
-                              markers.push(marker);
-
+                                 markers.push(marker);
 
                                  map.setCenter(myResult);
                                  marker.setMap(map);
-                                 // map.setZoom(17);
+                                 var contenuInfoBulle = item[2];
+                                 var infoBulle = new google.maps.InfoWindow({
+                                     content: contenuInfoBulle
+                                 });
 
-
-                             marker.addListener('click', function() {
+                                 marker.addListener('click', function() {
 
                                  calculateAndDisplayRoute(directionsService, directionsDisplay,myResult,pos);
 
+                                 infoBulle.open(map, marker);
+
                              });
 
-						 } }
-						 });
+						 }}
+					 });
 
-                            });
-
-
-
-                    }
+                });
+	         } //end function putmarker
                         putmarker();
 
 
                     }, function() {
+
                         handleLocationError(true, infoWindow, map.getCenter());
+
                     });
+
                 } else {
                     // Browser doesn't support Geolocation
                     handleLocationError(false, infoWindow, map.getCenter());
                 }
-
-
-
-
 
 
             }
@@ -211,15 +209,9 @@
                 });
             }
 
-
 		</script>
 		<script async defer
 				src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAe4BNAZTQY-9JxbRhpgFUNuxjuyeGOZtU&callback=initMap">
 		</script>
-
-
-
-
-
 
 {% endblock %}

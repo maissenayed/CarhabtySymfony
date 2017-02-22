@@ -1,3 +1,7 @@
+karhabty_mail:
+    resource: "@KarhabtyMailBundle/Resources/config/routing.yml"
+    prefix:   /
+
 karhabty_astuce:
     resource: "@KarhabtyAstuceBundle/Resources/config/routing.yml"
 

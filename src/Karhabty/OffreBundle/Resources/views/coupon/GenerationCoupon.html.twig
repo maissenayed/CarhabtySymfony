@@ -4,7 +4,38 @@
 {% block content %}
 
 
-    <a href="{{ path('coupon_generate_pdf') }}">générer votre coupon</a>
+
+    <div class="portlet light bordered">
+        <div class="portlet-title">
+
+           <h2 style="color: #8E44AD;">Merci pour votre fidélité</h2>
+
+        </div>
+        <div class="portlet-body">
+            <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 200px;"><div class="scroller" style="height: 200px; overflow: hidden; width: auto;" data-rail-visible="1" data-rail-color="yellow" data-handle-color="#a1b2bd" data-initialized="1">
+
+                    <h3>CONDITIONS DU L'OFFRE</h3>
+                    Lisez-moi :<br>
+
+                    - Le coupon est valable pour une seule personne<br>
+                    -La garantie Satisfait ou Remboursé de Carhabty est un service exclusif que nous offrons à nos clients pour les préserver de toute déconvenue.<br><br>
+
+                    <button id="gen" class="btn green"><a style="text-decoration: none;color:#ffffec" href="{{ path('coupon_generate_pdf') }}">Générer votre coupon</a></button>
+                </div><div class="slimScrollBar" style="background: rgb(161, 178, 189); width: 7px; position: absolute; top: 109px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 138.889px;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; border-radius: 7px; background: yellow; opacity: 0.2; z-index: 90; right: 1px; display: none;"></div></div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 {% endblock %}

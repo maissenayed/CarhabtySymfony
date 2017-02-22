@@ -1,5 +1,6 @@
-{% extends "@FOSUser/HomeUser.html.twig" %}
-
+{% extends "layout/LayoutPartner.twig" %}
+{% block content %}
 {% block fos_user_content %}
 {% include "@KarhabtyUser/Profile/show_content.html.twig" %}
 {% endblock fos_user_content %}
+{% endblock %}

@@ -16,7 +16,7 @@
             <th>Offre</th>
             <th>Partenaire</th>
             <th>Adresse</th>
-            <th>Prix</th>
+            <th>date d'achat</th>
             <th>Référence</th>
         </tr>
         </thead>
@@ -32,7 +32,7 @@
 
             <td style="font-size: 20px"> {{ coupon.offre.user.adresse }}</td>
 
-            <td>{{ coupon.offre.prix }}DT</td>
+            <td>{{ coupon.date | date }}DT</td>
 
             <td>{{ coupon.reference }}</td>
 

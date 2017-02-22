@@ -1,41 +1,50 @@
 {% extends 'layout/LayoutUser.html.twig' %}
 
 {% block content %}
-    <h1>Offre</h1>
 
-    <table>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+    <h1>Offre :{{ offre.nomOffre }} </h1>
+
+    <table class="table">
+        <thead class="thead-inverse">
+        <tr>
+
+            <th>offre</th>
+            <th>Description </th>
+            <th>Prix</th>
+            <th>reduction</th>
+            <th>date d'ajout</th>
+            <th>date d'expiration</th>
+            <th>Image</th>
+
+        </tr>
+        </thead>
+
         <tbody>
 
-            <tr>
-                <th>Nomoffre</th>
+
                 <td>{{ offre.nomOffre }}</td>
-            </tr>
-            <tr>
-                <th>Descriptionoffre</th>
+
+
                 <td>{{ offre.descriptionOffre }}</td>
-            </tr>
-            <tr>
-                <th>Prix</th>
+
+
                 <td>{{ offre.prix }}</td>
-            </tr>
-            <tr>
-                <th>Tauxreduction</th>
+
+
                 <td>{{ offre.tauxReduction }}</td>
-            </tr>
-            <tr>
-                <th>date exp</th>
+
+
+
                 <td>{{ offre.dateExpirationOffre | date }}</td>
-            </tr>
 
-            <tr>
-                <th>date ajout</th>
+
+
                 <td>{{ offre.date | date }}</td>
-            </tr>
 
-            <tr>
-                <th>Image</th>
-                <td> <img src="{{ asset(vich_uploader_asset(offre, 'imageFile')) }}"></td>
-            </tr>
+                <td> <img height="70px" width="70px" src="{{ asset(vich_uploader_asset(offre, 'imageFile')) }}"></td>
+
         </tbody>
     </table>
 

@@ -44,11 +44,11 @@ class ProfileController extends Controller
 
 
         if($this->isGranted("ROLE_PARTENAIRE",$user))
-        return $this->render('KarhabtyUserBundle::HomePartner.html.twig', array(
+        return $this->render('layout/LayoutPartner.twig', array(
             'user' => $user,
         ));
         else
-            return $this->render('KarhabtyUserBundle::HomeUser.html.twig', array(
+            return $this->render('layout/LayoutUser.html.twig', array(
                 'user' => $user,
             ));
     }
@@ -95,7 +95,7 @@ class ProfileController extends Controller
             $userManager->updateUser($user);
 
             if (null === $response = $event->getResponse()) {
-                $url = $this->generateUrl('fos_user_profile_show');
+                $url = $this->generateUrl('profile');
                 $response = new RedirectResponse($url);
             }
 
