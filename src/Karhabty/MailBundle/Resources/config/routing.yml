@@ -1,3 +1,20 @@
-karhabty_mail_homepage:
-    path:     /
-    defaults: { _controller: KarhabtyMailBundle:Default:index }
+my_app_mail_succ:
+    path:     /succ
+    defaults: { _controller: KarhabtyMailBundle:Mail:index }
+
+
+
+my_app_mail_form:
+    path:     /contact
+    defaults: { _controller: KarhabtyMailBundle:Mail:new }
+
+
+
+
+my_app_mail_sendpage:
+    path:     /sendmail
+    defaults: { _controller: KarhabtyMailBundle:Mail:sendMail }
+
+
+
+

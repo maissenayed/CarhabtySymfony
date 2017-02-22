@@ -217,7 +217,7 @@
 
                 <li class="nav-item  ">
                     <a href="#" class="nav-link nav-toggle">
-                        <i class="fa fa-info-circle"></i>
+                        <i class="fa fa-envelop"></i>
                         <span class="title">contact</span>
                     </a>
                 </li>
@@ -267,6 +267,30 @@
 
 
             {% block content %}
+
+
+                <div class="col-md-6">
+                    <!-- BEGIN Portlet PORTLET-->
+                    <div class="portlet light">
+                        <div class="portlet-title">
+
+
+                            <h1>Bienvenu   {{ app.user.username }} </h1>
+
+                        </div>
+                        <div class="portlet-body">
+
+                            <div class="fos_user_user_show">
+
+
+                                <a href="{{ path('fos_user_profile_edit') }}">Paramétre du compte</a><br>
+                                <a href="{{ path('fos_user_change_password') }}">changer le mot de passe</a>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- END Portlet PORTLET-->
+                </div>
 
 
 

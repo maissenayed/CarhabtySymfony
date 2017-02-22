@@ -21,6 +21,7 @@ class OffreRepository extends EntityRepository
 
     public function getoffres($date){
 
+
         $qb = $this->createQueryBuilder("e")->select('e');
         $qb->andWhere('e.DateExpirationOffre > :now')
             ->setParameter('now', $date )

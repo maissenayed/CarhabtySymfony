@@ -52,7 +52,7 @@
                                 {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
                                                 {% endif %}</span>
                             <!-- DOC: Do not remove below empty space(&nbsp;) as its purposely used -->
-                            <img alt="" class="img-circle" src="../assets/layouts/layout4/img/avatar9.jpg" /> </a>
+                             </a>
                         <ul class="dropdown-menu dropdown-menu-default">
                             <li>
                                 <a href="{{ path('fos_user_profile_show') }}">
@@ -176,8 +176,27 @@
 
 
             {% block content %}
-                <div class="note note-info">
-                    <p> A black page template with a minimal dependency assets to use as a base for any custom page you create </p>
+                <div class="col-md-6">
+                    <!-- BEGIN Portlet PORTLET-->
+                    <div class="portlet light">
+                        <div class="portlet-title">
+
+
+                            <h1>Bienvenu   {{ app.user.username }} </h1>
+
+                        </div>
+                        <div class="portlet-body">
+
+                            <div class="fos_user_user_show">
+
+
+                                <a href="{{ path('fos_user_profile_edit') }}">Paramétre du compte</a><br>
+                                <a href="{{ path('fos_user_change_password') }}">changer le mot de passe</a>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- END Portlet PORTLET-->
                 </div>
             {% endblock %}
 
@@ -202,43 +221,9 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!-- BEGIN FOOTER -->
 <div class="page-footer">
-    <div class="page-footer-inner"> 2014 &copy; Metronic by keenthemes.
+    <div class="page-footer-inner"> 2017 &copy; Metronic by Vikings.
         <a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" title="Purchase Metronic just for 27$ and get lifetime updates for free" target="_blank">Purchase Metronic!</a>
     </div>
     <div class="scroll-to-top">

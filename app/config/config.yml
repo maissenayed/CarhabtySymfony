@@ -104,7 +104,7 @@ fos_user:
         form:
             type: Karhabty\UserBundle\Form\RegistrationParticulierType
         confirmation:
-            enabled:    false
+            enabled:    true
     from_email:
             address: you@example.com
             sender_name: You
