@@ -113,3 +113,10 @@ coupon_generate:
         expose: true
 
 
+ajaxGetCommentsAstuce:
+    path:     /commentsastuce
+    defaults: { _controller: KarhabtyAstuceBundle:Astuce:getComments}
+    options:
+        expose: true
+
+

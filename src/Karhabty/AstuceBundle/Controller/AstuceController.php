@@ -37,8 +37,8 @@ class AstuceController extends Controller
             $id=$request->request->get('data');
         $em = $this->getDoctrine()->getManager();
         $Astuce = $em->getRepository('KarhabtyAstuceBundle:Astuce')->find($id);
-        $rates= $em->getRepository('KarhabtyAstuceBundle:Rating')->find(1);
-        return new Response(var_dump($rates));
+
+
         $em->remove($Astuce);
         $em->flush();
         return new JsonResponse(array('status'=>'success'));
@@ -111,7 +111,21 @@ class AstuceController extends Controller
 
 
 
+    public function getCommentsAction(Request $request)
+    {
 
+
+        $astuce=$this->getDoctrine()->getRepository('KarhabtyAstuceBundle:Astuce')->find($request->request->get('id'));
+        $listComm=$this->getDoctrine()->getRepository('KarhabtyAstuceBundle:Comment')->findByAstuce($astuce);
+        $htmlList=[];
+        foreach ($listComm as $com)
+        {
+            $var=$com->getCommentaire();
+            array_push($htmlList,$var);
+        }
+
+        return new JsonResponse(array("data"=>$htmlList));
+    }
 
 
 

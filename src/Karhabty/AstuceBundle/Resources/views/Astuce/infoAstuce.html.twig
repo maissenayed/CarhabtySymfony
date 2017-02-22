@@ -38,6 +38,7 @@
                          myvar={{ i.id }};
                          $.post(Routing.generate('ajaxDeleteAstuce'),{'data':myvar},function (response) {
                              swal("Deleted!", "Your imaginary file has been deleted.", "success");
+                             location.href="{{ path('listAstuce') }}";
                          });
 
                      } else {
@@ -45,6 +46,19 @@
                      }
                  });
          });
+
+         $("#loadcom").click(function () {
+             $(".modal-body").load(Routing.generate('ajaxGetCommentsAstuce'),{id:{{i.id }} },function (data) {
+                 var list=JSON.parse(data);
+
+                $(".modal-body").html("");
+                 for(var elem in list.data){
+
+                     $(".modal-body").append("<p>"+list.data[elem]+"</p><hr>");
+
+
+             };
+         });})
      </script>
 
 
@@ -62,7 +76,7 @@
                     <h4 class="modal-title">Modal Header</h4>
                 </div>
                 <div class="modal-body">
-                    <p>Some text in the modal.</p>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -94,7 +108,7 @@
                            href="{{ path('updateAstuce', {'id':i.id}) }}">
                             <i class="icon-wrench"></i>
                         </a>
-                        <a class="btn btn-circle btn-icon-only btn-default" data-toggle="modal" data-target="#myModal">
+                        <a class="btn btn-circle btn-icon-only btn-default" id="loadcom" data-toggle="modal" data-target="#myModal">
                             <i class="fa fa-commenting-o"></i>
                         </a>
 
