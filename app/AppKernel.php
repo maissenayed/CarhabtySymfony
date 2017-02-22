@@ -17,7 +17,11 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new AppBundle\AppBundle(),
 
+            new Karhabty\AstuceBundle\KarhabtyAstuceBundle(),
+
+
             new Karhabty\EventsBundle\KarhabtyEventsBundle(),
+
 
             new Karhabty\UserBundle\KarhabtyUserBundle(),
             new FOS\UserBundle\FOSUserBundle(),

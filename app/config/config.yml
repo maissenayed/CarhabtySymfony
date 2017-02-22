@@ -1,15 +1,12 @@
-imports:
+﻿imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
-
+    - { resource: "@KarhabtyAstuceBundle/Resources/config/services.yml" }
     - { resource: "@KarhabtyEventsBundle/Resources/config/services.yml" }
-
     - { resource: "@KarhabtyUserBundle/Resources/config/services.yml" }
     - { resource: "@KarhabtyOffreBundle/Resources/config/services.yml" }
     - { resource: "@KarhabtyMapBundle/Resources/config/services.yml" }
-
-
     - { resource: "@KarhabtyFutureConducteurBundle/Resources/config/services.yml" }
     - { resource: "@KarhabtyCalendarBundle/Resources/config/services.yml" }
     - { resource: "@KarhabtyAnnonceBundle/Resources/config/services.yml" }
@@ -104,15 +101,25 @@ fos_user:
         form:
             type: Karhabty\UserBundle\Form\RegistrationParticulierType
         confirmation:
+
             enabled:    true
+
+                    enabled:    false
+
+
     from_email:
             address: you@example.com
             sender_name: You
+
     service:
         mailer: fos_user.mailer.twig_swift
 vich_uploader:
     db_driver: orm
     mappings:
+            astuce_image:
+                uri_prefix:         /images/astuces
+                upload_destination: '%kernel.root_dir%/../web/images/astuces'
+
             offres_image:
                 uri_prefix:         /images/offres
                 upload_destination: '%kernel.root_dir%/../web/images/offres'
@@ -164,5 +171,7 @@ nomaya_social:
         googleplus:         "https://plus.google.com/105931415830389032796"
     theme:                  'default' # optional
 gregwar_captcha: ~
+
+
 
 

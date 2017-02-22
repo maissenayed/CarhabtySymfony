@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Karhabty\UserBundle\Repository\UserRepository")
  * @ORM\Table(name="utilisateur")
  * @Vich\Uploadable
  */

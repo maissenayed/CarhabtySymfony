@@ -30,6 +30,7 @@
         "incenteev/composer-parameter-handler": "^2.0",
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "vich/uploader-bundle": "^1.4",
+        "kartik-v/bootstrap-star-rating": "@dev",
         "friendsofsymfony/jsrouting-bundle": "^1.6",
         "ancarebeca/full-calendar-bundle": "^4.0",
         "stripe/stripe-php": "4.*",

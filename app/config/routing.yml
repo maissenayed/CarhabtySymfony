@@ -2,8 +2,13 @@ karhabty_mail:
     resource: "@KarhabtyMailBundle/Resources/config/routing.yml"
     prefix:   /
 
+karhabty_astuce:
+    resource: "@KarhabtyAstuceBundle/Resources/config/routing.yml"
+
+
 karhabty_events:
     resource: "@KarhabtyEventsBundle/Resources/config/routing.yml"
+
 karhabty_admin:
     resource: "@KarhabtyAdminBundle/Resources/config/routing.yml"
     prefix:   /
@@ -92,6 +97,14 @@ annonce_recherche:
 paiement:
     path:     /checkout
     defaults: { _controller: KarhabtyPaiementBundle:Paiement:paiement}
+    options:
+        expose: true
+
+
+
+ajaxDeleteAstuce:
+    path:     /deleteAstuceAjax
+    defaults: { _controller: KarhabtyAstuceBundle:Astuce:deleteAstuce}
     options:
         expose: true
 
