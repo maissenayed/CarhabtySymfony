@@ -67,6 +67,13 @@
                         <span class="help-block"> This is inline help </span>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">Description</label>
+                    <div class="col-md-9">
+                        {{ form_widget(edit_form.Descreption, {'attr': {'class': 'form-control','placeholder':'Description'}}) }}
+
+                    </div>
+                </div>
 
                 <div class="form-group">
                     <label class="control-label col-md-3">date de sortie</label>
@@ -79,17 +86,7 @@
                         <span class="help-block"> Select date </span>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="control-label col-md-3">date de sortie</label>
-                    <div class="col-md-9">
-                        <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" >
-                            {{ form_widget(edit_form.AnneePub, {'attr': {'class': 'form-control','placeholder':'annee'}}) }}
-                            <span class="input-group-btn"><button class="btn default" type="button"><i class="fa fa-calendar"></i></button></span>
-                        </div>
-                        <!-- /input-group -->
-                        <span class="help-block"> Select date </span>
-                    </div>
-                </div>
+
                 <div class="form-group">
                     <label class="control-label col-md-3">model de voiture</label>
                     <div class="col-md-9">

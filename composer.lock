@@ -957,6 +957,8 @@
                 "User management"
             ],
             "time": "2017-02-17 15:49:11"
+<<<<<<< HEAD
+=======
         },
         {
             "name": "gregwar/captcha",
@@ -1059,6 +1061,7 @@
                 "visual"
             ],
             "time": "2016-09-21T08:36:55+00:00"
+>>>>>>> 7525f2952a8ff96805bc97d82245e7d9c95897ac
         },
         {
             "name": "incenteev/composer-parameter-handler",

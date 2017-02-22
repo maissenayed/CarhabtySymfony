@@ -1,0 +1,4 @@
+admin:
+    path:     /admin
+    defaults: { _controller: "KarhabtyAdminBundle:Admin:chart" }
+    methods:  GET

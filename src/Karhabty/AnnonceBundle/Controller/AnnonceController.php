@@ -21,8 +21,9 @@ class AnnonceController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
-        $annonces = $em->getRepository('KarhabtyAnnonceBundle:Annonce')->findAll();
+        $user=$this->getUser();
+        $user=$user->getID();
+        $annonces = $em->getRepository('KarhabtyAnnonceBundle:Annonce')->findby(array('user' => $user));
 
         return $this->render('@KarhabtyAnnonce/annonce/index.html.twig', array(
             'annonces' => $annonces,
@@ -78,6 +79,7 @@ class AnnonceController extends Controller
     public function newAction(Request $request)
     {
         $annonce = new Annonce();
+        $annonce->setUser($this->getUser());
         $form = $this->createForm('Karhabty\AnnonceBundle\Form\AnnonceType', $annonce);
         $form->handleRequest($request);
 
@@ -121,6 +123,9 @@ class AnnonceController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+
+
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('annonce_edit', array('id' => $annonce->getId()));
@@ -175,18 +180,12 @@ class AnnonceController extends Controller
     {
         $form = $this->createForm('Karhabty\AnnonceBundle\Form\search');
         $form->handleRequest($request);
-
-
-
         $prix = $request->request->get('prix');
         $title = $request->request->get('title');
         $cat = $request->request->get('category');
-
         $em = $this->getDoctrine()->getManager();
         $query = $em->getRepository('KarhabtyAnnonceBundle:Annonce')
             ->findAllOrderedByName($prix, $title, $cat);
-
-
         return $this->render('@KarhabtyAnnonce/annonce/recherche_avance.html.twig', array(
             'annonces' => $query,
         ));
